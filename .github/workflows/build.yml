@@ -39,4 +39,12 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           NPM_TOKEN: ${{secrets.NPM_TOKEN}}
           NPM_CONFIG_PROVENANCE: true
-        run: yarn build && npm version major && npm publish --access public && git push --tags
+        run: |
+          git config --global user.email "hi@examplary.ai"
+          git config --global user.name "Examplary"
+
+          yarn build
+          
+          npm version major
+          npm publish --access public
+          git push --tags
