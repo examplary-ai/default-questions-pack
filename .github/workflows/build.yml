@@ -51,5 +51,5 @@ jobs:
           npm version $latest_version --no-git-tag-version
           npm version major
 
-          npm publish --access public
+          npm publish --access public --force
           git push --tags
