@@ -1,0 +1,21 @@
+{
+  "name": "@examplary/default-questions-pack",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Default question types for Examplary",
+  "main": "question-types.json",
+  "files": [
+    "question-types.json"
+  ],
+  "scripts": {
+    "publish": "question-type-bundler",
+    "release": "npm version major && npm publish --access public && git push --tags"
+  },
+  "author": "Examplary <hi@examplary.ai>",
+  "license": "MIT",
+  "devDependencies": {
+    "@examplary/question-type-bundler": ">=0.0.1",
+    "@types/react": ">=19.0.0",
+    "react": ">=19.0.0"
+  }
+}

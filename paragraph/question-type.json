@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.examplary.ai/question-type.json",
+
+  "id": "paragraph",
+  "name": {
+    "en": "Paragraph",
+    "nl": "Alinea"
+  },
+  "description": {
+    "en": "Some text to provide context or instructions to the student.",
+    "nl": "Tekst om context of instructies te geven aan de leerling."
+  },
+
+  "backgroundColor": "bg-blue-100",
+  "iconBackgroundColor": "bg-blue-200",
+  "hideSettings": true,
+
+  "titlePlaceholder": {
+    "en": "Section title...",
+    "nl": "Sectietitel..."
+  },
+  "untitledPlaceholder": {
+    "en": "Untitled section",
+    "nl": "Naamloze sectie"
+  }
+}
