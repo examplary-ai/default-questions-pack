@@ -10,6 +10,10 @@
   "scripts": {
     "build": "question-type-bundler"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/examplary-ai/default-questions-pack"
+  },
   "author": "Examplary <hi@examplary.ai>",
   "license": "MIT",
   "devDependencies": {
