@@ -15,6 +15,12 @@
     "url": "https://github.com/examplary-ai/default-questions-pack"
   },
   "author": "Examplary <hi@examplary.ai>",
+  "keywords": [
+    "examplary",
+    "question-types",
+    "questions",
+    "e-learning"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@examplary/question-type-bundler": ">=0.0.1",

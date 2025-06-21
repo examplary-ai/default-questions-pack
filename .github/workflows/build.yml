@@ -46,7 +46,10 @@ jobs:
           git config --global user.name "Examplary"
 
           yarn build
-          
+
+          latest_version=$(npm show @examplary/default-questions-pack version)
+          npm version $latest_version --no-git-tag-version
           npm version major
+
           npm publish --access public
           git push --tags
