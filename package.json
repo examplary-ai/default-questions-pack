@@ -8,8 +8,7 @@
     "question-types.json"
   ],
   "scripts": {
-    "publish": "question-type-bundler",
-    "release": "npm version major && npm publish --access public && git push --tags"
+    "build": "question-type-bundler"
   },
   "author": "Examplary <hi@examplary.ai>",
   "license": "MIT",
