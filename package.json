@@ -1,6 +1,6 @@
 {
   "name": "@examplary/default-questions-pack",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "type": "module",
   "description": "Default question types for Examplary",
   "main": "question-types.json",
