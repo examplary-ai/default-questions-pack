@@ -2,6 +2,7 @@
   "$schema": "https://schemas.examplary.ai/question-type.json",
 
   "id": "examplary.default.paragraph",
+  "public": true,
 
   "name": {
     "en": "Paragraph",
@@ -12,8 +13,14 @@
     "nl": "Tekst om context of instructies te geven aan de leerling."
   },
 
-  "backgroundColor": "bg-blue-100",
-  "iconBackgroundColor": "bg-blue-200",
+  "icon": "./icon.svg",
+  "components": {
+    "assessment": "./assessment.tsx",
+    "print": "./print.tsx"
+  },
+
+  "backgroundColor": "#deeafc",
+  "iconBackgroundColor": "#c4dafc",
   "hideSettings": true,
 
   "titlePlaceholder": {
