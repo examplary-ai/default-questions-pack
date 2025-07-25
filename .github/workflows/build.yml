@@ -11,42 +11,29 @@ concurrency:
 jobs:
   release:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-        with:
-          persist-credentials: true
 
       - name: Setup node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: yarn
-
-      - name: Install dependencies
-        run: yarn
-
-      - name: Install latest npm
-        run: npm install -g npm@latest
+          cache: npm
 
       - name: Release
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
-          NPM_CONFIG_PROVENANCE: true
+          EXAMPLARY_API_KEY: ${{ secrets.EXAMPLARY_API_KEY }}
         run: |
-          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc
+          # Loop through each subfolder in the current directory
+          for dir in */; do
+            # Skip if the directory does not contain a question-type.json file
+            if [ ! -f "$dir/question-type.json" ]; then
+              continue
+            fi
 
-          git config --global user.email "hi@examplary.ai"
-          git config --global user.name "Examplary"
-
-          yarn build
-
-          latest_version=$(npm show @examplary/default-questions-pack version)
-          npm version $latest_version --no-git-tag-version
-          npm version major --no-git-tag-version
-
-          npm publish --access public --force
+            # Bundle and upload to Examplary
+            cd $dir
+            npx @examplary/question-type-bundler@latest
+            cd ..
+          done
