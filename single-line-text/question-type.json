@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.examplary.ai/question-type.json",
 
-  "id": "single-line-text",
+  "id": "examplary.default.single-line-text",
 
   "name": {
     "en": "Short answer",
