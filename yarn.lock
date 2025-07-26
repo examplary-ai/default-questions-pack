@@ -3,9 +3,9 @@
 
 
 "@examplary/ui@>=1.0.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@examplary/ui/-/ui-1.1.0.tgz#cf1acbdd997882da6d3d73de9b1f77cc2de995d0"
-  integrity sha512-EjFo8db8srPPkN16UsdVyjAQYuUIxLjsNIoX5x3N3T8a7IYbXfZLGWH+A5rxzMosWz/iZ9WRnQKHNvv2cekdYQ==
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@examplary/ui/-/ui-1.2.1.tgz#5c8d821e31724264e21e7d55b195da6650f7272d"
+  integrity sha512-97Fb820ghwKJ/5VwLBcNdzagYCJxDwb+2QvXNIIR5iKV1QC6DgmVLMGJmHgcho1JudqBN+eDH0+1mOU87Kytug==
   dependencies:
     "@floating-ui/dom" "^1.7.2"
     "@tailwindcss/forms" "^0.5.10"
