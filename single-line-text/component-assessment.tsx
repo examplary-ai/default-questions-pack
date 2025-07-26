@@ -1,6 +1,6 @@
-import { RichTextField } from "@examplary/ui";
+import { FrontendAssessmentComponent, RichTextField } from "@examplary/ui";
 
-export default ({ answer, saveAnswer }) => {
+const AssessmentComponent: FrontendAssessmentComponent = ({ answer, saveAnswer }) => {
   return (
     <RichTextField
       singleLine
@@ -12,3 +12,5 @@ export default ({ answer, saveAnswer }) => {
     />
   );
 };
+
+export default AssessmentComponent;

@@ -15,8 +15,8 @@
 
   "icon": "./icon.svg",
   "components": {
-    "assessment": "./assessment.tsx",
-    "print": "./print.tsx"
+    "assessment": "./component-assessment.tsx",
+    "print": "./component-print.tsx"
   },
 
   "canAutoGenerate": true,
