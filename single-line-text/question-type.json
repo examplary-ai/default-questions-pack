@@ -22,5 +22,12 @@
   "canAutoGenerate": true,
   "timeEstimateMinutes": 2,
 
-  "shortcut": "1"
+  "shortcut": "1",
+
+  "translations": {
+    "placeholder": {
+      "en": "Type your answer...",
+      "nl": "Typ je antwoord..."
+    }
+  }
 }
