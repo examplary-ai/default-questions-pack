@@ -19,12 +19,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
+          cache: yarn
 
       - name: Release
         env:
           EXAMPLARY_API_KEY: ${{ secrets.EXAMPLARY_API_KEY }}
         run: |
+          # Install dependencies
+          yarn
+
           # Loop through each subfolder in the current directory
           for dir in */; do
             # Skip if the directory does not contain a question-type.json file

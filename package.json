@@ -2,8 +2,8 @@
   "name": "@examplary/default-questions-pack",
   "description": "Default question types for Examplary",
   "type": "module",
-  
   "devDependencies": {
+    "@examplary/ui": ">=1.0.0",
     "@types/react": ">=19.1.8",
     "react": ">=19.1.0"
   }
