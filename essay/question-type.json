@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schemas.examplary.ai/question-type.json",
+
+  "id": "examplary.default.essay",
+  "public": true,
+
+  "name": {
+    "en": "Essay",
+    "nl": "Essay"
+  },
+  "description": {
+    "en": "Prompt the student to write a long answer, often using headings and text formatting.",
+    "nl": "Vraag de leerling om een lang antwoord te schrijven, vaak met gebruik van kopjes en tekstopmaak."
+  },
+
+  "icon": "./icon.svg", // TODO
+  "components": {
+    "assessment": "./component-assessment.tsx",
+    "print": "./component-print.tsx"
+  },
+
+  "canAutoGenerate": true,
+  "timeEstimateMinutes": 15,
+
+  "settings": [
+    {
+      "id": "minWords",
+      "name": {
+        "en": "Minimum word count",
+        "nl": "Minimaal aantal woorden"
+      },
+      "type": "number",
+      "placeholder": "0",
+      "step": 50
+    },
+    {
+      "id": "maxWords",
+      "name": {
+        "en": "Maximum word count",
+        "nl": "Maximaal aantal woorden"
+      },
+      "type": "number",
+      "placeholder": "0",
+      "step": 50
+    }
+  ],
+
+  "translations": {
+    "placeholder": {
+      "en": "Type your answer...",
+      "nl": "Typ je antwoord..."
+    }
+  }
+}
