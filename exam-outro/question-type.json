@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.examplary.ai/question-type.json",
+
+  "id": "examplary.default.exam-outro",
+  "public": true,
+
+  "name": {
+    "en": "Outro",
+    "nl": "Afronding"
+  },
+  "description": {
+    "en": "Final text shown to the student after the test.",
+    "nl": "Laatste tekst na afloop van de toets."
+  },
+
+  "icon": "./icon.svg",
+
+  "backgroundColor": "#e2f3e6",
+  "iconBackgroundColor": "#e2f3e6",
+  "canAutoGenerate": true,
+  "hideSettings": true,
+  "index": -1000,
+  "enforcePosition": "end",
+  "enforceTitle": {
+    "en": "Outro",
+    "nl": "Afronding"
+  }
+}

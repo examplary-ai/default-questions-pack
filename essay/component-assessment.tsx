@@ -48,9 +48,9 @@ export const EssayQuestionComponent: FrontendAssessmentComponent = ({
             fontSize: "0.875rem",
           }}
         >
-          {t("question-type.essay.word-count", { count: wordCount })}{" "}
-          {min > 0 && t("question-type.essay.word-count-min", { min })}{" "}
-          {max > 0 && t("question-type.essay.word-count-max", { max })}
+          {t("word-count", { count: wordCount })}{" "}
+          {min > 0 && t("word-count-min", { min })}{" "}
+          {max > 0 && t("word-count-max", { max })}
         </div>
       ) : null}
     </>

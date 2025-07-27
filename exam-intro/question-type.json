@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.examplary.ai/question-type.json",
+
+  "id": "examplary.default.exam-intro",
+  "public": true,
+
+  "name": {
+    "en": "Introduction",
+    "nl": "Introductie"
+  },
+  "description": {
+    "en": "The start of the test.",
+    "nl": "Het begin van de test."
+  },
+
+  "icon": "./icon.svg",
+
+  "backgroundColor": "#f9dafc",
+  "iconBackgroundColor": "#f9dafc",
+  "canAutoGenerate": true,
+  "hideSettings": true,
+  "index": -3000,
+  "enforcePosition": "start",
+  "enforceTitle": {
+    "en": "Introduction",
+    "nl": "Introductie"
+  }
+}

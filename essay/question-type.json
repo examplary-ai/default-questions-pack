@@ -13,7 +13,7 @@
     "nl": "Vraag de leerling om een lang antwoord te schrijven, vaak met gebruik van kopjes en tekstopmaak."
   },
 
-  "icon": "./icon.svg", // TODO
+  "icon": "./icon.svg",
   "components": {
     "assessment": "./component-assessment.tsx",
     "print": "./component-print.tsx"
@@ -46,9 +46,21 @@
   ],
 
   "translations": {
-    "placeholder": {
-      "en": "Type your answer...",
-      "nl": "Typ je antwoord..."
+    "word-count_one": {
+      "en": "{{count}} word",
+      "nl": "{{count}} woord"
+    },
+    "word-count_other": {
+      "en": "{{count}} words",
+      "nl": "{{count}} woorden"
+    },
+    "word-count-min": {
+      "en": "of {{min}} required",
+      "nl": "van {{min}} vereist"
+    },
+    "word-count-max": {
+      "en": "({{max}} maximum)",
+      "nl": "({{max}} maximum)"
     }
   }
 }
