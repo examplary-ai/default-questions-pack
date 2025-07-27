@@ -8,7 +8,7 @@ import {
 import stripTags from "striptags";
 import count from "word-count";
 
-export const EssayQuestionComponent: FrontendAssessmentComponent = ({
+const EssayQuestionComponent: FrontendAssessmentComponent = ({
   answer,
   question,
   saveAnswer,
@@ -33,11 +33,7 @@ export const EssayQuestionComponent: FrontendAssessmentComponent = ({
             completed: valid,
           });
         }}
-        style={{
-          borderTopLeftRadius: 0,
-          borderTopRightRadius: 0,
-          minHeight: "8rem",
-        }}
+        style="border-top-left-radius: 0; border-top-right-radius: 0; min-height: 8rem;"
         slotBefore={(editor) => <RichTextToolbar editor={editor} />}
       />
       {wordCount > 0 || min || max ? (
@@ -56,3 +52,5 @@ export const EssayQuestionComponent: FrontendAssessmentComponent = ({
     </>
   );
 };
+
+export default EssayQuestionComponent;

@@ -37,7 +37,7 @@ jobs:
 
             # Bundle and upload to Examplary
             cd $dir
-            npx @examplary/question-type-bundler@latest --host https://api-staging.examplary.ai
-            #npx @examplary/question-type-bundler@latest --host https://api.examplary.ai
+            npx @examplary/question-type-bundler@latest upload --host https://api-staging.examplary.ai
+            #npx @examplary/question-type-bundler@latest upload --host https://api.examplary.ai
             cd ..
           done
