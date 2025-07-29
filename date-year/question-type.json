@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schemas.examplary.ai/question-type.json",
+
+  "id": "examplary.default.date-year",
+  "public": true,
+
+  "name": {
+    "en": "Date or year",
+    "nl": "Datum of jaar"
+  },
+  "description": {
+    "en": "Ask the student to enter a year (e.g. 1925).",
+    "nl": "Vraag de leerling om een jaartal in te vullen (bijv. 1925)."
+  },
+
+  "icon": "./icon.svg",
+  "components": {
+    "assessment": "./component-assessment.tsx",
+    "settings-area": "./component-settings-area.tsx",
+    "print": "./component-print.tsx"
+  },
+
+  "canAutoGenerate": true,
+  "hasSimpleScoring": true,
+  "timeEstimateMinutes": 2,
+
+  "translations": {
+    "year-only": {
+      "en": "Year only",
+      "nl": "Alleen jaar"
+    },
+    "full-date": {
+      "en": "Full date",
+      "nl": "Volledige datum"
+    },
+    "correct-answer-placeholder": {
+      "en": "Enter the correct year or date (e.g. 1925 or 1925-12-31)",
+      "nl": "Vul het juiste jaar of de juiste datum in (bijv. 1925 of 1925-12-31)"
+    },
+    "correct-answer": {
+      "en": "Correct answer",
+      "nl": "Juiste antwoord"
+    }
+  }
+}
