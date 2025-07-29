@@ -1,0 +1,63 @@
+{
+  "$schema": "https://schemas.examplary.ai/question-type.json",
+
+  "id": "examplary.default.true-false",
+  "public": true,
+
+  "name": {
+    "en": "True/false",
+    "nl": "Waar/onwaar"
+  },
+  "description": {
+    "en": "A question that requires students to choose between true or false.",
+    "nl": "Een ja/nee-vraag met twee mogelijke antwoorden."
+  },
+
+  "icon": "./icon.svg",
+  "components": {
+    "assessment": "./component-assessment.tsx",
+    "print": "./component-print.tsx"
+  },
+
+  "hasSimpleScoring": true,
+  "canAutoGenerate": true,
+  "timeEstimateMinutes": 1,
+
+  "settings": [
+    {
+      "id": "correctAnswer",
+      "name": {
+        "en": "Correct answer",
+        "nl": "Juiste antwoord"
+      },
+      "type": "enum",
+      "options": [
+        {
+          "value": "true",
+          "label": {
+            "en": "True",
+            "nl": "Waar"
+          }
+        },
+        {
+          "value": "false",
+          "label": {
+            "en": "False",
+            "nl": "Onwaar"
+          }
+        }
+      ]
+    }
+  ],
+
+  "translations": {
+    "true": {
+      "en": "True",
+      "nl": "Waar"
+    },
+    "false": {
+      "en": "False",
+      "nl": "Onwaar"
+    }
+  }
+}
