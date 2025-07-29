@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.examplary.ai/question-type.json",
+
+  "id": "examplary.default.multi-line-text",
+  "public": true,
+
+  "name": {
+    "en": "Long answer",
+    "nl": "Lang antwoord"
+  },
+  "description": {
+    "en": "A question that requires a multi-line text response.",
+    "nl": "Een vraag met een lang antwoord."
+  },
+
+  "icon": "./icon.svg",
+  "components": {
+    "assessment": "./component-assessment.tsx",
+    "print": "./component-print.tsx"
+  },
+
+  "canAutoGenerate": true,
+  "timeEstimateMinutes": 5,
+
+  "shortcut": "2"
+}
