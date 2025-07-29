@@ -6,7 +6,7 @@
 
   "name": {
     "en": "Long answer",
-    "nl": "Lang antwoord"
+    "nl": "Uitgebreid antwoord"
   },
   "description": {
     "en": "A question that requires a multi-line text response.",
