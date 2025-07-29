@@ -33,17 +33,11 @@ const EssayQuestionComponent: FrontendAssessmentComponent = ({
             completed: valid,
           });
         }}
-        style="border-top-left-radius: 0; border-top-right-radius: 0; min-height: 8rem;"
+        className="rounded-t-none! min-h-32"
         slotBefore={(editor) => <RichTextToolbar editor={editor} />}
       />
       {wordCount > 0 || min || max ? (
-        <div
-          style={{
-            marginTop: "0.5rem",
-            color: "var(--color-gray-500)",
-            fontSize: "0.875rem",
-          }}
-        >
+        <div className="text-gray-500 text-sm mt-2">
           {t("word-count", { count: wordCount })}{" "}
           {min > 0 && t("word-count-min", { min })}{" "}
           {max > 0 && t("word-count-max", { max })}
