@@ -1,0 +1,107 @@
+import {
+  FrontendQuestionSettingsAreaComponent,
+  RichTextField,
+  Checkbox,
+} from "@examplary/ui";
+import { Trash2Icon } from "lucide-react";
+
+const OptionsArea: FrontendQuestionSettingsAreaComponent = ({
+  settings,
+  setSetting,
+  t,
+}) => {
+  const options = settings.options || [];
+
+  const updateOptions = (newOptions) => {
+    setSetting("options", newOptions);
+  };
+
+  return (
+    <div className="flex flex-col items-start gap-3 pt-3 pb-1">
+      {[...options, { value: "", correct: false }].map((option, index) => (
+        <div
+          key={index}
+          className="flex gap-3 items-start w-full"
+          data-type="option"
+        >
+          <Checkbox
+            checked={option.correct}
+            className="mt-0.5 data-[state=checked]:bg-emerald-500 data-[state=checked]:text-black"
+            disabled={index === options.length}
+            onCheckedChange={(e) => {
+              const newOptions = [...options];
+              newOptions[index] = { ...option, correct: e };
+              updateOptions(newOptions);
+            }}
+          />
+          <div className="flex-1 flex items-center gap-2">
+            <RichTextField
+              singleLine
+              className="text-sm"
+              data-type="option-text"
+              value={option.value}
+              onChange={(value) => {
+                const newOptions = [...options];
+                newOptions[index] = { ...option, value };
+                updateOptions(newOptions);
+              }}
+              placeholder={t("option-placeholder")}
+              onKeyUp={(e) => {
+                const isLast = option.value && index === options.length - 1;
+                const empty = !option.value || option.value.trim() === "";
+
+                const s = '[data-type="option-text"] [contenteditable]';
+                const opt = (e.target as HTMLElement).closest(
+                  '[data-type="option"]'
+                );
+                const nextInput = opt?.nextElementSibling?.querySelector(s);
+                const prevInput = opt?.previousElementSibling?.querySelector(s);
+
+                // Move over to next input when Enter is pressed
+                if (e.key === "Enter" && !e.shiftKey && isLast) {
+                  if (nextInput) {
+                    e.preventDefault();
+                    (nextInput as HTMLElement).focus();
+                    return false;
+                  }
+                  return;
+                }
+
+                // Remove the current input when it's empty and Backspace is pressed
+                if (empty && e.key === "Backspace") {
+                  const newOptions = [...options];
+                  newOptions.splice(index, 1);
+                  updateOptions(newOptions);
+                  if (prevInput) (prevInput as HTMLElement).focus();
+                  return;
+                }
+              }}
+            />
+            {option.correct && (
+              <div className="text-emerald-600 text-xs font-medium">
+                {t("correct-answer")}
+              </div>
+            )}
+          </div>
+
+          {options.length > 1 && index !== options.length && (
+            <button
+              className="ml-auto pl-1 text-gray-500 hover:text-black transition cursor-pointer"
+              onClick={() => {
+                const newOptions = [...options];
+                newOptions.splice(index, 1);
+                updateOptions(newOptions);
+              }}
+              tabIndex={-1}
+              title={t("option-remove")}
+            >
+              <Trash2Icon className="size-4" strokeWidth={2.4} />
+            </button>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default OptionsArea;

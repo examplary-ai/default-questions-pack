@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schemas.examplary.ai/question-type.json",
+
+  "id": "examplary.default.multiple-choice-multiple-answers",
+  "public": true,
+
+  "name": {
+    "en": "Checkboxes",
+    "nl": "Meerdere antwoorden"
+  },
+  "description": {
+    "en": "A question where students can select multiple correct answers from the available options.",
+    "nl": "Een vraag waarbij studenten meerdere juiste antwoorden kunnen selecteren uit de beschikbare opties."
+  },
+
+  "icon": "./icon.svg",
+  "components": {
+    "assessment": "./component-assessment.tsx",
+    "print": "./component-print.tsx",
+    "settings-area": "./component-area.tsx"
+  },
+
+  "canAutoGenerate": true,
+  "hasSimpleScoring": true,
+  "timeEstimateMinutes": 1,
+
+  "settings": [],
+
+  "translations": {
+    "option-placeholder": {
+      "en": "Add option...",
+      "nl": "Optie toevoegen..."
+    },
+    "option-remove": {
+      "en": "Remove option",
+      "nl": "Optie verwijderen"
+    },
+    "correct-answer": {
+      "en": "Correct answer",
+      "nl": "Correct antwoord"
+    },
+    "options": {
+      "en": "Answer options",
+      "nl": "Antwoordopties"
+    }
+  }
+}
