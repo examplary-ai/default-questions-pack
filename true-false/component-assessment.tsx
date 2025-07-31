@@ -1,4 +1,8 @@
-import { FrontendAssessmentComponent } from "@examplary/ui";
+import {
+  FrontendAssessmentComponent,
+  RadioGroup,
+  RadioGroupItem,
+} from "@examplary/ui";
 
 const AssessmentComponent: FrontendAssessmentComponent = ({
   answer,
@@ -17,40 +21,19 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   ];
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        gap: "0.75rem",
-        paddingTop: "0.75rem",
-      }}
+    <RadioGroup
+      value={(answer?.value as string) || ""}
+      onValueChange={(value) => saveAnswer({ value, completed: true })}
     >
-      {options.map((option, index) => (
-        <label
-          key={index}
-          style={{
-            display: "flex",
-            gap: "0.5rem",
-            alignItems: "flex-start",
-            width: "100%",
-            cursor: "pointer",
-          }}
-        >
-          <input
-            type="radio"
-            name="true-false-answer"
-            value={option.value}
-            checked={(answer?.value as string) === option.value}
-            onChange={(e) =>
-              saveAnswer({ value: e.target.value, completed: true })
-            }
-            style={{ marginTop: "0.125rem" }}
-          />
-          <div style={{ fontSize: "0.875rem" }}>{option.label}</div>
-        </label>
-      ))}
-    </div>
+      <div className="flex flex-col items-start gap-3 pt-3">
+        {options.map((option, index) => (
+          <label key={index} className="flex gap-2 items-start w-full">
+            <RadioGroupItem value={option.value} />
+            <div className="text-sm">{option.label}</div>
+          </label>
+        ))}
+      </div>
+    </RadioGroup>
   );
 };
 
