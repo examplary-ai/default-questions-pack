@@ -1,0 +1,90 @@
+{
+  "$schema": "https://schemas.examplary.ai/question-type.json",
+
+  "id": "examplary.default.conversational",
+  "public": true,
+
+  "name": {
+    "en": "Knowledge chat",
+    "nl": "Kennischat"
+  },
+  "description": {
+    "en": "Let the AI bot chat with the student to assess their knowledge.",
+    "nl": "Een AI-aangedreven conversationele beoordeling waarbij studenten in dialoog gaan om hun kennis te demonstreren."
+  },
+
+  "icon": "./icon.svg",
+  "components": {
+    "assessment": "./component-assessment.tsx",
+    "print": "./component-print.tsx",
+    "settings-area": "./component-settings-area.tsx",
+    "results": "./component-results.tsx"
+  },
+
+  "isAi": true,
+  "canAutoGenerate": true,
+  "isPreviewRefreshable": true,
+  "timeEstimateMinutes": 10,
+
+  "settings": [
+    {
+      "id": "aiStarts",
+      "name": {
+        "en": "AI starts conversation",
+        "nl": "AI start gesprek"
+      },
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "id": "maxTurns",
+      "name": {
+        "en": "Maximum number of responses",
+        "nl": "Maximaal aantal antwoorden"
+      },
+      "type": "number",
+      "default": 10,
+      "max": 20,
+      "min": 2
+    }
+  ],
+
+  "translations": {
+    "empty-answer": {
+      "en": "Empty answer",
+      "nl": "Leeg antwoord"
+    },
+    "prompt-placeholder": {
+      "en": "What concept do you want to discuss? For example, 'Explain the Pythagorean theorem'.",
+      "nl": "Welk concept wil je bespreken? Bijvoorbeeld: 'Leg de stelling van Pythagoras uit'."
+    },
+    "prompt-label": {
+        "en": "Conversation prompt",
+        "nl": "Gespreksinstructie"
+    },
+    "completion-placeholder": {
+      "en": "When is the conversation complete? For example, 'When the student has given 2 correct answers'.",
+      "nl": "Wanneer is het gesprek voltooid? Bijvoorbeeld: 'Wanneer de leerling 2 correcte antwoorden heeft gegeven'."
+    },
+    "completion-label": {
+      "en": "Completion criteria",
+      "nl": "Voltooiingscriteria"
+    },
+    "start-placeholder": {
+      "en": "Start the conversation...",
+      "nl": "Begin het gesprek..."
+    },
+    "response-placeholder": {
+      "en": "Type your response here...",
+      "nl": "Typ hier je antwoord..."
+    },
+    "send": {
+        "en": "Send",
+        "nl": "Verzenden"
+    },
+    "completed": {
+      "en": "Conversation completed",
+      "nl": "Gesprek voltooid"
+    }
+  }
+}
