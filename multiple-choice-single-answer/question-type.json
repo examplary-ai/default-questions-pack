@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schemas.examplary.ai/question-type.json",
+
+  "id": "examplary.default.multiple-choice-single-answer",
+  "public": true,
+
+  "name": {
+    "en": "Multiple choice",
+    "nl": "Meerkeuze"
+  },
+  "description": {
+    "en": "A question where students select one correct answer from multiple options.",
+    "nl": "Een vraag waarbij studenten één correct antwoord selecteren uit meerdere opties."
+  },
+
+  "icon": "./icon.svg",
+  "components": {
+    "assessment": "./component-assessment.tsx",
+    "print": "./component-print.tsx",
+    "settings-area": "./component-area.tsx"
+  },
+
+  "canAutoGenerate": true,
+  "hasSimpleScoring": true,
+  "timeEstimateMinutes": 1,
+  "shortcut": "3",
+
+  "settings": [],
+
+  "translations": {
+    "option-placeholder": {
+      "en": "Add option...",
+      "nl": "Optie toevoegen..."
+    },
+    "option-remove": {
+      "en": "Remove option",
+      "nl": "Optie verwijderen"
+    },
+    "correct-answer": {
+      "en": "Correct answer",
+      "nl": "Correct antwoord"
+    },
+    "options": {
+      "en": "Answer options",
+      "nl": "Antwoordopties"
+    }
+  }
+}
