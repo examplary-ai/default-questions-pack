@@ -83,7 +83,7 @@ export default ({ settings, setSetting, t }) => {
                   }
                 }}
               />
-              {option.correct && <CorrectAnswerIndicator />}
+              {option.correct && <CorrectAnswerIndicator t={t} />}
             </div>
 
             {options.length > 1 && index !== options.length && (
