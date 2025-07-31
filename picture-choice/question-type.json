@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schemas.examplary.ai/question-type.json",
+
+  "id": "examplary.default.picture-choice",
+  "public": true,
+
+  "name": {
+    "en": "Picture choice",
+    "nl": "Afbeeldingskeuze"
+  },
+  "description": {
+    "en": "Students select one of a set of images as the correct answer.",
+    "nl": "Studenten selecteren een van de afbeeldingen als het juiste antwoord."
+  },
+
+  "icon": "./icon.svg",
+  "components": {
+    "assessment": "./component-assessment.tsx",
+    "print": "./component-print.tsx",
+    "results": "./component-results.tsx",
+    "settings-area": "./component-area.tsx"
+  },
+
+  "canAutoGenerate": false,
+  "hasSimpleScoring": true,
+  "timeEstimateMinutes": 2,
+
+  "settings": [],
+
+  "translations": {
+    "upload-image": {
+      "en": "Upload image",
+      "nl": "Afbeelding uploaden"
+    },
+    "change-image": {
+      "en": "Change image",
+      "nl": "Afbeelding wijzigen"
+    },
+    "option-remove": {
+      "en": "Remove option",
+      "nl": "Optie verwijderen"
+    },
+    "options": {
+      "en": "Picture options",
+      "nl": "Afbeeldingsopties"
+    }
+  }
+}
