@@ -21,6 +21,7 @@
 
   "canAutoGenerate": true,
   "timeEstimateMinutes": 15,
+  "index": 500,
 
   "settings": [
     {

@@ -1,9 +1,10 @@
 import {
   FrontendQuestionSettingsAreaComponent,
-  RichTextField,
+  MinimalRichTextField,
   Checkbox,
 } from "@examplary/ui";
 import { Trash2Icon } from "lucide-react";
+import { CorrectAnswerIndicator } from "./components/correct-answer-indicator";
 
 const OptionsArea: FrontendQuestionSettingsAreaComponent = ({
   settings,
@@ -35,7 +36,7 @@ const OptionsArea: FrontendQuestionSettingsAreaComponent = ({
             }}
           />
           <div className="flex-1 flex items-center gap-2">
-            <RichTextField
+            <MinimalRichTextField
               singleLine
               className="text-sm"
               data-type="option-text"
@@ -77,11 +78,7 @@ const OptionsArea: FrontendQuestionSettingsAreaComponent = ({
                 }
               }}
             />
-            {option.correct && (
-              <div className="text-emerald-600 text-xs font-medium">
-                {t("correct-answer")}
-              </div>
-            )}
+            {option.correct && <CorrectAnswerIndicator t={t} />}
           </div>
 
           {options.length > 1 && index !== options.length && (

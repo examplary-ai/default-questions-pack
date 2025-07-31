@@ -41,6 +41,7 @@ const DateYearAreaComponent: FrontendQuestionSettingsAreaComponent = ({
       <div>
         <Input
           id="correct-answer"
+          className="mt-2"
           type={settings.dateType === "full-date" ? "date" : "number"}
           placeholder={
             settings.dateType === "full-date"

@@ -22,6 +22,7 @@
   "hasSimpleScoring": true,
   "canAutoGenerate": true,
   "timeEstimateMinutes": 1,
+  "index": 400,
 
   "settings": [
     {

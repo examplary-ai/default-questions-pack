@@ -26,6 +26,8 @@
   "isPreviewRefreshable": true,
   "timeEstimateMinutes": 10,
 
+  "index": 1,
+
   "settings": [
     {
       "id": "aiStarts",
@@ -59,8 +61,8 @@
       "nl": "Welk concept wil je bespreken? Bijvoorbeeld: 'Leg de stelling van Pythagoras uit'."
     },
     "prompt-label": {
-        "en": "Conversation prompt",
-        "nl": "Gespreksinstructie"
+      "en": "Conversation prompt",
+      "nl": "Gespreksinstructie"
     },
     "completion-placeholder": {
       "en": "When is the conversation complete? For example, 'When the student has given 2 correct answers'.",
@@ -79,8 +81,8 @@
       "nl": "Typ hier je antwoord..."
     },
     "send": {
-        "en": "Send",
-        "nl": "Verzenden"
+      "en": "Send",
+      "nl": "Verzenden"
     },
     "completed": {
       "en": "Conversation completed",
