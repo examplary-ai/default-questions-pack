@@ -5,8 +5,6 @@ import {
 } from "@examplary/ui";
 import { Trash2Icon } from "lucide-react";
 
-import { CorrectAnswerIndicator } from "../multiple-choice-multiple-answers/components/correct-answer-indicator";
-
 export default ({ settings, setSetting, t }) => {
   const options = settings.options || [];
 
@@ -17,7 +15,8 @@ export default ({ settings, setSetting, t }) => {
         0
       ).toString()}
     >
-      <div className="flex flex-col items-start gap-3 pt-3 pb-1">
+      <div className="flex flex-col items-start gap-3">
+        <label className="text-sm font-medium">{t("options")}</label>
         {[...options, { value: "", correct: false }].map((option, index) => (
           <div
             key={index}
@@ -83,7 +82,11 @@ export default ({ settings, setSetting, t }) => {
                   }
                 }}
               />
-              {option.correct && <CorrectAnswerIndicator t={t} />}
+              {option.correct && (
+                <span className="text-xs whitespace-nowrap font-medium text-white bg-emerald-500 rounded-full px-2 py-0.5">
+                  {t("correct-answer")}
+                </span>
+              )}
             </div>
 
             {options.length > 1 && index !== options.length && (

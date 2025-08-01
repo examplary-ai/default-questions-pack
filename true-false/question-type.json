@@ -16,7 +16,8 @@
   "icon": "./icon.svg",
   "components": {
     "assessment": "./component-assessment.tsx",
-    "print": "./component-print.tsx"
+    "print": "./component-print.tsx",
+    "results": "./component-results.tsx"
   },
 
   "hasSimpleScoring": true,
