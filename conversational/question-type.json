@@ -30,6 +30,26 @@
 
   "settings": [
     {
+      "id": "conversationalPrompt",
+      "name": {
+        "en": "Conversation prompt",
+        "nl": "Gespreksinstructie"
+      },
+      "description": "The prompt for the conversational question. This instructs the AI conversation partner how to converse with the student and what role the AI should play. Leave empty for non-conversational questions.",
+      "type": "string",
+      "hidden": true
+    },
+    {
+      "id": "conversationalCompletionCriteria",
+      "name": {
+        "en": "Completion criteria",
+        "nl": "Voltooiingscriteria"
+      },
+      "description": "The completion criteria for the conversational question. This instructs the AI lector when to stop the conversation. Leave empty for non-conversational questions. Use HTML <ul> and <li> to format.",
+      "type": "string",
+      "hidden": true
+    },
+    {
       "id": "aiStarts",
       "name": {
         "en": "AI starts conversation",

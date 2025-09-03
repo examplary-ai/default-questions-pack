@@ -25,6 +25,39 @@
   "timeEstimateMinutes": 2,
   "index": 600,
 
+  "settings": [
+    {
+      "id": "dateType",
+      "name": {
+        "en": "Date type",
+        "nl": "Datumtype"
+      },
+      "description": "The type of date to expect (e.g. year only, full date).",
+      "type": "enum",
+      "options": [
+        {
+          "value": "full-date",
+          "label": "Full date"
+        },
+        {
+          "value": "year-only",
+          "label": "Year only"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "correctAnswer",
+      "name": {
+        "en": "Correct answer",
+        "nl": "Juiste antwoord"
+      },
+      "description": "The correct answer to the question, which can be a year (e.g. 1925) or a full date (e.g. 1925-12-31), based on the dateType setting.",
+      "type": "string",
+      "hidden": true
+    }
+  ],
+
   "translations": {
     "year-only": {
       "en": "Year only",
