@@ -1,12 +1,41 @@
 import {
+  FrontendQuestionSettingsAreaComponent,
   MinimalRichTextField,
   RadioGroup,
   RadioGroupItem,
 } from "@examplary/ui";
 import { Trash2Icon } from "lucide-react";
 
-export default ({ settings, setSetting, t }) => {
-  const options = settings.options || [];
+const OptionsArea: FrontendQuestionSettingsAreaComponent = ({
+  settings,
+  setSetting,
+  t,
+}) => {
+  const values = {
+    options: settings.options || [],
+    correctAnswer: settings.correctAnswer || [],
+  };
+  if (Array.isArray(values.correctAnswer)) {
+    values.correctAnswer = values.correctAnswer;
+  }
+
+  const options = values.options.map((value: string) => ({
+    value,
+    correct: values.correctAnswer.includes(value),
+  }));
+
+  const updateOptions = (newOptions: any[]) => {
+    setSetting(
+      "options",
+      newOptions.map((option: any) => option.value)
+    );
+    setSetting(
+      "correctAnswer",
+      newOptions
+        .filter((option: any) => option.correct)
+        .map((option: any) => option.value)[0]
+    );
+  };
 
   return (
     <RadioGroup
@@ -32,7 +61,7 @@ export default ({ settings, setSetting, t }) => {
                   ...options.map((o) => ({ ...o, correct: false })),
                 ];
                 newOptions[index] = { ...option, correct: true };
-                setSetting("options", newOptions);
+                updateOptions(newOptions);
               }}
             />
             <div className="flex-1 flex items-center gap-2">
@@ -44,7 +73,7 @@ export default ({ settings, setSetting, t }) => {
                 onChange={(value) => {
                   const newOptions = [...options];
                   newOptions[index] = { ...option, value };
-                  setSetting("options", newOptions);
+                  updateOptions(newOptions);
                 }}
                 placeholder={t("option-placeholder")}
                 onKeyUp={(e) => {
@@ -76,7 +105,7 @@ export default ({ settings, setSetting, t }) => {
                   if (empty && e.key === "Backspace") {
                     const newOptions = [...options];
                     newOptions.splice(index, 1);
-                    setSetting("options", newOptions);
+                    updateOptions(newOptions);
                     if (prevInput) prevInput.focus();
                     return;
                   }
@@ -95,7 +124,7 @@ export default ({ settings, setSetting, t }) => {
                 onClick={() => {
                   const newOptions = [...options];
                   newOptions.splice(index, 1);
-                  setSetting("options", newOptions);
+                  updateOptions(newOptions);
                 }}
                 tabIndex={-1}
                 title={t("option-remove")}
@@ -109,3 +138,5 @@ export default ({ settings, setSetting, t }) => {
     </RadioGroup>
   );
 };
+
+export default OptionsArea;

@@ -28,9 +28,16 @@
   "settings": [
     {
       "id": "options",
-      "type": "custom",
+      "type": "string-array",
       "name": "Multiple choice answer options",
-      "description": "An array of option objects, with each option being an object with {value: string, correct: boolean}. The value can contain HTML, the `correct` boolean indicates if the option is correct. There can be multiple correct options.",
+      "description": "An array of option strings that represent the choices to the student. Each value can contain HTML.",
+      "hidden": true
+    },
+    {
+      "id": "correctAnswer",
+      "type": "string-array",
+      "name": "Correct answer(s)",
+      "description": "An array of strings of the correct answer values, matching the `value` field of the options. There can be multiple correct answers. Needs to be an exact match to one or more of the options.",
       "hidden": true
     }
   ],

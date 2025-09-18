@@ -11,10 +11,30 @@ const OptionsArea: FrontendQuestionSettingsAreaComponent = ({
   setSetting,
   t,
 }) => {
-  const options = settings.options || [];
+  const values = {
+    options: settings.options || [],
+    correctAnswer: settings.correctAnswer || [],
+  };
+  if (typeof values.correctAnswer === "string") {
+    values.correctAnswer = [values.correctAnswer];
+  }
 
-  const updateOptions = (newOptions) => {
-    setSetting("options", newOptions);
+  const options = values.options.map((value: string) => ({
+    value,
+    correct: values.correctAnswer.includes(value),
+  }));
+
+  const updateOptions = (newOptions: any[]) => {
+    setSetting(
+      "options",
+      newOptions.map((option: any) => option.value)
+    );
+    setSetting(
+      "correctAnswer",
+      newOptions
+        .filter((option: any) => option.correct)
+        .map((option: any) => option.value)
+    );
   };
 
   return (

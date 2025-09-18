@@ -15,16 +15,16 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
         <label key={index} className="flex gap-3 items-start w-full">
           <Checkbox
             className="mt-0.5"
-            checked={answer?.value?.includes(option.value)}
+            checked={answer?.value?.includes(option)}
             onCheckedChange={(checked) => {
               if (checked) {
                 saveAnswer({
-                  value: [...(answer?.value || []), option.value],
+                  value: [...(answer?.value || []), option],
                   completed: true,
                 });
               } else {
                 const selection = ((answer?.value as string[]) || []).filter(
-                  (v) => v !== option.value
+                  (v) => v !== option
                 );
                 saveAnswer({
                   value: selection,
