@@ -33,7 +33,7 @@
       "name": "Multiple choice answer options",
       "description": "An array of option strings that represent the choices to the student. Each value can contain HTML.",
       "hidden": true
-    }
+    },
     {
       "id": "correctAnswer",
       "type": "string",
