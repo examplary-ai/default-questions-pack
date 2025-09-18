@@ -10,9 +10,9 @@ export default ({ question, saveAnswer, answer }) => {
         <div className="flex flex-col items-start gap-3 pt-3">
           {(question.settings.options || []).map((option, index) => (
             <label key={index} className="flex gap-2 items-start w-full">
-              <RadioGroupItem value={option.value} />
+              <RadioGroupItem value={option} />
               <RichTextDisplay className="text-sm">
-                {option.value}
+                {option}
               </RichTextDisplay>
             </label>
           ))}

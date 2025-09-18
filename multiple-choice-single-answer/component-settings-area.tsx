@@ -13,15 +13,15 @@ const OptionsArea: FrontendQuestionSettingsAreaComponent = ({
 }) => {
   const values = {
     options: settings.options || [],
-    correctAnswer: settings.correctAnswer || [],
+    correctAnswer: settings.correctAnswer || "",
   };
   if (Array.isArray(values.correctAnswer)) {
-    values.correctAnswer = values.correctAnswer;
+    values.correctAnswer = values.correctAnswer?.[0] || [];
   }
 
   const options = values.options.map((value: string) => ({
     value,
-    correct: values.correctAnswer.includes(value),
+    correct: values.correctAnswer === value,
   }));
 
   const updateOptions = (newOptions: any[]) => {
