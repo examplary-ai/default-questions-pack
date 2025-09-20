@@ -33,7 +33,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
               }
             }}
           />
-          <RichTextDisplay className="text-sm">{option.value}</RichTextDisplay>
+          <RichTextDisplay className="text-sm">{option}</RichTextDisplay>
         </label>
       ))}
     </div>

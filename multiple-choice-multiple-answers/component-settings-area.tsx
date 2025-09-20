@@ -48,7 +48,7 @@ const OptionsArea: FrontendQuestionSettingsAreaComponent = ({
         >
           <Checkbox
             checked={option.correct}
-            className="mt-0.5 data-[state=checked]:bg-emerald-500 data-[state=checked]:text-black"
+            className="mt-0.5 data-[state=checked]:text-emerald-500"
             disabled={index === options.length}
             onCheckedChange={(e) => {
               const newOptions = [...options];
