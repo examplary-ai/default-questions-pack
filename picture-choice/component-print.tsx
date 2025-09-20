@@ -9,7 +9,7 @@ const PrintComponent: FrontendPrintComponent = ({ question }) => {
       {validOptions.map((option, index) => (
         <div key={index} className="flex flex-col gap-2 items-center">
           <div className="flex gap-2 items-center">
-            <div className="aspect-square size-5 rounded-full border-2 border-border" />
+            <div className="aspect-square size-5 rounded-full border-2 border-black" />
             <span className="text-sm">{String.fromCharCode(65 + index)}</span>
           </div>
           <div className="w-32 h-24 border-2 border-dashed border-gray-300 rounded flex items-center justify-center">
