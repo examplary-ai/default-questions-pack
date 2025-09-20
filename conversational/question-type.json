@@ -22,7 +22,10 @@
   },
 
   "isAi": true,
-  "canAutoGenerate": true,
+  "generation": {
+    "enabled": true
+  },
+
   "isPreviewRefreshable": true,
   "timeEstimateMinutes": 10,
 

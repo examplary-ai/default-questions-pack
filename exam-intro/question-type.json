@@ -17,7 +17,9 @@
 
   "backgroundColor": "#f9dafc",
   "iconBackgroundColor": "#f9dafc",
-  "canAutoGenerate": true,
+  "generation": {
+    "enabled": true
+  },
   "hideSettings": true,
   "index": -3000,
   "enforcePosition": "start",

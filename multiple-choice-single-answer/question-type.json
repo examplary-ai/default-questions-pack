@@ -20,7 +20,11 @@
     "settings-area": "./component-settings-area.tsx"
   },
 
-  "canAutoGenerate": true,
+  "generation": {
+    "enabled": true,
+    "instructions": "Settings should look like this: {\"options\": [\"Option 1\", \"Option 2\", \"Option 3\"], \"correctAnswer\": \"Option 2\"}. Make sure the `correctAnswer` is always set, exactly matches one of the options strings, and that all options are unique. Also include exactly one scoring criteria, which should just be 'Correct answer selected', and be worth at least one point unless specified otherwise."
+  },
+
   "hasSimpleScoring": true,
   "timeEstimateMinutes": 1,
   "shortcut": "3",

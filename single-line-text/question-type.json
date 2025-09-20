@@ -19,7 +19,9 @@
     "print": "./component-print.tsx"
   },
 
-  "canAutoGenerate": true,
+  "generation": {
+    "enabled": true
+  },
   "timeEstimateMinutes": 2,
 
   "shortcut": "1",

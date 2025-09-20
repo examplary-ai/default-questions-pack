@@ -21,7 +21,10 @@
   },
 
   "hasSimpleScoring": true,
-  "canAutoGenerate": true,
+  "generation": {
+    "enabled": true
+  },
+
   "timeEstimateMinutes": 1,
   "index": 400,
 
