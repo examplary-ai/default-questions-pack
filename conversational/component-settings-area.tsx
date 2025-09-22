@@ -6,9 +6,9 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
   t,
 }) => {
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       <div>
-        <label className="block text-sm font-medium mb-2">
+        <label className="block font-semibold font-heading mb-2">
           {t("prompt-label")}
         </label>
         <RichTextField
@@ -20,7 +20,7 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
       </div>
       
       <div>
-        <label className="block text-sm font-medium mb-2">
+        <label className="block font-semibold font-heading mb-2">
           {t("completion-label")}
         </label>
         <RichTextField

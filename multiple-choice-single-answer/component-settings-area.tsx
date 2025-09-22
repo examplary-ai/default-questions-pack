@@ -45,7 +45,7 @@ const OptionsArea: FrontendQuestionSettingsAreaComponent = ({
       ).toString()}
     >
       <div className="flex flex-col items-start gap-3">
-        <label className="text-sm font-medium">{t("options")}</label>
+        <label className="font-semibold font-heading">{t("options")}</label>
         {[...options, { value: "", correct: false }].map((option, index) => (
           <div
             key={index}
