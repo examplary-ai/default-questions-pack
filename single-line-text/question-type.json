@@ -22,6 +22,9 @@
   "generation": {
     "enabled": true
   },
+  "grading": {
+    "enabled": true
+  },
   "timeEstimateMinutes": 2,
 
   "shortcut": "1",

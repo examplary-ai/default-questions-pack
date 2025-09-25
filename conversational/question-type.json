@@ -25,6 +25,9 @@
   "generation": {
     "enabled": true
   },
+  "grading": {
+    "enabled": true
+  },
 
   "isPreviewRefreshable": true,
   "timeEstimateMinutes": 10,
