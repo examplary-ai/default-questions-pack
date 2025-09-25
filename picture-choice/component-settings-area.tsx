@@ -75,11 +75,12 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
       ).toString()}
     >
       <div className="flex flex-col items-start gap-4 pt-3 pb-1">
+        <label className="font-semibold font-heading">{t("options")}</label>
         {[...options, { imageUrl: "", imageName: "", correct: false }].map(
           (option, index) => (
             <div
               key={index}
-              className="flex gap-3 items-start w-full p-3 border-2 border-gray-200 rounded"
+              className="flex gap-3 items-start w-full p-3 border border-gray-200 rounded"
               data-type="option"
             >
               <RadioGroupItem
@@ -95,13 +96,13 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
                     <img
                       src={option.imageUrl}
                       alt={option.imageName || "Option image"}
-                      className="max-w-48 max-h-32 object-contain rounded border-2"
+                      className="max-w-48 max-h-32 object-contain rounded border"
                     />
                     {option.correct && <CorrectAnswerIndicator />}
                   </div>
                 ) : (
                   <button
-                    className="w-48 h-32 border-2 border-dashed border-gray-300 rounded flex flex-col items-center justify-center gap-2 hover:border-gray-400 transition cursor-pointer"
+                    className="w-48 h-32 border border-dashed border-gray-300 rounded flex flex-col items-center justify-center gap-2 hover:border-gray-400 transition cursor-pointer"
                     onClick={() => handleImageUpload(index)}
                     disabled={uploading === index.toString()}
                   >
