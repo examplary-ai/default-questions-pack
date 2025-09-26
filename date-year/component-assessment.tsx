@@ -6,11 +6,7 @@ const DateYearQuestionComponent: FrontendAssessmentComponent = ({
   saveAnswer,
 }) => {
   // Get the configuration from question settings
-  const config = question.settings?.dateConfig || {
-    dateType: "year",
-    correctAnswer: "",
-  };
-  const { dateType } = config;
+  const dateType = question.settings?.dateType || "year";
 
   return (
     <Input
