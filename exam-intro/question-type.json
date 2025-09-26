@@ -16,7 +16,6 @@
   "icon": "./icon.svg",
 
   "backgroundColor": "#f9dafc",
-  "iconBackgroundColor": "#f9dafc",
   "generation": {
     "enabled": true
   },
