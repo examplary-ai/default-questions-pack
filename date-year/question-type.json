@@ -22,7 +22,7 @@
 
   "generation": {
     "enabled": true,
-    "instructions": "The settings should include a 'dateType' field, which can be either 'year-only' or 'full-date', and a 'correctAnswer' field, which should be a year (e.g. 1925) if 'dateType' is 'year-only', or a full date (e.g. 1925-12-31) if 'dateType' is 'full-date'. Ensure the `correctAnswer` setting exists (REQUIRED!) and matches the specified dateType."
+    "instructions": "The settings should include a 'dateType' field, which can be either 'year' or 'full-date', and a 'correctAnswer' field, which should be a year (e.g. 1925) if 'dateType' is 'year', or a full date (e.g. 1925-12-31) if 'dateType' is 'full-date'. Ensure the `correctAnswer` setting exists (REQUIRED!) and matches the specified dateType."
   },
   "hasSimpleScoring": true,
   "timeEstimateMinutes": 2,
