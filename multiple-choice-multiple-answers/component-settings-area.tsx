@@ -25,11 +25,17 @@ const OptionsArea: FrontendQuestionSettingsAreaComponent = ({
   }));
 
   const updateOptions = (newOptions: any[]) => {
+    let correctAnswer = newOptions
+      .filter((option: any) => option.correct)
+      .map((option: any) => option.value);
+
+    if (!correctAnswer.length && newOptions.length) {
+      correctAnswer = [newOptions[0].value];
+    }
+
     setMultipleSettings({
       options: newOptions.map((option: any) => option.value),
-      correctAnswer: newOptions
-        .filter((option: any) => option.correct)
-        .map((option: any) => option.value),
+      correctAnswer,
     });
   };
 
