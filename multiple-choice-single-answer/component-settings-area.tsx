@@ -8,7 +8,7 @@ import { Trash2Icon } from "lucide-react";
 
 const OptionsArea: FrontendQuestionSettingsAreaComponent = ({
   settings,
-  setSetting,
+  setMultipleSettings,
   t,
 }) => {
   const values = {
@@ -25,16 +25,12 @@ const OptionsArea: FrontendQuestionSettingsAreaComponent = ({
   }));
 
   const updateOptions = (newOptions: any[]) => {
-    setSetting(
-      "options",
-      newOptions.map((option: any) => option.value)
-    );
-    setSetting(
-      "correctAnswer",
-      newOptions
+    setMultipleSettings({
+      options: newOptions.map((option: any) => option.value),
+      correctAnswer: newOptions
         .filter((option: any) => option.correct)
-        .map((option: any) => option.value)[0]
-    );
+        .map((option: any) => option.value)[0],
+    });
   };
 
   return (
