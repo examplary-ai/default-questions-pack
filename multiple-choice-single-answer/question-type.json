@@ -44,6 +44,16 @@
       "name": "Correct answer",
       "description": "The string of the correct answer value, matching the `value` field of the options. Needs to be an exact match to one of the options.",
       "hidden": true
+    },
+    {
+      "id": "shuffleAnswers",
+      "type": "boolean",
+      "name": {
+        "en": "Shuffle answer options",
+        "nl": "Willekeurige volgorde"
+      },
+      "description": "Whether to show the answer options in random order each time.",
+      "default": false
     }
   ],
 

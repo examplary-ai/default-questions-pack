@@ -43,6 +43,16 @@
       "name": "Correct answer(s)",
       "description": "An array of strings of the correct answer values, matching the `value` field of the options. There can be multiple correct answers. Needs to be an exact match to one or more of the options.",
       "hidden": true
+    },
+    {
+      "id": "shuffleAnswers",
+      "type": "boolean",
+      "name": {
+        "en": "Shuffle answer options",
+        "nl": "Willekeurige volgorde"
+      },
+      "description": "Whether to show the answer options in random order each time.",
+      "default": false
     }
   ],
 

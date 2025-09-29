@@ -9,9 +9,13 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   answer,
   saveAnswer,
 }) => {
+  const options = question.settings.shuffleAnswers
+    ? [...(question.settings.options || [])].sort(() => Math.random() - 0.5)
+    : question.settings.options || [];
+
   return (
     <div className="flex flex-col items-start gap-3 pt-3">
-      {(question.settings.options || []).map((option, index) => (
+      {options.map((option, index) => (
         <label key={index} className="flex gap-3 items-start w-full">
           <Checkbox
             className="mt-0.5"
