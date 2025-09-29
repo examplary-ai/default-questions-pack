@@ -3,19 +3,24 @@ import {
   FrontendAssessmentComponent,
   RichTextDisplay,
 } from "@examplary/ui";
+import { useMemo } from "react";
 
 const AssessmentComponent: FrontendAssessmentComponent = ({
   question,
   answer,
   saveAnswer,
 }) => {
-  const options = question.settings.shuffleAnswers
-    ? [...(question.settings.options || [])].sort(() => Math.random() - 0.5)
-    : question.settings.options || [];
+  const options = useMemo(
+    () =>
+      question.settings.shuffleAnswers
+        ? [...(question.settings.options || [])].sort(() => Math.random() - 0.5)
+        : question.settings.options || [],
+    [question]
+  );
 
   return (
     <div className="flex flex-col items-start gap-3 pt-3">
-      {options.map((option, index) => (
+      {options.map((option: string, index: number) => (
         <label key={index} className="flex gap-3 items-start w-full">
           <Checkbox
             className="mt-0.5"
