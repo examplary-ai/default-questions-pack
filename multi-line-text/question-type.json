@@ -19,6 +19,8 @@
     "print": "./component-print.tsx"
   },
 
+  "settings": [],
+
   "generation": {
     "enabled": true
   },

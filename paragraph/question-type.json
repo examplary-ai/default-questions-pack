@@ -23,6 +23,8 @@
   "hideSettings": true,
   "index": -2000,
 
+  "settings": [],
+
   "titlePlaceholder": {
     "en": "Section title...",
     "nl": "Sectietitel..."
