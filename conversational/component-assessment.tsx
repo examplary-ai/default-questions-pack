@@ -31,7 +31,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
 
   // Auto-start the conversation if the AI is set to start
   useEffect(() => {
-    if (question.settings?.aiStarts) {
+    if (question.settings?.aiStarts && chat.length === 1 && !complete) {
       if (started.current) return;
       started.current = true;
       nextStep(chat);
