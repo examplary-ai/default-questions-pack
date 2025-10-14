@@ -1,0 +1,73 @@
+{
+  "$schema": "https://schemas.examplary.ai/question-type.json",
+
+  "id": "examplary.expansion.fill-in-blank",
+  "public": true,
+
+  "name": {
+    "en": "Fill in the blank",
+    "nl": "Vul in de lege plek"
+  },
+  "description": {
+    "en": "Requires student to fill in one or more blanks with a short text answer.",
+    "nl": "Vraagt de student om een of meer lege plekken in te vullen met een kort tekstantwoord."
+  },
+
+  "icon": "./icon.svg",
+  "components": {
+    "assessment": "./component-assessment.tsx",
+    "print": "./component-print.tsx",
+    "results": "./component-results.tsx",
+    "settings-area": "./component-settings-area.tsx"
+  },
+
+  "generation": {
+    "enabled": true,
+    "instructions": "Generate settings that look like this: {text: \"The capital of France is ___ and the capital of Spain is ___\", correctAnswer: [\"Paris\", \"Madrid\"]} - there needs to be at least one blank (___) in the text, and the correctAnswer array needs to have the same number of entries as there are blanks in the text."
+  },
+
+  "timeEstimateMinutes": 2,
+
+  "settings": [
+    {
+      "id": "text",
+      "type": "string",
+      "name": "The question text with blanks",
+      "description": "The text of the question (string), with blanks represented by ___",
+      "hidden": true
+    },
+    {
+      "id": "correctAnswer",
+      "type": "string-array",
+      "name": "Correct answer",
+      "description": "The correct answer(s) to the question, that represent the blanks. There needs to be the same number of entries as there are blanks in the text.",
+      "hidden": true
+    }
+  ],
+
+  "shortcut": "1",
+  "index": 100,
+
+  "translations": {
+    "text": {
+      "en": "Text to complete",
+      "nl": "Tekst om in te vullen"
+    },
+    "placeholder": {
+      "en": "The capital of France is ___",
+      "nl": "De hoofdstad van Frankrijk is ___"
+    },
+    "help": {
+      "en": "Use three underscores (___) to indicate a blank.",
+      "nl": "Gebruik drie onderstrepingstekens (___) om een lege plek aan te geven."
+    },
+    "insert-blank": {
+      "en": "Insert blank",
+      "nl": "Lege plek invoegen"
+    },
+    "correct-answers": {
+      "en": "Correct answer(s)",
+      "nl": "Correcte antwoord(en)"
+    }
+  }
+}
