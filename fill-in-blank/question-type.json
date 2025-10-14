@@ -23,7 +23,7 @@
 
   "generation": {
     "enabled": true,
-    "instructions": "Generate settings that look like this: {text: \"The capital of France is ___ and the capital of Spain is ___\", correctAnswer: [\"Paris\", \"Madrid\"]} - there needs to be at least one blank (___) in the text, and the correctAnswer array needs to have the same number of entries as there are blanks in the text."
+    "instructions": "Generate settings that look like this: {text: \"The capital of France is ___ and the capital of Spain is ___\", correctAnswer: [\"Paris\", \"Madrid\"]} - there needs to be at least one blank (___) in the text, and the correctAnswer array needs to have the same number of entries as there are blanks in the text. Only include the text with blanks in the `text` field in the settings. Do not add it to the description, and do not give away the correct answers other than in the `correctAnswer` field in the settings."
   },
 
   "timeEstimateMinutes": 2,
