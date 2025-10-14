@@ -3,9 +3,9 @@
   "description": "Default question types for Examplary",
   "type": "module",
   "devDependencies": {
-    "@examplary/ui": ">=1.7.0",
-    "@types/react": ">=19.1.10",
-    "react": ">=19.1.1"
+    "@examplary/ui": "^1.14.1",
+    "@types/react": ">=19.2.2",
+    "react": ">=19.2.0"
   },
   "dependencies": {
     "striptags": "^3.2.0",

@@ -8,7 +8,7 @@ const ResultsComponent: FrontendResultsComponent = ({ answer }) => {
       <img
         src={answer.value as string}
         alt={answer.value as string}
-        className="w-full max-w-sm max-h-64 object-contain rounded border-2 group-hover:border-blue-300 transition"
+        className="max-w-sm max-h-30 object-contain rounded-lg border border-border group-hover:border-blue-300 transition"
       />
     </div>
   );
