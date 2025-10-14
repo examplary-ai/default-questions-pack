@@ -63,9 +63,6 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
                     next[index] = value;
                     setSetting("correctAnswer", next);
                   }}
-                  placeholder={t("correct-answer-placeholder", {
-                    number: index + 1,
-                  })}
                   className="min-w-24"
                 />
               </div>
