@@ -1,0 +1,85 @@
+{
+  "$schema": "https://schemas.examplary.ai/question-type.json",
+
+  "id": "examplary.expansion.upload-file",
+  "public": true,
+
+  "name": {
+    "en": "Upload file",
+    "nl": "Upload bestand"
+  },
+  "description": {
+    "en": "Requires student to upload a file.",
+    "nl": "Vraagt de student om een bestand te uploaden."
+  },
+
+  "icon": "./icon.svg",
+  "components": {
+    "assessment": "./component-assessment.tsx",
+    "results": "./component-results.tsx"
+  },
+
+  "generation": {
+    "enabled": true
+  },
+
+  "timeEstimateMinutes": 20,
+
+  "settings": [
+    {
+      "id": "acceptFileTypes",
+      "type": "enum",
+      "name": {
+        "en": "Accepted file types",
+        "nl": "Geaccepteerde bestandstypen"
+      },
+      "description": "The types of files that students are allowed to upload. Should be one of the enum values specified below.",
+      "options": [
+        {
+          "value": "*/*",
+          "label": {
+            "en": "All file types",
+            "nl": "Alle bestandstypen"
+          }
+        },
+        {
+          "value": "application/pdf",
+          "label": {
+            "en": "Only PDF documents",
+            "nl": "Alleen PDF-documenten"
+          }
+        },
+        {
+          "value": ".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "label": {
+            "en": "Only Word documents",
+            "nl": "Alleen Word-documenten"
+          }
+        },
+        {
+          "value": "image/*",
+          "label": {
+            "en": "Only images",
+            "nl": "Alleen afbeeldingen"
+          }
+        }
+      ],
+      "default": "*/*"
+    }
+  ],
+
+  "translations": {
+    "select-file": {
+      "en": "Select a file",
+      "nl": "Selecteer een bestand"
+    },
+    "uploading": {
+      "en": "Uploading...",
+      "nl": "Uploaden..."
+    },
+    "remove-file": {
+      "en": "Remove file",
+      "nl": "Verwijder bestand"
+    }
+  }
+}
