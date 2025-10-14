@@ -24,6 +24,8 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
       const file = await api.uploadFile(question.settings?.acceptFileTypes);
       if (file) {
         saveAnswer({ value: [file.url, file.name], completed: true });
+      } else {
+        setUploading(false);
       }
     } catch (e) {
       alert(e.message);
@@ -65,7 +67,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
         variant="secondary"
         size="sm"
         className="mt-4"
-        onClick={() => saveAnswer({ value: '', completed: false })}
+        onClick={() => saveAnswer({ value: "", completed: false })}
       >
         <TrashIcon />
         {t("remove-file")}
