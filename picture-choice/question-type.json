@@ -29,8 +29,15 @@
     {
       "id": "options",
       "type": "custom",
-      "name": "Multiple choice answer options",
-      "description": "An array of options objects, with each option being an object with {imageName: string, imageUrl: string, correct: boolean}. The value can contain HTML, the `correct` boolean indicates if the option is correct. There can only be one correct option.",
+      "name": "Picture choice answer options",
+      "description": "An array of image URL strings that represent the choices to the student.",
+      "hidden": true
+    },
+    {
+      "id": "correctAnswer",
+      "type": "string",
+      "name": "Correct answer",
+      "description": "The string of the correct answer value, matching the `value` field of the options. Needs to be an exact match to one of the options.",
       "hidden": true
     }
   ],
