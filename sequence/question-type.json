@@ -27,6 +27,7 @@
   },
 
   "timeEstimateMinutes": 2,
+  "hasSimpleScoring": true,
 
   "settings": [
     {

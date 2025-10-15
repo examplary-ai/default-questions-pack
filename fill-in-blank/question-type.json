@@ -5,8 +5,8 @@
   "public": true,
 
   "name": {
-    "en": "Fill in the blank",
-    "nl": "Vul in de lege plek"
+    "en": "Fill in the blanks",
+    "nl": "Aanvullen"
   },
   "description": {
     "en": "Requires student to fill in one or more blanks with a short text answer.",
@@ -27,6 +27,7 @@
   },
 
   "timeEstimateMinutes": 2,
+  "hasSimpleScoring": true,
 
   "settings": [
     {

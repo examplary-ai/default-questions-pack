@@ -22,6 +22,10 @@
   "generation": {
     "enabled": true
   },
+  "grading": {
+    "enabled": true,
+    "instructions": "Look at the file uploaded, by following the link."
+  },
 
   "timeEstimateMinutes": 20,
 
