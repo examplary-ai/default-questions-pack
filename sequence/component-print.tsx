@@ -3,10 +3,13 @@ import {
   FrontendPrintComponent,
   RichTextDisplay,
 } from "@examplary/ui";
+import { useMemo } from "react";
 
 const PrintComponent: FrontendPrintComponent = ({ answerBoxes, question }) => {
-  const shuffledOptions = [...(question.settings.options || [])].sort(
-    () => 0.5 - Math.random()
+  const shuffledOptions = useMemo(
+    () =>
+      [...(question.settings.options || [])].sort(() => 0.5 - Math.random()),
+    [question.id]
   );
 
   return (

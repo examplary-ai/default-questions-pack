@@ -18,14 +18,17 @@ import { MenuIcon } from "lucide-react";
 
 import { FrontendAssessmentComponent, RichTextDisplay } from "@examplary/ui";
 import { SortableItem } from "./component-settings-area";
+import { useMemo } from "react";
 
 const AssessmentComponent: FrontendAssessmentComponent = ({
   question,
   answer,
   saveAnswer,
 }) => {
-  const shuffledOptions = [...(question.settings.options || [])].sort(
-    () => 0.5 - Math.random()
+  const shuffledOptions = useMemo(
+    () =>
+      [...(question.settings.options || [])].sort(() => 0.5 - Math.random()),
+    [question.id]
   );
   const options = (answer?.value as string[]) || shuffledOptions;
 
