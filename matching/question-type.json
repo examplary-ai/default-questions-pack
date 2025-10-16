@@ -23,7 +23,7 @@
 
   "generation": {
     "enabled": true,
-    "instructions": "Generate settings that look like this: {\"pairs\": [[\"Apple\", \"Red\"], [\"Banana\", \"Yellow\"], [\"Grapes\", \"Purple\"]], \"correctAnswer\": [[\"Apple = Red\"], [\"Banana = Yellow\"], [\"Grapes = Purple\"]]}. `options` is an array of pairs, where each pair contains two string items that should be matched. `correctAnswer` is an array of strings, where each string represents a correct match in the format 'item1 = item2'. Make sure these exactly match the pairs specified. Ensure that the generated settings are valid JSON and adhere to the specified structure."
+    "instructions": "Generate settings that look like this: {\"pairs\": [[\"Apple\", \"Red\"], [\"Banana\", \"Yellow\"], [\"Grapes\", \"Purple\"]], \"correctAnswer\": [[\"Apple = Red\"], [\"Banana = Yellow\"], [\"Grapes = Purple\"]]}. `options` is an array of pairs, where each pair contains two string items that should be matched. `correctAnswer` is an array of strings, where each string represents a correct match in the format 'item1 = item2'. Make sure these exactly match the pairs specified."
   },
 
   "timeEstimateMinutes": 2,
@@ -34,14 +34,14 @@
       "id": "pairs",
       "type": "custom",
       "name": "Pairs",
-      "description": "An array of containing multiple two-item sub-arrays, where each two-item array represents a pair to be matched. The first item in each pair will be shown in the left column, and the second item in the right column. Example: `[[\"Apple\", \"Red\"], [\"Banana\", \"Yellow\"]]`.",
+      "description": "Array containing multiple multiple tuples of strings ([[\"A\", \"B\"], [\"C\", \"D\"]]), where each two-item array represents a pair to be matched. The first item in each pair will be shown in the left column, and the second item in the right column. Example: `[[\"Apple\", \"Red\"], [\"Banana\", \"Yellow\"]]`.",
       "hidden": true
     },
     {
       "id": "correctAnswer",
       "type": "string-array",
       "name": "Correct answer",
-      "description": "The correct pairs, as an array of strings where the left and right are concatenated with ` = `. Should exactly mirror `options`.",
+      "description": "The correct pairs, as an array of strings where the left and right are concatenated with ` = `. Should exactly mirror `pairs`.",
       "hidden": true
     },
     {
