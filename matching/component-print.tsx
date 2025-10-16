@@ -12,8 +12,18 @@ const PrintComponent: FrontendPrintComponent = ({ question, t }) => {
   const horizontal =
     question.settings.layout === "horizontal" &&
     question.settings.pairs?.length! <= 4;
+
+  const options: Item[] = useMemo(
+    () =>
+      (question.settings.pairs || []).map((item: string) => {
+        const [left, right] = item.split(" = ", 2);
+        return { left, right };
+      }),
+    [question.settings.pairs]
+  );
+
   const leftItems = useMemo(() => {
-    const items = question.settings.pairs?.map((pair: Item) => pair[0]) || [];
+    const items = options.map((pair: Item) => pair.left) || [];
     if (question.settings.shuffle) {
       return items.sort(() => 0.5 - Math.random());
     }
@@ -21,7 +31,7 @@ const PrintComponent: FrontendPrintComponent = ({ question, t }) => {
   }, [question]);
 
   const rightItems = useMemo(() => {
-    const items = question.settings.pairs?.map((pair: Item) => pair[1]) || [];
+    const items = options.map((pair: Item) => pair.right) || [];
     return items.sort(() => 0.5 - Math.random());
   }, [question]);
 

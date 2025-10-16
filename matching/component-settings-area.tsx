@@ -5,21 +5,29 @@ import {
   RichTextField,
 } from "@examplary/ui";
 
-export type Item = [string, string];
+export type Item = { left: string; right: string };
 
 const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
   settings,
   setMultipleSettings,
   t,
 }) => {
-  const options: Item[] = [...(settings.pairs || []), ["", ""]];
+  const options: Item[] = [
+    ...(settings.pairs || []).map((item: string) => {
+      const [left, right] = item.split(" = ", 2);
+      return { left, right };
+    }),
+    { left: "", right: "" },
+  ];
 
   const setOptions = (options: Item[]) => {
-    const filteredOptions = options.filter(([o]) => o && o.trim() !== "");
+    const filteredOptions = options
+      .filter(({ left }) => left && left.trim() !== "")
+      .map(({ left, right }) => `${left} = ${right}`);
 
     setMultipleSettings({
       pairs: filteredOptions,
-      correctAnswer: filteredOptions.map(([a, b]) => `${a} = ${b}`),
+      correctAnswer: filteredOptions,
     });
   };
 
@@ -58,23 +66,23 @@ const ItemRow = ({ index, value, options, setOptions, t, last }) => {
       <ItemInput
         data-type="matching-option-left"
         last={last}
-        value={value[0]}
+        value={value.left}
         placeholder={t("placeholder-item")}
         onChange={(val: string) => {
           const next = [...options];
-          next[index] = [val, next[index][1]];
+          next[index].left = val.replace(" = ", " - ");
           setOptions(next);
         }}
       />
-      <div className="h-0.25 w-5 bg-border"/>
+      <div className="h-0.25 w-5 bg-border" />
       <ItemInput
         data-type="matching-option-right"
         last={last}
-        value={value[1]}
+        value={value.right}
         placeholder={t("placeholder-answer")}
         onChange={(val: string) => {
           const next = [...options];
-          next[index] = [next[index][0], val];
+          next[index].right = val.replace(" = ", " - ");
           setOptions(next);
         }}
       />

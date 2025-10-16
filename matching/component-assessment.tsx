@@ -23,10 +23,24 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   saveAnswer,
   t,
 }) => {
-  const horizontal = question.settings.layout === "horizontal"  && question.settings.pairs?.length! <= 4;
+  const options: Item[] = useMemo(
+    () => 
+      (question.settings.pairs || []).map((item: string) => {
+        const [left, right] = item.split(" = ", 2);
+        return { left, right };
+      }),
+    [question]
+  );
+
+  console.log(options);
+  
+
+  const horizontal =
+    question.settings.layout === "horizontal" &&
+    question.settings.pairs?.length! <= 4;
 
   const leftItems = useMemo(() => {
-    const items = question.settings.pairs?.map((pair: Item) => pair[0]) || [];
+    const items = options?.map((pair: Item) => pair.left) || [];
     if (question.settings.shuffle) {
       return items.sort(() => 0.5 - Math.random());
     }
@@ -45,7 +59,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   );
 
   const availableAnswers = useMemo(() => {
-    return (question.settings.pairs?.map((pair: Item) => pair[1]) || [])
+    return (options?.map((pair: Item) => pair.right) || [])
       .filter((item: string) => !rightItems.includes(item))
       .sort(() => 0.5 - Math.random());
   }, [question, rightItems]);
@@ -86,7 +100,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
             <div
               className={cn(
                 "flex items-center",
-                horizontal && "flex-1 md:flex-col",
+                horizontal && "flex-1 md:flex-col"
               )}
               data-type="matching-option"
             >
@@ -95,7 +109,11 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
                   {leftItem}
                 </RichTextDisplay>
               </div>
-              <div className={!horizontal ? "h-0.25 w-5 bg-border" : "w-0.25 h-5 bg-border"} />
+              <div
+                className={
+                  !horizontal ? "h-0.25 w-5 bg-border" : "w-0.25 h-5 bg-border"
+                }
+              />
               <RightSlot id={index} value={rightItem}>
                 <RightItem id={rightItem} key={rightItem}>
                   {rightItem}
