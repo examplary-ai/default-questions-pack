@@ -12,13 +12,13 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
   setMultipleSettings,
   t,
 }) => {
-  const options: Item[] = [...(settings.options || []), ["", ""]];
+  const options: Item[] = [...(settings.pairs || []), ["", ""]];
 
   const setOptions = (options: Item[]) => {
     const filteredOptions = options.filter(([o]) => o && o.trim() !== "");
 
     setMultipleSettings({
-      options: filteredOptions,
+      pairs: filteredOptions,
       correctAnswer: filteredOptions.map(([a, b]) => `${a} = ${b}`),
     });
   };

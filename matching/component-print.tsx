@@ -11,9 +11,9 @@ import type { Item } from "./component-settings-area";
 const PrintComponent: FrontendPrintComponent = ({ question, t }) => {
   const horizontal =
     question.settings.layout === "horizontal" &&
-    question.settings.options?.length! <= 4;
+    question.settings.pairs?.length! <= 4;
   const leftItems = useMemo(() => {
-    const items = question.settings.options?.map((pair: Item) => pair[0]) || [];
+    const items = question.settings.pairs?.map((pair: Item) => pair[0]) || [];
     if (question.settings.shuffle) {
       return items.sort(() => 0.5 - Math.random());
     }
@@ -21,7 +21,7 @@ const PrintComponent: FrontendPrintComponent = ({ question, t }) => {
   }, [question]);
 
   const rightItems = useMemo(() => {
-    const items = question.settings.options?.map((pair: Item) => pair[1]) || [];
+    const items = question.settings.pairs?.map((pair: Item) => pair[1]) || [];
     return items.sort(() => 0.5 - Math.random());
   }, [question]);
 

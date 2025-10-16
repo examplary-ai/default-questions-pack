@@ -23,10 +23,10 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   saveAnswer,
   t,
 }) => {
-  const horizontal = question.settings.layout === "horizontal"  && question.settings.options?.length! <= 4;
+  const horizontal = question.settings.layout === "horizontal"  && question.settings.pairs?.length! <= 4;
 
   const leftItems = useMemo(() => {
-    const items = question.settings.options?.map((pair: Item) => pair[0]) || [];
+    const items = question.settings.pairs?.map((pair: Item) => pair[0]) || [];
     if (question.settings.shuffle) {
       return items.sort(() => 0.5 - Math.random());
     }
@@ -45,7 +45,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   );
 
   const availableAnswers = useMemo(() => {
-    return (question.settings.options?.map((pair: Item) => pair[1]) || [])
+    return (question.settings.pairs?.map((pair: Item) => pair[1]) || [])
       .filter((item: string) => !rightItems.includes(item))
       .sort(() => 0.5 - Math.random());
   }, [question, rightItems]);
