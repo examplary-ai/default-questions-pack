@@ -34,7 +34,7 @@
       "id": "pairs",
       "type": "custom",
       "name": "Pairs",
-      "description": "An array of two-item arrays, where each two-item array represents a pair to be matched. The first item in each pair will be shown in the left column, and the second item in the right column. Example: `[[\"Apple\", \"Red\"], [\"Banana\", \"Yellow\"]]`.",
+      "description": "An array of containing multiple two-item sub-arrays, where each two-item array represents a pair to be matched. The first item in each pair will be shown in the left column, and the second item in the right column. Example: `[[\"Apple\", \"Red\"], [\"Banana\", \"Yellow\"]]`.",
       "hidden": true
     },
     {
