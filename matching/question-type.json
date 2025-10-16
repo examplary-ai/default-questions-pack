@@ -1,0 +1,131 @@
+{
+  "$schema": "https://schemas.examplary.ai/question-type.json",
+
+  "id": "examplary.expansion.matching",
+  "public": true,
+
+  "name": {
+    "en": "Matching",
+    "nl": "Combinaties"
+  },
+  "description": {
+    "en": "Match the correct items with their pairs from two lists.",
+    "nl": "Koppel de juiste items aan hun tegenhangers uit twee lijsten."
+  },
+
+  "icon": "./icon.svg",
+  "components": {
+    "assessment": "./component-assessment.tsx",
+    "print": "./component-print.tsx",
+    "results": "./component-results.tsx",
+    "settings-area": "./component-settings-area.tsx"
+  },
+
+  "generation": {
+    "enabled": true,
+    "instructions": "Generate settings that look like this: {\"options\": [[\"Apple\", \"Red\"], [\"Banana\", \"Yellow\"], [\"Grapes\", \"Purple\"]], \"correctAnswer\": [[\"Apple = Red\"], [\"Banana = Yellow\"], [\"Grapes = Purple\"]]}. `options` is an array of pairs, where each pair contains two string items that should be matched. `correctAnswer` is an array of strings, where each string represents a correct match in the format 'item1 = item2'. Make sure these exactly match the pairs specified. Ensure that the generated settings are valid JSON and adhere to the specified structure."
+  },
+
+  "timeEstimateMinutes": 2,
+  "hasSimpleScoring": true,
+
+  "settings": [
+    {
+      "id": "options",
+      "type": "custom",
+      "name": "Pairs",
+      "description": "An array of two-item arrays, where each two-item array represents a pair to be matched. The first item in each pair will be shown in the left column, and the second item in the right column.",
+      "hidden": true
+    },
+    {
+      "id": "correctAnswer",
+      "type": "string-array",
+      "name": "Correct answer",
+      "description": "The correct pairs, as an array of strings where the left and right are concatenated with ` = `. Should exactly mirror `options`.",
+      "hidden": true
+    },
+    {
+      "id": "layout",
+      "type": "enum",
+      "name": {
+        "en": "Layout",
+        "nl": "Layout"
+      },
+      "description": "The layout to use for displaying the matching question. `vertical` displays the items in two vertical columns, while `horizontal` displays them in two horizontal rows. Don't use horizontal if there are more than 3 items.",
+      "options": [
+        {
+          "value": "vertical",
+          "label": {
+            "en": "Vertical",
+            "nl": "Verticaal"
+          }
+        },
+        {
+          "value": "horizontal",
+          "label": {
+            "en": "Horizontal",
+            "nl": "Horizontaal"
+          }
+        }
+      ],
+      "default": "vertical"
+    },
+    {
+      "id": "shuffle",
+      "type": "boolean",
+      "name": {
+        "en": "Shuffle options",
+        "nl": "Willekeurige volgorde"
+      },
+      "description": "Whether to show the options in a random order to the student.",
+      "default": false
+    }
+  ],
+
+  "translations": {
+    "pairs": {
+      "en": "Pairs",
+      "nl": "Paren"
+    },
+    "left-column": {
+      "en": "Left column",
+      "nl": "Linker kolom"
+    },
+    "right-column": {
+      "en": "Right column",
+      "nl": "Rechter kolom"
+    },
+    "top-row": {
+      "en": "Top row",
+      "nl": "Bovenste rij"
+    },
+    "bottom-row": {
+      "en": "Bottom row",
+      "nl": "Onderste rij"
+    },
+    "help-vertical": {
+      "en": "Add the correct combinations. The student will see the left column items, and must match them with the right column items.",
+      "nl": "Voeg de juiste combinaties toe. De leerling ziet de items in de linker kolom en moet ze koppelen aan de items in de rechter kolom."
+    },
+    "help-horizontal": {
+      "en": "Add the correct combinations. The student will see the top row items, and must match them with the bottom row items.",
+      "nl": "Voeg de juiste combinaties toe. De leerling ziet de items in de bovenste rij en moet ze koppelen aan de items in de onderste rij."
+    },
+    "placeholder-item": {
+      "en": "Shown item...",
+      "nl": "Getoond item..."
+    },
+    "placeholder-answer": {
+      "en": "Add an item...",
+      "nl": "Voeg een item toe..."
+    },
+    "drag-options": {
+      "en": "Drag these items to the correct matches.",
+      "nl": "Sleep deze items naar de juiste combinaties."
+    },
+    "possible-answers": {
+      "en": "Possible answers:",
+      "nl": "Mogelijke antwoorden:"
+    }
+  }
+}

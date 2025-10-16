@@ -87,7 +87,7 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
   );
 };
 
-export const SortableItem = ({ index, value, options, setOptions, t }) => {
+const SortableItem = ({ index, value, options, setOptions, t }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: index.toString() });
 

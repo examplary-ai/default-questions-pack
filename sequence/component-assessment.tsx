@@ -17,7 +17,6 @@ import { CSS } from "@dnd-kit/utilities";
 import { MenuIcon } from "lucide-react";
 
 import { FrontendAssessmentComponent, RichTextDisplay } from "@examplary/ui";
-import { SortableItem } from "./component-settings-area";
 import { useMemo } from "react";
 
 const AssessmentComponent: FrontendAssessmentComponent = ({
@@ -41,8 +40,6 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
 
   function handleDragEnd(event: any) {
     const { active, over } = event;
-    console.log({ active, over });
-
     if (active.id !== over.id) {
       const oldIndex = Number(active.id);
       const newIndex = Number(over.id);
