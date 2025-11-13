@@ -15,7 +15,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
       question.settings.shuffleAnswers
         ? [...(question.settings.options || [])].sort(() => Math.random() - 0.5)
         : question.settings.options || [],
-    [question]
+    [question.settings.options, question.settings.shuffleAnswers]
   );
 
   return (
