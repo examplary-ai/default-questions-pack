@@ -46,6 +46,17 @@
     }
   ],
 
+  "export": {
+    "qti3": {
+      "interaction": {
+        "type": "OrderInteraction",
+        "options": {
+          "choices": "=$map($.question.settings.options, function($option, $index) { { 'identifier': $option, 'content': $option } })"
+        }
+      }
+    }
+  },
+
   "translations": {
     "options": {
       "en": "Items to arrange",
