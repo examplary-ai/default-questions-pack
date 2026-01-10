@@ -67,7 +67,7 @@
         "type": "TextEntryInteraction",
         "options": {
           "placeholderText": "=$.question.settings.dateType = 'year-only' ? 'YYYY' : 'YYYY-MM-DD'",
-          "patternMask": "=$.question.settings.dateType = 'year-only' ? '\\d{4}' : '\\d{4}-\\d{2}-\\d{2}'",
+          "patternMask": "=$.question.settings.dateType = 'year-only' ? '\\\\d{4}' : '\\\\d{4}-\\\\d{2}-\\\\d{2}'",
           "expectedLength": "=$.question.settings.dateType = 'year-only' ? 4 : 10"
         }
       }
