@@ -43,7 +43,7 @@
           "label": "Full date"
         },
         {
-          "value": "year-only",
+          "value": "year",
           "label": "Year only"
         }
       ],
@@ -66,9 +66,9 @@
       "interaction": {
         "type": "TextEntryInteraction",
         "options": {
-          "placeholderText": "=$.question.settings.dateType = 'year-only' ? 'YYYY' : 'YYYY-MM-DD'",
-          "patternMask": "=$.question.settings.dateType = 'year-only' ? '\\\\d{4}' : '\\\\d{4}-\\\\d{2}-\\\\d{2}'",
-          "expectedLength": "=$.question.settings.dateType = 'year-only' ? 4 : 10"
+          "placeholderText": "=$.question.settings.dateType = 'year' ? 'YYYY' : 'YYYY-MM-DD'",
+          "patternMask": "=$.question.settings.dateType = 'year' ? '\\\\d{4}' : '\\\\d{4}-\\\\d{2}-\\\\d{2}'",
+          "expectedLength": "=$.question.settings.dateType = 'year' ? 4 : 10"
         }
       }
     }
