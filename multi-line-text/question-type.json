@@ -21,6 +21,15 @@
 
   "settings": [],
 
+  "export": {
+    "qti3": {
+      "interaction": {
+        "type": "ExtendedTextInteraction",
+        "options": {}
+      }
+    }
+  },
+
   "generation": {
     "enabled": true
   },

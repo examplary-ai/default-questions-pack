@@ -56,6 +56,22 @@
     }
   ],
 
+  "export": {
+    "qti3": {
+      "interaction": {
+        "type": "ChoiceInteraction",
+        "options": {
+          "choices": [
+            { "identifier": "true", "content": "True" },
+            { "identifier": "false", "content": "False" }
+          ],
+          "minChoices": 1,
+          "maxChoices": 1
+        }
+      }
+    }
+  },
+
   "translations": {
     "true": {
       "en": "True",

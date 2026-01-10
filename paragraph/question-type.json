@@ -25,6 +25,15 @@
 
   "settings": [],
 
+  "export": {
+    "qti3": {
+      "interaction": {
+        "type": "ExtendedTextInteraction",
+        "options": {}
+      }
+    }
+  },
+
   "titlePlaceholder": {
     "en": "Section title...",
     "nl": "Sectietitel..."

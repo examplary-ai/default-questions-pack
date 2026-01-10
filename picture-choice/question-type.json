@@ -42,6 +42,20 @@
     }
   ],
 
+  "export": {
+    "qti3": {
+      "interaction": {
+        "type": "ChoiceInteraction",
+        "options": {
+          "shuffle": "=$.question.settings.shuffleAnswers",
+          "choices": "=$map($.question.settings.options, function($option, $index) { { 'identifier': $option, 'content': '<img src=\"' & $option & '\" />' } })",
+          "minChoices": 1,
+          "maxChoices": 1
+        }
+      }
+    }
+  },
+
   "translations": {
     "upload-image": {
       "en": "Upload image",

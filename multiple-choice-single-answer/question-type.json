@@ -30,20 +30,6 @@
   "shortcut": "3",
   "index": 200,
 
-  "export": {
-    "qti3": {
-      "interaction": {
-        "type": "ChoiceInteraction",
-        "options": {
-          "shuffle": "=$.question.settings.shuffleAnswers",
-          "choices": "=$map($.question.settings.options, function($option, $index) { { 'identifier': $option, 'content': $option } })",
-          "minChoices": 1,
-          "maxChoices": 1
-        }
-      }
-    }
-  },
-
   "settings": [
     {
       "id": "options",
@@ -70,6 +56,20 @@
       "default": false
     }
   ],
+
+  "export": {
+    "qti3": {
+      "interaction": {
+        "type": "ChoiceInteraction",
+        "options": {
+          "shuffle": "=$.question.settings.shuffleAnswers",
+          "choices": "=$map($.question.settings.options, function($option, $index) { { 'identifier': $option, 'content': $option } })",
+          "minChoices": 1,
+          "maxChoices": 1
+        }
+      }
+    }
+  },
 
   "translations": {
     "option-placeholder": {

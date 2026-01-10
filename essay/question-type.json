@@ -51,6 +51,15 @@
     }
   ],
 
+  "export": {
+    "qti3": {
+      "interaction": {
+        "type": "ExtendedTextInteraction",
+        "options": {}
+      }
+    }
+  },
+
   "translations": {
     "word-count_one": {
       "en": "{{count}} word",

@@ -72,6 +72,17 @@
     }
   ],
 
+  "export": {
+    "qti3": {
+      "interaction": {
+        "type": "UploadInteraction",
+        "options": {
+          "type": "=$.question.settings.acceptFileTypes"
+        }
+      }
+    }
+  },
+
   "translations": {
     "select-file": {
       "en": "Select a file",
