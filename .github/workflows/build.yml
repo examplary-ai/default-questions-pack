@@ -38,6 +38,6 @@ jobs:
             # Bundle and upload to Examplary
             cd $dir
             npx @examplary/cli@latest upload --host https://api-staging.examplary.ai
-            # npx @examplary/cli@latest upload --host https://api.examplary.ai
+            npx @examplary/cli@latest upload --host https://api.examplary.ai
             cd ..
           done
