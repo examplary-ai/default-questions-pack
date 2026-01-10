@@ -27,10 +27,35 @@
   },
   "timeEstimateMinutes": 2,
 
-  "settings": [],
+  "settings": [
+    {
+      "id": "maxLength",
+      "type": "number",
+      "name": {
+        "en": "Maximum length",
+        "nl": "Maximale lengte"
+      },
+      "min": 1,
+      "max": 1000,
+      "step": 1,
+      "required": false,
+      "description": "The maximum number of characters allowed in the answer - optional. Don't include unless relevant."
+    }
+  ],
 
   "shortcut": "1",
   "index": 100,
+
+  "export": {
+    "qti3": {
+      "interaction": {
+        "type": "TextEntryInteraction",
+        "options": {
+          "expectedLength": "=$.question.settings.maxLength"
+        }
+      }
+    }
+  },
 
   "translations": {
     "placeholder": {
