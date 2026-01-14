@@ -2,7 +2,7 @@
   "$schema": "https://schemas.examplary.ai/question-type.json",
 
   "id": "examplary.default.conversational",
-  "public": true,
+  "public": false,
 
   "name": {
     "en": "Knowledge chat",
