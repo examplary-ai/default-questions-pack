@@ -38,7 +38,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
                 "text-sm",
                 reviewMode &&
                   question?.settings?.correctAnswer === option.value &&
-                  "bg-green-100 p-1 -m-1 rounded-xl inline-block",
+                  "bg-green-100 px-1.5 py-0.5 -mx-1.5 -my-0.5 rounded-xl inline-block",
               )}
             >
               {option.label}
