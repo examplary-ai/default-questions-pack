@@ -1,5 +1,6 @@
 import {
   Checkbox,
+  cn,
   FrontendAssessmentComponent,
   RichTextDisplay,
 } from "@examplary/ui";
@@ -9,13 +10,14 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   question,
   answer,
   saveAnswer,
+  reviewMode,
 }) => {
   const options = useMemo(
     () =>
       question.settings.shuffleAnswers
         ? [...(question.settings.options || [])].sort(() => Math.random() - 0.5)
         : question.settings.options || [],
-    [question.settings.options, question.settings.shuffleAnswers]
+    [question.settings.options, question.settings.shuffleAnswers],
   );
 
   return (
@@ -33,7 +35,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
                 });
               } else {
                 const selection = ((answer?.value as string[]) || []).filter(
-                  (v) => v !== option
+                  (v) => v !== option,
                 );
                 saveAnswer({
                   value: selection,
@@ -42,7 +44,16 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
               }
             }}
           />
-          <RichTextDisplay className="text-sm">{option}</RichTextDisplay>
+          <RichTextDisplay
+            className={cn(
+              "text-sm",
+              reviewMode &&
+                question.settings.correctAnswer?.includes(option) &&
+                "bg-green-100 p-1 -m-1 rounded-xl inline-block",
+            )}
+          >
+            {option}
+          </RichTextDisplay>
         </label>
       ))}
     </div>

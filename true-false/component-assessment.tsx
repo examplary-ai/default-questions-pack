@@ -1,13 +1,17 @@
 import {
+  cn,
   FrontendAssessmentComponent,
   RadioGroup,
   RadioGroupItem,
+  RichTextDisplay,
 } from "@examplary/ui";
 
 const AssessmentComponent: FrontendAssessmentComponent = ({
+  question,
   answer,
   saveAnswer,
   t,
+  reviewMode,
 }) => {
   const options = [
     {
@@ -29,7 +33,16 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
         {options.map((option, index) => (
           <label key={index} className="flex gap-2 items-start w-full">
             <RadioGroupItem value={option.value} />
-            <div className="text-sm">{option.label}</div>
+            <div
+              className={cn(
+                "text-sm",
+                reviewMode &&
+                  question?.settings?.correctAnswer === option.value &&
+                  "bg-green-100 p-1 -m-1 rounded-xl inline-block",
+              )}
+            >
+              {option.label}
+            </div>
           </label>
         ))}
       </div>

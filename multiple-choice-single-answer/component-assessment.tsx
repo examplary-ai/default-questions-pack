@@ -1,18 +1,23 @@
 import { useMemo } from "react";
-import { FrontendAssessmentComponent, RichTextDisplay } from "@examplary/ui";
+import {
+  cn,
+  FrontendAssessmentComponent,
+  RichTextDisplay,
+} from "@examplary/ui";
 import { RadioGroup, RadioGroupItem } from "@examplary/ui";
 
 const AssessmentComponent: FrontendAssessmentComponent = ({
   question,
   saveAnswer,
   answer,
+  reviewMode,
 }) => {
   const options = useMemo(
     () =>
       question.settings.shuffleAnswers
         ? [...(question.settings.options || [])].sort(() => Math.random() - 0.5)
         : question.settings.options || [],
-    [question.settings.options, question.settings.shuffleAnswers]
+    [question.settings.options, question.settings.shuffleAnswers],
   );
 
   return (
@@ -24,7 +29,16 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
         {options.map((option: string, index: number) => (
           <label key={index} className="flex gap-2 items-start w-full">
             <RadioGroupItem value={option} />
-            <RichTextDisplay className="text-sm">{option}</RichTextDisplay>
+            <RichTextDisplay
+              className={cn(
+                "text-sm",
+                reviewMode &&
+                  question.settings.correctAnswer?.includes(option) &&
+                  "bg-green-100 p-1 -m-1 rounded-xl inline-block",
+              )}
+            >
+              {option}
+            </RichTextDisplay>
           </label>
         ))}
       </div>
