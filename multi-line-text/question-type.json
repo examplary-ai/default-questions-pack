@@ -30,6 +30,13 @@
     }
   },
 
+ "translations": {
+    "placeholder": {
+      "en": "Type your answer...",
+      "nl": "Typ je antwoord..."
+    }
+  },
+
   "generation": {
     "enabled": true
   },
