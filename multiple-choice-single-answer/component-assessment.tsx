@@ -33,7 +33,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
               className={cn(
                 "text-sm",
                 reviewMode &&
-                  question.settings.correctAnswer?.includes(option) &&
+                  question.settings.correctAnswer === option &&
                  "bg-green-50 text-green-800 px-1.5 py-0.5 -mx-1.5 -my-0.5 rounded-xl inline-block",
               )}
             >
