@@ -3,7 +3,6 @@ import {
   FrontendAssessmentComponent,
   Input,
   RichTextDisplay,
-  RichTextField,
 } from "@examplary/ui";
 
 const AssessmentComponent: FrontendAssessmentComponent = ({
@@ -35,7 +34,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
       output.push(
         <Input
           className={cn(
-            "w-40 inline-flex mx-1",
+            "w-48 px-1.5 py-0 m-0.5 rounded-lg h-8 inline-flex mx-1",
             reviewMode && "placeholder:text-green-800/50",
           )}
           value={value[index] || ""}
