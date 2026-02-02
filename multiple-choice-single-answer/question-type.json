@@ -42,7 +42,7 @@
       "id": "correctAnswer",
       "type": "string",
       "name": "Correct answer",
-      "description": "The string of the correct answer value, matching the `value` field of the options. Needs to be an exact match to one of the options.",
+      "description": "The string of the correct answer value, matching the `value` field of the options. Needs to be an exact match to one of the options, including punctuation and capitalisation!",
       "hidden": true
     },
     {
