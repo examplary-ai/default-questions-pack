@@ -21,19 +21,19 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   question,
   answer,
   saveAnswer,
+  reviewMode,
   t,
 }) => {
   const options: Item[] = useMemo(
-    () => 
+    () =>
       (question.settings.pairs || []).map((item: string) => {
         const [left, right] = item.split(" = ", 2);
         return { left, right };
       }),
-    [question]
+    [question],
   );
 
   console.log(options);
-  
 
   const horizontal =
     question.settings.layout === "horizontal" &&
@@ -51,11 +51,11 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
     () =>
       leftItems.map((leftItem: string) => {
         const answerMatch = (answer?.value as string[])?.find((ans: string) =>
-          ans.startsWith(`${leftItem} = `)
+          ans.startsWith(`${leftItem} = `),
         );
         return answerMatch ? answerMatch.split(" = ", 2)[1] : "";
       }),
-    [leftItems, answer]
+    [leftItems, answer],
   );
 
   const availableAnswers = useMemo(() => {
@@ -68,7 +68,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   function handleDragEnd(event: any) {
@@ -76,7 +76,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
 
     const currentAnswers = (answer?.value as string[]) || [];
     const newAnswers = currentAnswers.filter(
-      (ans: string) => !ans.endsWith(`= ${active.id}`)
+      (ans: string) => !ans.endsWith(`= ${active.id}`),
     );
 
     if (over) {
@@ -100,7 +100,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
             <div
               className={cn(
                 "flex items-center",
-                horizontal && "flex-1 md:flex-col"
+                horizontal && "flex-1 md:flex-col",
               )}
               data-type="matching-option"
             >
@@ -114,7 +114,12 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
                   !horizontal ? "h-0.25 w-5 bg-border" : "w-0.25 h-5 bg-border"
                 }
               />
-              <RightSlot id={index} value={rightItem}>
+              <RightSlot
+                id={index}
+                value={rightItem}
+                reviewMode={reviewMode}
+                correctAnswer={question.settings.correctAnswer?.[index]}
+              >
                 <RightItem id={rightItem} key={rightItem}>
                   {rightItem}
                 </RightItem>
@@ -142,7 +147,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   );
 };
 
-const RightSlot = ({ children, id, value }) => {
+const RightSlot = ({ children, id, value, reviewMode, correctAnswer }) => {
   const { isOver, setNodeRef } = useDroppable({ id });
 
   const hasValue = !!value;
@@ -152,11 +157,16 @@ const RightSlot = ({ children, id, value }) => {
       ref={setNodeRef}
       className={cn(
         "flex-1 w-full rounded-3xl min-h-10 min-w-16 flex-shrink-0",
-        "[&>button]:w-full [&>button]:flex-1",
+        "[&>button]:w-full [&>button]:flex-1 relative",
         isOver && "bg-accent",
-        !hasValue && "border border-zinc-800 border-dashed"
+        !hasValue && "border border-zinc-800 border-dashed",
       )}
     >
+      {reviewMode && correctAnswer && !hasValue && (
+        <div className="absolute inset-0 px-4 pl-2 text-sm flex flex-1 items-center text-left ellipsis text-green-800/50 select-none">
+          {correctAnswer?.split(" = ")?.[1]}
+        </div>
+      )}
       {children}
     </div>
   );
@@ -179,7 +189,7 @@ const RightItem = ({ children, id, className = "" }) => {
       className={cn(
         "bg-accent px-4 pl-2 min-h-10 rounded-3xl border border-border text-left cursor-move text-sm",
         isDragging && "shadow-xl",
-        className
+        className,
       )}
       style={style}
       {...listeners}

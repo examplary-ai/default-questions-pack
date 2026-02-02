@@ -36,7 +36,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
         <Input
           className={cn(
             "w-40 inline-flex mx-1",
-            reviewMode && "placeholder:text-green-800/75",
+            reviewMode && "placeholder:text-green-800/50",
           )}
           value={value[index] || ""}
           data-index={index}
