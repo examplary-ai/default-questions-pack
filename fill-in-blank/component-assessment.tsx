@@ -1,4 +1,5 @@
 import {
+  cn,
   FrontendAssessmentComponent,
   Input,
   RichTextDisplay,
@@ -9,7 +10,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   question,
   answer,
   saveAnswer,
-  t,
+  reviewMode,
 }) => {
   const text = question.settings.text || "";
   const value = (answer?.value as string[]) || [];
@@ -33,16 +34,22 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
     if (output.length) {
       output.push(
         <Input
-          className="w-40 inline-flex mx-1"
+          className={cn(
+            "w-40 inline-flex mx-1",
+            reviewMode && "placeholder:text-green-800/75",
+          )}
           value={value[index] || ""}
           data-index={index}
+          placeholder={
+            reviewMode ? question.settings.correctAnswer?.[index] : undefined
+          }
           onChange={(event) =>
             setValue(
               Number(event.currentTarget.dataset.index),
-              event.currentTarget.value
+              event.currentTarget.value,
             )
           }
-        />
+        />,
       );
       index++;
     }
