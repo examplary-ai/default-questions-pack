@@ -33,6 +33,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   useEffect(() => {
     if (question.settings?.aiStarts && chat.length === 1 && !complete) {
       if (started.current) return;
+      if (!question.settings?.conversationalPrompt) return;
       started.current = true;
       nextStep(chat);
     }

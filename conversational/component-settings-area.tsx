@@ -12,7 +12,7 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
           {t("prompt-label")}
         </label>
         <RichTextField
-          value={settings.conversationalPrompt || ""}
+          value={settings?.conversationalPrompt || ""}
           onChange={(value) => setSetting("conversationalPrompt", value)}
           placeholder={t("prompt-placeholder")}
           className="w-full"
@@ -24,7 +24,7 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
           {t("completion-label")}
         </label>
         <RichTextField
-          value={settings.conversationalCompletionCriteria || ""}
+          value={settings?.conversationalCompletionCriteria || ""}
           onChange={(value) => setSetting("conversationalCompletionCriteria", value)}
           placeholder={t("completion-placeholder")}
           className="w-full"
