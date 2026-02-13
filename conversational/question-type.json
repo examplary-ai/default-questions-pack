@@ -43,7 +43,8 @@
       },
       "description": "The prompt for the conversational question. This instructs the AI conversation partner how to converse with the student and what role the AI should play. Leave empty for non-conversational questions.",
       "type": "string",
-      "hidden": true
+      "hidden": true,
+      "required": true
     },
     {
       "id": "conversationalCompletionCriteria",
@@ -53,7 +54,8 @@
       },
       "description": "The completion criteria for the conversational question. This instructs the AI lector when to stop the conversation. Leave empty for non-conversational questions. Use HTML <ul> and <li> to format.",
       "type": "string",
-      "hidden": true
+      "hidden": true,
+      "required": true
     },
     {
       "id": "aiStarts",

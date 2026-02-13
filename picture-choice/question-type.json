@@ -28,17 +28,19 @@
   "settings": [
     {
       "id": "options",
-      "type": "custom",
+      "type": "string-array",
       "name": "Picture choice answer options",
       "description": "An array of image URL strings that represent the choices to the student.",
-      "hidden": true
+      "hidden": true,
+      "required": true
     },
     {
       "id": "correctAnswer",
       "type": "string",
       "name": "Correct answer",
       "description": "The string of the correct answer value, matching the `value` field of the options. Needs to be an exact match to one of the options.",
-      "hidden": true
+      "hidden": true,
+      "required": true
     }
   ],
 

@@ -35,14 +35,16 @@
       "type": "string-array",
       "name": "Options",
       "description": "The items that the student should rearrange, in the correct order. Can contain simple HTML markup.",
-      "hidden": true
+      "hidden": true,
+      "required": true
     },
     {
       "id": "correctAnswer",
       "type": "string-array",
       "name": "Correct answer",
       "description": "Should exactly mirror `options`.",
-      "hidden": true
+      "hidden": true,
+      "required": true
     }
   ],
 

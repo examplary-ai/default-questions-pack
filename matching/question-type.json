@@ -35,14 +35,16 @@
       "type": "string-array",
       "name": "Pairs",
       "description": "Array containing pairs, where each pair is a string that contains ` = `. The text left of the ` = ` in each pair will be shown in the left column, and the rest in the right column. Example: `[\"Apple = Red\", \"Banana = Yellow\"]`.",
-      "hidden": true
+      "hidden": true,
+      "required": true
     },
     {
       "id": "correctAnswer",
       "type": "string-array",
       "name": "Correct answer",
       "description": "Should exactly mirror the `pairs` setting.",
-      "hidden": true
+      "hidden": true,
+      "required": true
     },
     {
       "id": "layout",

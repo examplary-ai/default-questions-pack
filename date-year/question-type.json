@@ -47,7 +47,8 @@
           "label": "Year only"
         }
       ],
-      "hidden": true
+      "hidden": true,
+      "required": true
     },
     {
       "id": "correctAnswer",
@@ -57,7 +58,8 @@
       },
       "description": "The correct answer to the question, which can be a year (e.g. 1925) or a full date (e.g. 1925-12-31), based on the dateType setting.",
       "type": "string",
-      "hidden": true
+      "hidden": true,
+      "required": true
     }
   ],
 

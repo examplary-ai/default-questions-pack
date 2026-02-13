@@ -35,14 +35,16 @@
       "type": "string",
       "name": "The question text with blanks",
       "description": "The text of the question (string), with blanks represented by ___",
-      "hidden": true
+      "hidden": true,
+      "required": true
     },
     {
       "id": "correctAnswer",
       "type": "string-array",
       "name": "Correct answer",
       "description": "The correct answer(s) to the question, that represent the blanks. There needs to be the same number of entries as there are blanks in the text.",
-      "hidden": true
+      "hidden": true,
+      "required": true
     }
   ],
 

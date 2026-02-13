@@ -36,6 +36,7 @@
         "nl": "Juiste antwoord"
       },
       "type": "enum",
+      "required": true,
       "description": "The correct answer to the question, either 'true' or 'false' (as a JSON string!).",
       "options": [
         {
