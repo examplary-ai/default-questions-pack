@@ -33,8 +33,8 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
     // @ts-expect-error math-field
     <math-field
       ref={ref}
-      class="border-2 border-black w-full p-2 text-lg"
-      style={{ borderRadius: "var(--radius)" }}
+      class="border border-border w-full p-2 text-lg"
+      style={{ borderRadius: "var(--radius-lg)" }}
     />
   );
 };

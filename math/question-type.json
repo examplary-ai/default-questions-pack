@@ -28,8 +28,7 @@
     "enabled": true,
     "instructions": "The student's answer is a LaTeX math expression. Compare it to the correct answer semantically — expressions like `\\frac{2}{4}` and `\\frac{1}{2}` should be considered equivalent in most cases."
   },
-  "timeEstimateMinutes": 2,
-  "hasSimpleScoring": true,
+  "timeEstimateMinutes": 4,
 
   "settings": [],
 
