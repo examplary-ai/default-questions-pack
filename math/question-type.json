@@ -1,0 +1,44 @@
+{
+  "$schema": "https://schemas.examplary.ai/question-type.json",
+
+  "id": "examplary.expansion.math",
+  "public": true,
+
+  "name": {
+    "en": "Math answer",
+    "nl": "Wiskundig antwoord"
+  },
+  "description": {
+    "en": "A question that requires a mathematical expression as response.",
+    "nl": "Een vraag die een wiskundige uitdrukking als antwoord vereist."
+  },
+
+  "icon": "./icon.svg",
+  "components": {
+    "assessment": "./component-assessment.tsx",
+    "print": "./component-print.tsx",
+    "results": "./component-results.tsx"
+  },
+
+  "generation": {
+    "enabled": true,
+    "instructions": "The answer to this question is a LaTeX math expression entered by the student using a math input field. Make sure to provide the correct answer in LaTeX format as well, so that the system can compare the student's answer to the correct answer semantically. Expressions like `\\frac{2}{4}` and `\\frac{1}{2}` should be considered equivalent in most cases."
+  },
+  "grading": {
+    "enabled": true,
+    "instructions": "The student's answer is a LaTeX math expression. Compare it to the correct answer semantically — expressions like `\\frac{2}{4}` and `\\frac{1}{2}` should be considered equivalent in most cases."
+  },
+  "timeEstimateMinutes": 2,
+  "hasSimpleScoring": true,
+
+  "settings": [],
+
+  "index": 510,
+
+  "translations": {
+    "placeholder": {
+      "en": "Enter your answer...",
+      "nl": "Voer je antwoord in..."
+    }
+  }
+}
