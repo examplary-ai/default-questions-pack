@@ -12,6 +12,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   saveAnswer,
   answer,
   isPreview,
+  reviewMode,
   api,
   t,
 }) => {
@@ -26,12 +27,17 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
           role: "system",
           content: systemPrompt(question),
         },
-      ]
+      ],
   );
 
   // Auto-start the conversation if the AI is set to start
   useEffect(() => {
-    if (question.settings?.aiStarts && chat.length === 1 && !complete) {
+    if (
+      question.settings?.aiStarts &&
+      chat.length === 1 &&
+      !complete &&
+      !reviewMode
+    ) {
       if (started.current) return;
       if (!question.settings?.conversationalPrompt) return;
       started.current = true;
