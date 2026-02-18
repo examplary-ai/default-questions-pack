@@ -1,12 +1,12 @@
 {
   "$schema": "https://schemas.examplary.ai/question-type.json",
 
-  "id": "examplary.expansion.math",
+  "id": "examplary.expansion.formula",
   "public": true,
 
   "name": {
-    "en": "Math answer",
-    "nl": "Wiskundig antwoord"
+    "en": "Formula",
+    "nl": "Formule"
   },
   "description": {
     "en": "A question that requires a mathematical expression as response.",
