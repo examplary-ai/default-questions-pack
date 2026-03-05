@@ -3,7 +3,7 @@ import { FrontendResultsComponent, RichTextDisplay } from "@examplary/ui";
 const ResultsComponent: FrontendResultsComponent = ({ answer }) => {
   if (!answer.value) return null;
 
-  if (answer.value && typeof answer.value === "string") {
+  if (typeof answer.value === "string") {
     return <RichTextDisplay>{answer.value}</RichTextDisplay>;
   }
 
