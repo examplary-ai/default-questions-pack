@@ -3,9 +3,13 @@ import { FrontendResultsComponent, RichTextDisplay } from "@examplary/ui";
 const ResultsComponent: FrontendResultsComponent = ({ answer }) => {
   if (!answer.value) return null;
 
+  if (answer.value && typeof answer.value === "string") {
+    return <RichTextDisplay>{answer.value}</RichTextDisplay>;
+  }
+
   return (
     <div className="flex flex-col gap-2">
-      {answer.value?.map((option: string, index: number) => {
+      {answer.value?.map?.((option: string, index: number) => {
         const [left, right] = option.split(" = ", 2);
         return (
           <div className="flex items-center" key={index}>
