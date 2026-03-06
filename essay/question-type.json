@@ -20,7 +20,8 @@
   },
 
   "generation": {
-    "enabled": true
+    "enabled": true,
+    "instructions": "The answer to this question is a long-form essay. The student may use headings and text formatting to structure their answer. Settings minWords and maxWords are optional. Set them to 0 if you don't want to use them (DO NOT USE INFINITY!)."
   },
   "grading": {
     "enabled": true
