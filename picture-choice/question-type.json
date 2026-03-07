@@ -25,6 +25,14 @@
   "timeEstimateMinutes": 2,
   "index": 300,
 
+  "scanning": {
+    "instructions": [
+      "The answer should be a single string, in the format of \"Option 2\".",
+      "Each value should exactly match one of the options specified in the settings, including punctuation and capitalisation. If the answer is close to one of the options, change it to match the option exactly. Only do this if the answer is very close to the option, otherwise leave it as is. The order of the answers does not matter.",
+      "The student might instead use letters to specify their answer, eg. 'A' for the first option (index 0), 'B' for the second (index 1), etc. In that case, convert the letters to the corresponding options. Only do this if the answer is in the format of letters that correspond to the options, otherwise leave it as is."
+    ]
+  },
+
   "settings": [
     {
       "id": "options",

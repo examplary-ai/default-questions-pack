@@ -25,6 +25,14 @@
     "enabled": true
   },
 
+  "scanning": {
+    "instructions": [
+      "The answer should be a single string, either exactly 'true' or exactly 'false' (case sensitive).",
+      "If the answer is close to 'true' or 'false', change it to match exactly. Only do this if the answer is very close to 'true' or 'false', otherwise leave it as is.",
+      "If the student specifies just the letter 'A', that means true, or 'B' for false."
+    ]
+  },
+
   "timeEstimateMinutes": 1,
   "index": 400,
 

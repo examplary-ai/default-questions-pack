@@ -23,7 +23,20 @@
 
   "generation": {
     "enabled": true,
-    "instructions": "Generate settings that look like this: {\"pairs\": [\"Apple = Red\", \"Banana = Yellow\", \"Grapes = Purple\"], \"correctAnswer\": [\"Apple = Red\", \"Banana = Yellow\", \"Grapes = Purple\"]}. `pairs` is an array of strings, where each string represents a correct match in the format 'left = right'. Make sure these exactly match the pairs specified, and always contains exactly ` = `. The field `correctAnswer` should contain exactly the same value as `pairs`. Generate between 2 and 5 pairs. Do not include any other fields."
+    "instructions": [
+      "Generate settings that look like this: {\"pairs\": [\"Apple = Red\", \"Banana = Yellow\", \"Grapes = Purple\"], \"correctAnswer\": [\"Apple = Red\", \"Banana = Yellow\", \"Grapes = Purple\"]}.",
+      "`pairs` is an array of strings, where each string represents a correct match in the format 'left = right'. Make sure these exactly match the pairs specified, and always contains exactly ` = `.",
+      "The field `correctAnswer` should contain exactly the same value as `pairs`. Generate between 2 and 5 pairs. Do not include any other fields."
+    ]
+  },
+
+  "scanning": {
+    "instructions": [
+      "The answer should be an array of strings, in the format of [\"Apple = Red\", \"Banana = Yellow\", \"Grapes = Purple\"].",
+      "Each string should contain exactly one ` = `.",
+      "If an answer is close to the pairs in the settings, copy over the pair from the settings, eg. if the answer is \"Apple = red\", it should be changed to \"Apple = Red\". ",
+      "ONLY DO THIS IF THE ANSWER IS VERY CLOSE TO THE PAIR IN THE SETTINGS, OTHERWISE LEAVE THE ANSWER AS IS. The order of the pairs in the answer does not matter."
+    ]
   },
 
   "timeEstimateMinutes": 2,

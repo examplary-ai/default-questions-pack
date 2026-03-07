@@ -23,7 +23,18 @@
 
   "generation": {
     "enabled": true,
-    "instructions": "Generate settings that look like this: {\"options\": [\"A\", \"B\", \"C\", \"D\", \"E\"], \"correctAnswer\": [\"A\", \"B\", \"C\", \"D\", \"E\"]}, where `options` contains the items that the student should rearrange (can contain simple HTML markup), in the correct order, and `correctAnswer` should be the exact same."
+    "instructions": [
+      "Generate settings that look like this: {\"options\": [\"First\", \"Second\", \"Third\", \"Fourth\", \"Fifth\"], \"correctAnswer\": [\"First\", \"Second\", \"Third\", \"Fourth\", \"Fifth\"]}, ",
+      "where `options` contains the items that the student should rearrange (can contain simple HTML markup), in the correct order, and `correctAnswer` should be the exact same."
+    ]
+  },
+
+  "scanning": {
+    "instructions": [
+      "The answer should be an array of strings, in the format of [\"First\", \"Second\", \"Third\", \"Fourth\", \"Fifth\"].",
+      "Each value should exactly match one of the options specified in the settings, including punctuation and capitalisation. If the answer is close to one of the options, change it to match the option exactly. ONLY DO THIS IF THE ANSWER IS VERY CLOSE TO THE OPTION, OTHERWISE LEAVE IT AS IS. The order of the answers matters, keep the order the STUDENT specified.",
+      "The student might instead use letters to specify their answer, eg. 'A' for the first option (index 0), 'B' for the second (index 1), etc. In that case, convert the letters to the corresponding options in the correct order. ONLY DO THIS IF THE ANSWER IS IN THE FORMAT OF LETTERS THAT CORRESPOND TO THE OPTIONS, OTHERWISE LEAVE IT AS IS."
+    ]
   },
 
   "timeEstimateMinutes": 2,

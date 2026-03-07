@@ -22,8 +22,20 @@
 
   "generation": {
     "enabled": true,
-    "instructions": "The settings should include a 'dateType' field, which can be either 'year' or 'full-date', and a 'correctAnswer' field, which should be a year (e.g. 1925) if 'dateType' is 'year', or a full date (e.g. 1925-12-31) if 'dateType' is 'full-date'. Ensure the `correctAnswer` setting exists (REQUIRED!) and matches the specified dateType."
+    "instructions": [
+      "The settings should include a 'dateType' field, which can be either 'year' or 'full-date', and a 'correctAnswer' field, ",
+      "which should be a year (e.g. 1925) if 'dateType' is 'year', or a full date (e.g. 1925-12-31) if 'dateType' is 'full-date'.",
+      "Ensure the `correctAnswer` setting exists (REQUIRED!) and matches the specified dateType."
+    ]
   },
+
+  "scanning": {
+    "instructions": [
+      "If the dateType setting is 'year', the answer should be a 4-digit year (e.g. 1925).",
+      "If the dateType setting is 'full-date', the answer should be a full date in the format YYYY-MM-DD (e.g. 1925-12-31)."
+    ]
+  },
+
   "hasSimpleScoring": true,
   "timeEstimateMinutes": 2,
   "index": 600,

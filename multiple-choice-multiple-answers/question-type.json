@@ -17,12 +17,25 @@
   "components": {
     "assessment": "./component-assessment.tsx",
     "print": "./component-print.tsx",
-    "settings-area": "./component-settings-area.tsx"
+    "settings-area": "./component-settings-area.tsx",
+    "results": "./component-results.tsx"
   },
 
   "generation": {
     "enabled": true,
-    "instructions": "Settings should look like this: {\"options\": [\"Option 1\", \"Option 2\", \"Option 3\"], \"correctAnswer\": [\"Option 2\", \"Option 3\"]}. Make sure the `correctAnswer` is always set, and EXACTLY matches the corresponding values from the `options` array, and that all options are unique. Also include exactly one scoring criteria, which should just be 'Correct answer selected', and be worth at least one point unless specified otherwise."
+    "instructions": [
+      "Settings should look like this: {\"options\": [\"Option 1\", \"Option 2\", \"Option 3\"], \"correctAnswer\": [\"Option 2\", \"Option 3\"]}.",
+      "Make sure the `correctAnswer` is always set, and EXACTLY matches the corresponding values from the `options` array, and that all options are unique.",
+      "Also include exactly one scoring criteria, which should just be 'Correct answer selected', and be worth at least one point unless specified otherwise."
+    ]
+  },
+
+  "scanning": {
+    "instructions": [
+      "The answer should be an array of strings, in the format of [\"Option 2\", \"Option 3\"].",
+      "Each value should exactly match one of the options specified in the settings, including punctuation and capitalisation. If the answer is close to one of the options, change it to match the option exactly. Only do this if the answer is very close to the option, otherwise leave it as is. The order of the answers does not matter.",
+      "The student might instead use letters to specify their answer, eg. 'A' for the first option (index 0), 'B' for the second (index 1), etc. In that case, convert the letters to the corresponding options. Only do this if the answer is in the format of letters that correspond to the options, otherwise leave it as is."
+    ]
   },
 
   "hasSimpleScoring": true,

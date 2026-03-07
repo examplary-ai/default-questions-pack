@@ -28,7 +28,7 @@ jobs:
           # Install dependencies
           yarn
 
-          # Loop through each subfolder in the current directory
+          # Upload each question type to Examplary staging
           for dir in */; do
             # Skip if the directory does not contain a question-type.json file
             if [ ! -f "$dir/question-type.json" ]; then
@@ -38,6 +38,18 @@ jobs:
             # Bundle and upload to Examplary
             cd $dir
             npx @examplary/cli@latest upload --host https://api-staging.examplary.ai
-            npx @examplary/cli@latest upload --host https://api.examplary.ai
+            cd ..
+          done
+
+          # Upload each question type to Examplary production
+          for dir in */; do
+            # Skip if the directory does not contain a question-type.json file
+            if [ ! -f "$dir/question-type.json" ]; then
+              continue
+            fi
+
+            # Bundle and upload to Examplary
+            cd $dir
+            npx @examplary/cli@latest upload
             cd ..
           done

@@ -14,10 +14,10 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
 }) => {
   const options = useMemo(
     () =>
-      question.settings.shuffleAnswers
+      question.settings.shuffleAnswers && !reviewMode
         ? [...(question.settings.options || [])].sort(() => Math.random() - 0.5)
         : question.settings.options || [],
-    [question.settings.options, question.settings.shuffleAnswers],
+    [question.settings.options, question.settings.shuffleAnswers, reviewMode],
   );
 
   return (
@@ -34,7 +34,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
                 "text-sm",
                 reviewMode &&
                   question.settings.correctAnswer === option &&
-                 "bg-green-50 text-green-800 px-1.5 py-0.5 -mx-1.5 -my-0.5 rounded-xl inline-block",
+                  "bg-green-50 text-green-800 px-1.5 py-0.5 -mx-1.5 -my-0.5 rounded-xl inline-block",
               )}
             >
               {option}

@@ -24,10 +24,18 @@
     "enabled": true,
     "instructions": "The answer to this question is a LaTeX math expression entered by the student using a math input field. Make sure to provide the correct answer in LaTeX format as well, so that the system can compare the student's answer to the correct answer semantically. Expressions like `\\frac{2}{4}` and `\\frac{1}{2}` should be considered equivalent in most cases."
   },
+
   "grading": {
     "enabled": true,
     "instructions": "The student's answer is a LaTeX math expression. Compare it to the correct answer semantically — expressions like `\\frac{2}{4}` and `\\frac{1}{2}` should be considered equivalent in most cases."
   },
+
+  "scanning": {
+    "instructions": [
+      "The answer should be a LaTeX/MathJAX math expression. Use simple MathJAX type expressions if possible."
+    ]
+  },
+
   "timeEstimateMinutes": 4,
 
   "settings": [],

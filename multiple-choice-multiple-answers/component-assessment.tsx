@@ -14,10 +14,10 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
 }) => {
   const options = useMemo(
     () =>
-      question.settings.shuffleAnswers
+      question.settings.shuffleAnswers && !reviewMode
         ? [...(question.settings.options || [])].sort(() => Math.random() - 0.5)
         : question.settings.options || [],
-    [question.settings.options, question.settings.shuffleAnswers],
+    [question.settings.options, question.settings.shuffleAnswers, reviewMode],
   );
 
   return (
