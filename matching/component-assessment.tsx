@@ -50,7 +50,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   const rightItems = useMemo(
     () =>
       leftItems.map((leftItem: string) => {
-        const answerMatch = (answer?.value as string[])?.find((ans: string) =>
+        const answerMatch = (answer?.value as string[])?.find?.((ans: string) =>
           ans.startsWith(`${leftItem} = `),
         );
         return answerMatch ? answerMatch.split(" = ", 2)[1] : "";
