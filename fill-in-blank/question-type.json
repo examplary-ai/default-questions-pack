@@ -9,8 +9,8 @@
     "nl": "Aanvullen"
   },
   "description": {
-    "en": "Requires student to fill in one or more blanks with a short text answer.",
-    "nl": "Vraagt de student om een of meer lege plekken in te vullen met een kort tekstantwoord."
+    "en": "Requires student to fill in one or more blanks with a short text answer. Also known as 'cloze' questions.",
+    "nl": "Vraagt de student om een of meer lege plekken in te vullen met een kort tekstantwoord. Ook wel 'cloze' vragen genoemd."
   },
 
   "icon": "./icon.svg",

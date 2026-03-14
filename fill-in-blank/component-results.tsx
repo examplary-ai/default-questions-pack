@@ -13,7 +13,7 @@ const ResultsComponent: FrontendResultsComponent = ({ question, answer }) => {
       {places.map((place, index) => (
         <span key={index}>
           {index > 0 && (
-            <span className="font-bold underline">
+            <span className="p-1 px-2 bg-accent rounded-lg">
               {value[index - 1] || "___"}
             </span>
           )}
