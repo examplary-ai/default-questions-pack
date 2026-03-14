@@ -3,6 +3,7 @@
 
   "id": "examplary.expansion.sequence",
   "public": true,
+  "isDefault": true,
 
   "name": {
     "en": "Sequence",

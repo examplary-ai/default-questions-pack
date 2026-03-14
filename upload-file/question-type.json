@@ -3,6 +3,7 @@
 
   "id": "examplary.expansion.upload-file",
   "public": true,
+  "isDefault": true,
 
   "name": {
     "en": "Upload file",

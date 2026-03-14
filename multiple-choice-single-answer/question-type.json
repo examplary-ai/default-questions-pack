@@ -3,6 +3,7 @@
 
   "id": "examplary.default.multiple-choice-single-answer",
   "public": true,
+  "isDefault": true,
 
   "name": {
     "en": "Multiple choice",

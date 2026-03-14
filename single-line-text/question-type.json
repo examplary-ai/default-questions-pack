@@ -3,6 +3,7 @@
 
   "id": "examplary.default.single-line-text",
   "public": true,
+  "isDefault": true,
 
   "name": {
     "en": "Short answer",

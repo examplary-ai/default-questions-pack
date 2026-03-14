@@ -3,6 +3,7 @@
 
   "id": "examplary.default.date-year",
   "public": true,
+  "isDefault": true,
 
   "name": {
     "en": "Date or year",

@@ -3,6 +3,7 @@
 
   "id": "examplary.default.essay",
   "public": true,
+  "isDefault": true,
 
   "name": {
     "en": "Essay",

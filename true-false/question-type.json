@@ -3,6 +3,7 @@
 
   "id": "examplary.default.true-false",
   "public": true,
+  "isDefault": true,
 
   "name": {
     "en": "True/false",

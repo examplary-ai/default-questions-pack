@@ -3,6 +3,7 @@
 
   "id": "examplary.default.picture-choice",
   "public": true,
+  "isDefault": true,
 
   "name": {
     "en": "Picture choice",

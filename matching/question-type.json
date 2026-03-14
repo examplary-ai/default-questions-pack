@@ -3,6 +3,7 @@
 
   "id": "examplary.expansion.matching",
   "public": true,
+  "isDefault": true,
 
   "name": {
     "en": "Matching",

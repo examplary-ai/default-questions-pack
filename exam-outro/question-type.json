@@ -3,6 +3,7 @@
 
   "id": "examplary.default.exam-outro",
   "public": true,
+  "isDefault": true,
 
   "name": {
     "en": "Outro",

@@ -3,6 +3,7 @@
 
   "id": "examplary.expansion.fill-in-blank",
   "public": true,
+  "isDefault": true,
 
   "name": {
     "en": "Fill in the blanks",

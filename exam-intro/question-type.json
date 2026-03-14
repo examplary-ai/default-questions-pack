@@ -3,6 +3,7 @@
 
   "id": "examplary.default.exam-intro",
   "public": true,
+  "isDefault": true,
 
   "name": {
     "en": "Introduction",

@@ -3,6 +3,7 @@
 
   "id": "examplary.default.multi-line-text",
   "public": true,
+  "isDefault": true,
 
   "name": {
     "en": "Long answer",

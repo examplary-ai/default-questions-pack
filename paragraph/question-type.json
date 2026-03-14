@@ -3,6 +3,7 @@
 
   "id": "examplary.default.paragraph",
   "public": true,
+  "isDefault": true,
 
   "name": {
     "en": "Paragraph",

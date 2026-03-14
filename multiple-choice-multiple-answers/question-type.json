@@ -3,6 +3,7 @@
 
   "id": "examplary.default.multiple-choice-multiple-answers",
   "public": true,
+  "isDefault": true,
 
   "name": {
     "en": "Checkboxes",

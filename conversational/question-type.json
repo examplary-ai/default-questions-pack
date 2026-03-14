@@ -3,6 +3,7 @@
 
   "id": "examplary.default.conversational",
   "public": true,
+  "isDefault": true,
 
   "name": {
     "en": "Knowledge chat",
