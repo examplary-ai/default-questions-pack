@@ -30,12 +30,15 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   }, []);
 
   return (
-    // @ts-expect-error math-field
-    <math-field
-      ref={ref}
-      class="border border-border w-full p-2 text-lg"
-      style={{ borderRadius: "var(--radius-lg)" }}
-    />
+    <>
+      <style>{`.ML__virtual-keyboard-toggle, .ML__menu-toggle { color: var(--color-bright); }`}</style>
+      {/* @ts-expect-error math-field */}
+      <math-field
+        ref={ref}
+        class="border border-border w-full p-2 text-lg"
+        style={{ borderRadius: "var(--radius-lg)" }}
+      />
+    </>
   );
 };
 

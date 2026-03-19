@@ -20,6 +20,10 @@
     "print": "./component-print.tsx"
   },
 
+  "capabilities": {
+    "answer-scanning": true
+  },
+
   "settings": [],
 
   "export": {
@@ -31,7 +35,7 @@
     }
   },
 
- "translations": {
+  "translations": {
     "placeholder": {
       "en": "Type your answer...",
       "nl": "Typ je antwoord..."

@@ -30,8 +30,8 @@ jobs:
 
           # Upload each question type to Examplary staging
           for dir in */; do
-            # Skip if the directory does not contain a question-type.json file
-            if [ ! -f "$dir/question-type.json" ]; then
+            # Skip if the directory does not contain a question-type config file
+            if [ ! -f "$dir/question-type.json" ] && [ ! -f "$dir/question-type.yml" ]; then
               continue
             fi
 
@@ -43,8 +43,8 @@ jobs:
 
           # Upload each question type to Examplary production
           for dir in */; do
-            # Skip if the directory does not contain a question-type.json file
-            if [ ! -f "$dir/question-type.json" ]; then
+            # Skip if the directory does not contain a question-type config file
+            if [ ! -f "$dir/question-type.json" ] && [ ! -f "$dir/question-type.yml" ]; then
               continue
             fi
 
