@@ -1,0 +1,111 @@
+$schema: https://schemas.examplary.ai/question-type.json
+
+id: examplary.expansion.matching
+public: true
+isDefault: true
+
+name:
+  en: Matching
+  nl: Combinaties
+description:
+  en: Match the correct items with their pairs from two lists.
+  nl: Koppel de juiste items aan hun tegenhangers uit twee lijsten.
+
+icon: ./icon.svg
+components:
+  assessment: ./component-assessment.tsx
+  print: ./component-print.tsx
+  results: ./component-results.tsx
+  settings-area: ./component-settings-area.tsx
+
+generation:
+  enabled: true
+  instructions: |
+    Generate settings that look like this: {"pairs": ["Apple = Red", "Banana = Yellow", "Grapes = Purple"], "correctAnswer": ["Apple = Red", "Banana = Yellow", "Grapes = Purple"]}.
+    `pairs` is an array of strings, where each string represents a correct match in the format 'left = right'. Make sure these exactly match the pairs specified, and always contains exactly ` = `.
+    The field `correctAnswer` should contain exactly the same value as `pairs`. Generate between 2 and 5 pairs. Do not include any other fields.
+
+scanning:
+  instructions: |
+    The answer should be an array of strings, in the format of ["Apple = Red", "Banana = Yellow", "Grapes = Purple"].
+    Each string should contain exactly one ` = `.
+    If an answer is close to the pairs in the settings, copy over the pair from the settings, eg. if the answer is "Apple = red", it should be changed to "Apple = Red".
+    ONLY DO THIS IF THE ANSWER IS VERY CLOSE TO THE PAIR IN THE SETTINGS, OTHERWISE LEAVE THE ANSWER AS IS. The order of the pairs in the answer does not matter.
+
+timeEstimateMinutes: 2
+hasSimpleScoring: true
+
+settings:
+  - id: pairs
+    type: string-array
+    name: Pairs
+    description: "Array containing pairs, where each pair is a string that contains ` = `. The text left of the ` = ` in each pair will be shown in the left column, and the rest in the right column. Example: `[\"Apple = Red\", \"Banana = Yellow\"]`."
+    hidden: true
+    required: true
+
+  - id: correctAnswer
+    type: string-array
+    name: Correct answer
+    description: Should exactly mirror the `pairs` setting.
+    hidden: true
+    required: true
+
+  - id: layout
+    type: enum
+    name:
+      en: Layout
+      nl: Layout
+    description: The layout to use for displaying the matching question. `vertical` displays the items in two vertical columns, while `horizontal` displays them in two horizontal rows. Don't use horizontal if there are more than 3 items.
+    options:
+      - value: vertical
+        label:
+          en: Vertical
+          nl: Verticaal
+      - value: horizontal
+        label:
+          en: Horizontal
+          nl: Horizontaal
+    default: vertical
+
+  - id: shuffle
+    type: boolean
+    name:
+      en: Shuffle options
+      nl: Willekeurige volgorde
+    description: Whether to show the options in a random order to the student.
+    default: false
+
+translations:
+  pairs:
+    en: Pairs
+    nl: Paren
+  left-column:
+    en: Left column
+    nl: Linker kolom
+  right-column:
+    en: Right column
+    nl: Rechter kolom
+  top-row:
+    en: Top row
+    nl: Bovenste rij
+  bottom-row:
+    en: Bottom row
+    nl: Onderste rij
+  help-vertical:
+    en: Add the correct combinations. The student will see the left column items, and must match them with the right column items.
+    nl: Voeg de juiste combinaties toe. De leerling ziet de items in de linker kolom en moet ze koppelen aan de items in de rechter kolom.
+  help-horizontal:
+    en: Add the correct combinations. The student will see the top row items, and must match them with the bottom row items.
+    nl: Voeg de juiste combinaties toe. De leerling ziet de items in de bovenste rij en moet ze koppelen aan de items in de onderste rij.
+  placeholder-item:
+    en: Shown item...
+    nl: Getoond item...
+  placeholder-answer:
+    en: Add an item...
+    nl: Voeg een item toe...
+  drag-options:
+    en: Drag these items to the correct matches.
+    nl: Sleep deze items naar de juiste combinaties.
+  possible-answers:
+    en: "Possible answers:"
+    nl: "Mogelijke antwoorden:"

@@ -22,7 +22,7 @@ capabilities:
 
 generation:
   enabled: true
-  instructions:
+  instructions: |
     The answer to this question involves multiple steps of mathematical reasoning.
     The student enters each step as a separate line of LaTeX math expressions in a notebook-style interface, with the final line being the answer.
     Provide the correct answer as a LaTeX expression, along with the intermediate steps if possible.
@@ -30,7 +30,7 @@ generation:
 
 grading:
   enabled: true
-  instructions:
+  instructions: |
     The student's answer is an array of strings containing LaTeX math expressions.
     The last element is the final answer; all preceding elements are intermediate work steps.
     Grade primarily based on the final answer, but consider partial credit for correct intermediate steps.

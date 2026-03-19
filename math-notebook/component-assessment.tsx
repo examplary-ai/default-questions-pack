@@ -121,7 +121,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
 
   return (
     <div className="border border-border rounded-lg overflow-hidden">
-      <style>{`.ML__virtual-keyboard-toggle, .ML__menu-toggle { color: var(--color-bright); }`}</style>
+      <style>{`math-field { --primary: var(--color-bright); }`}</style>
 
       {/* Header */}
       <div className="bg-muted/30 px-4 py-2.5 border-b border-border">

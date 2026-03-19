@@ -1,0 +1,68 @@
+$schema: https://schemas.examplary.ai/question-type.json
+
+id: examplary.default.picture-choice
+public: true
+isDefault: true
+
+name:
+  en: Picture choice
+  nl: Afbeeldingskeuze
+description:
+  en: Students select one of a set of images as the correct answer.
+  nl: Studenten selecteren een van de afbeeldingen als het juiste antwoord.
+
+icon: ./icon.svg
+components:
+  assessment: ./component-assessment.tsx
+  print: ./component-print.tsx
+  results: ./component-results.tsx
+  settings-area: ./component-settings-area.tsx
+
+hasSimpleScoring: true
+timeEstimateMinutes: 2
+index: 300
+
+scanning:
+  instructions: |
+    The answer should be a single string, in the format of "Option 2".
+    Each value should exactly match one of the options specified in the settings, including punctuation and capitalisation. If the answer is close to one of the options, change it to match the option exactly. Only do this if the answer is very close to the option, otherwise leave it as is. The order of the answers does not matter.
+    The student might instead use letters to specify their answer, eg. 'A' for the first option (index 0), 'B' for the second (index 1), etc. In that case, convert the letters to the corresponding options. Only do this if the answer is in the format of letters that correspond to the options, otherwise leave it as is.
+
+settings:
+  - id: options
+    type: string-array
+    name: Picture choice answer options
+    description: An array of image URL strings that represent the choices to the student.
+    hidden: true
+    required: true
+
+  - id: correctAnswer
+    type: string
+    name: Correct answer
+    description: The string of the correct answer value, matching the `value` field of the options. Needs to be an exact match to one of the options.
+    hidden: true
+    required: true
+
+export:
+  qti3:
+    interaction:
+      type: ChoiceInteraction
+      options:
+        shuffle: "=$.question.settings.shuffleAnswers"
+        choices: "=$map($.question.settings.options, function($option, $index) { { 'identifier': $option, 'content': '<img src=\"' & $option & '\" />' } })"
+        minChoices: 1
+        maxChoices: 1
+
+translations:
+  upload-image:
+    en: Upload image
+    nl: Afbeelding uploaden
+  change-image:
+    en: Change image
+    nl: Afbeelding wijzigen
+  option-remove:
+    en: Remove option
+    nl: Optie verwijderen
+  options:
+    en: Picture options
+    nl: Afbeeldingsopties

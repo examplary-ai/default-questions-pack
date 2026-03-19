@@ -1,0 +1,70 @@
+$schema: https://schemas.examplary.ai/question-type.json
+
+id: examplary.default.true-false
+public: true
+isDefault: true
+
+name:
+  en: True/false
+  nl: Waar/onwaar
+description:
+  en: A question that requires students to choose between true or false.
+  nl: Een ja/nee-vraag met twee mogelijke antwoorden.
+
+icon: ./icon.svg
+components:
+  assessment: ./component-assessment.tsx
+  print: ./component-print.tsx
+  results: ./component-results.tsx
+
+hasSimpleScoring: true
+generation:
+  enabled: true
+
+scanning:
+  instructions: |
+    The answer should be a single string, either exactly 'true' or exactly 'false' (case sensitive).
+    If the answer is close to 'true' or 'false', change it to match exactly. Only do this if the answer is very close to 'true' or 'false', otherwise leave it as is.
+    If the student specifies just the letter 'A', that means true, or 'B' for false.
+
+timeEstimateMinutes: 1
+index: 400
+
+settings:
+  - id: correctAnswer
+    name:
+      en: Correct answer
+      nl: Juiste antwoord
+    type: enum
+    required: true
+    description: The correct answer to the question, either 'true' or 'false' (as a JSON string!).
+    options:
+      - value: "true"
+        label:
+          en: "True"
+          nl: Waar
+      - value: "false"
+        label:
+          en: "False"
+          nl: Onwaar
+
+export:
+  qti3:
+    interaction:
+      type: ChoiceInteraction
+      options:
+        choices:
+          - identifier: "true"
+            content: "True"
+          - identifier: "false"
+            content: "False"
+        minChoices: 1
+        maxChoices: 1
+
+translations:
+  "true":
+    en: "True"
+    nl: Waar
+  "false":
+    en: "False"
+    nl: Onwaar

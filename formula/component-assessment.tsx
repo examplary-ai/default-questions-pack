@@ -31,7 +31,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
 
   return (
     <>
-      <style>{`.ML__virtual-keyboard-toggle, .ML__menu-toggle { color: var(--color-bright); }`}</style>
+      <style>{`math-field { --primary: var(--color-bright); }`}</style>
       {/* @ts-expect-error math-field */}
       <math-field
         ref={ref}
