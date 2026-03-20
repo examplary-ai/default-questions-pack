@@ -31,6 +31,7 @@ scanning:
     The answer should be an array of strings, with one entry for each blank in the text. 
     For example, if the text has two blanks, the answer should look like ["Paris", "Madrid"]. 
     Make sure to return only the array of strings as the answer, without any additional text or formatting.
+    We're doing exact value matching for the blanks, so each entry in the answer array should exactly be only the blank's value.
 
 timeEstimateMinutes: 2
 hasSimpleScoring: true
