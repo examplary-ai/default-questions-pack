@@ -1,4 +1,4 @@
-$schema: https://schemas.examplary.ai/question-type.json
+# yaml-language-server: $schema=https://schemas.examplary.ai/question-type.json
 
 id: examplary.expansion.formula
 public: true

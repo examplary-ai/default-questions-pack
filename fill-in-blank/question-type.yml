@@ -1,4 +1,4 @@
-$schema: https://schemas.examplary.ai/question-type.json
+# yaml-language-server: $schema=https://schemas.examplary.ai/question-type.json
 
 id: examplary.expansion.fill-in-blank
 public: true
@@ -25,6 +25,12 @@ generation:
     There needs to be at least one blank (___) in the text, and the correctAnswer array needs to have the same number of entries as there are blanks in the text. 
     Only include the text with blanks in the `text` field in the settings. Do not add it to the description, and do not give away the correct answers other than 
     in the `correctAnswer` field in the settings. Do not include underscores within <inline-math> expressions.
+
+scanning:
+  instructions: |
+    The answer should be an array of strings, with one entry for each blank in the text. 
+    For example, if the text has two blanks, the answer should look like ["Paris", "Madrid"]. 
+    Make sure to return only the array of strings as the answer, without any additional text or formatting.
 
 timeEstimateMinutes: 2
 hasSimpleScoring: true
