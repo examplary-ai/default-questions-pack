@@ -33,8 +33,6 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
     [question],
   );
 
-  console.log(options);
-
   const horizontal =
     question.settings.layout === "horizontal" &&
     question.settings.pairs?.length! <= 4;
