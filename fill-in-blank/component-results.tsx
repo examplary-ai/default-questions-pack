@@ -1,4 +1,4 @@
-import { FrontendResultsComponent } from "@examplary/ui";
+import { FrontendResultsComponent, RichTextDisplay } from "@examplary/ui";
 
 const ResultsComponent: FrontendResultsComponent = ({ question, answer }) => {
   if (!answer.value) return null;
@@ -17,7 +17,7 @@ const ResultsComponent: FrontendResultsComponent = ({ question, answer }) => {
               {value[index - 1] || "___"}
             </span>
           )}
-          <span>{place}</span>
+          <RichTextDisplay as="span">{place}</RichTextDisplay>
         </span>
       ))}
     </div>
