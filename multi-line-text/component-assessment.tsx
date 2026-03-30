@@ -3,6 +3,7 @@ import { FrontendAssessmentComponent, RichTextField } from "@examplary/ui";
 const AssessmentComponent: FrontendAssessmentComponent = ({
   answer,
   saveAnswer,
+  environment,
   t,
 }) => {
   return (
@@ -13,6 +14,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
         const valid = value.trim().length > 0;
         saveAnswer({ value, completed: valid });
       }}
+      className={environment === "practice-space" ? "pr-16" : ""}
     />
   );
 };
