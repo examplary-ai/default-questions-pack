@@ -17,6 +17,8 @@ import {
 import { useMemo } from "react";
 import { Item } from "./component-settings-area";
 
+type RightOption = { id: string; text: string };
+
 const AssessmentComponent: FrontendAssessmentComponent = ({
   question,
   answer,
@@ -45,22 +47,37 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
     return items;
   }, [question]);
 
-  const rightItems = useMemo(
-    () =>
-      leftItems.map((leftItem: string) => {
-        const answerMatch = (answer?.value as string[])?.find?.((ans: string) =>
-          ans.startsWith(`${leftItem} = `),
-        );
-        return answerMatch ? answerMatch.split(" = ", 2)[1] : "";
-      }),
-    [leftItems, answer],
+  const rightOptions: RightOption[] = useMemo(
+    () => options.map((pair, i) => ({ id: `right-${i}`, text: pair.right })),
+    [options],
   );
 
-  const availableAnswers = useMemo(() => {
-    return (options?.map((pair: Item) => pair.right) || [])
-      .filter((item: string) => !rightItems.includes(item))
+  // Map from slot index to the unique right option ID placed there
+  const placements: Record<number, string> = useMemo(() => {
+    const map: Record<number, string> = {};
+    const answers = (answer?.value as string[]) || [];
+    leftItems.forEach((leftItem: string, slotIndex: number) => {
+      const answerMatch = answers.find((ans: string) =>
+        ans.startsWith(`${leftItem} = `),
+      );
+      if (answerMatch) {
+        const rightText = answerMatch.split(" = ", 2)[1];
+        const placedIds = new Set(Object.values(map));
+        const option = rightOptions.find(
+          (opt) => opt.text === rightText && !placedIds.has(opt.id),
+        );
+        if (option) map[slotIndex] = option.id;
+      }
+    });
+    return map;
+  }, [leftItems, answer, rightOptions]);
+
+  const availableAnswers: RightOption[] = useMemo(() => {
+    const placedIds = new Set(Object.values(placements));
+    return rightOptions
+      .filter((opt) => !placedIds.has(opt.id))
       .sort(() => 0.5 - Math.random());
-  }, [question, rightItems]);
+  }, [rightOptions, placements]);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -71,20 +88,36 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
 
   function handleDragEnd(event: any) {
     const { active, over } = event;
+    const draggedId = active.id as string;
+    const draggedOption = rightOptions.find((opt) => opt.id === draggedId);
+    if (!draggedOption) return;
 
-    const currentAnswers = (answer?.value as string[]) || [];
-    const newAnswers = currentAnswers.filter(
-      (ans: string) => !ans.endsWith(`= ${active.id}`),
-    );
+    const newPlacements = { ...placements };
 
-    if (over) {
-      const left = leftItems[Number(over.id)];
-      const value = `${left} = ${active.id}`;
-      newAnswers.push(value);
+    // Remove dragged item from its current slot (if any)
+    for (const key of Object.keys(newPlacements)) {
+      if (newPlacements[Number(key)] === draggedId) {
+        delete newPlacements[Number(key)];
+      }
     }
 
+    if (over) {
+      const slotIndex = Number(over.id);
+      // If slot is occupied, unplace its current item
+      delete newPlacements[slotIndex];
+      newPlacements[slotIndex] = draggedId;
+    }
+
+    const newAnswers = Object.entries(newPlacements).map(
+      ([slotIndex, optId]) => {
+        const left = leftItems[Number(slotIndex)];
+        const right = rightOptions.find((opt) => opt.id === optId)!.text;
+        return `${left} = ${right}`;
+      },
+    );
+
     saveAnswer({
-      value: Array.from(newAnswers),
+      value: newAnswers,
       completed: newAnswers.length === leftItems.length,
     });
   }
@@ -93,7 +126,10 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
     <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
       <div className={cn("flex flex-col gap-3", horizontal && "md:flex-row!")}>
         {leftItems.map((leftItem: string, index: number) => {
-          const rightItem = rightItems[index];
+          const placedOptionId = placements[index];
+          const placedOption = placedOptionId
+            ? rightOptions.find((o) => o.id === placedOptionId)
+            : null;
           return (
             <div
               className={cn(
@@ -114,13 +150,15 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
               />
               <RightSlot
                 id={index}
-                value={rightItem}
+                value={placedOption?.text || ""}
                 reviewMode={reviewMode}
                 correctAnswer={question.settings.correctAnswer?.[index]}
               >
-                <RightItem id={rightItem} key={rightItem}>
-                  {rightItem}
-                </RightItem>
+                {placedOption && (
+                  <RightItem id={placedOption.id} key={placedOption.id}>
+                    {placedOption.text}
+                  </RightItem>
+                )}
               </RightSlot>
             </div>
           );
@@ -130,9 +168,9 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
       {availableAnswers.length > 0 && (
         <div className="mt-8 bg-bg rounded-xl p-5 flex flex-col gap-5 items-center">
           <div className="flex flex-wrap items-center justify-center gap-3">
-            {availableAnswers.map((answer: string) => (
-              <RightItem className="border-black" id={answer} key={answer}>
-                {answer}
+            {availableAnswers.map((opt: RightOption) => (
+              <RightItem className="border-black" id={opt.id} key={opt.id}>
+                {opt.text}
               </RightItem>
             ))}
           </div>
@@ -161,7 +199,7 @@ const RightSlot = ({ children, id, value, reviewMode, correctAnswer }) => {
       )}
     >
       {reviewMode && correctAnswer && !hasValue && (
-        <div className="absolute inset-0 px-4 pl-2 text-sm flex flex-1 items-center text-left ellipsis text-green-800/50 select-none">
+        <div className="absolute inset-0 px-4 text-sm flex flex-1 items-center text-left ellipsis text-green-800/50 select-none">
           {correctAnswer?.split(" = ")?.[1]}
         </div>
       )}
@@ -185,7 +223,7 @@ const RightItem = ({ children, id, className = "" }) => {
     <button
       ref={setNodeRef}
       className={cn(
-        "bg-accent px-4 pl-2 min-h-10 rounded-3xl border border-border text-left cursor-move text-sm",
+        "bg-accent px-4 min-h-10 rounded-3xl border border-border text-left cursor-move text-sm",
         isDragging && "shadow-xl",
         className,
       )}
