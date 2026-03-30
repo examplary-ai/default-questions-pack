@@ -17,13 +17,13 @@ const ResultsComponent: FrontendResultsComponent = ({ answer, question }) => {
 
         return (
           <div className="flex items-center" key={index}>
-            <div className="flex-1 w-full border border-border print:border-black rounded-xl p-1.5 px-3 text-sm overflow-hidden">
+            <div className="flex-1 w-full border border-border print:border-black rounded-xl p-1.5 px-3 overflow-hidden">
               <RichTextDisplay>{left?.replace(/\\=/g, "=")}</RichTextDisplay>
             </div>
             <div className="h-0 w-5 border-t border-border print:border-black" />
             <div
               className={cn(
-                "flex-1 w-full border border-border print:border-black rounded-xl p-1.5 px-3 text-sm overflow-hidden",
+                "flex-1 w-full border border-border print:border-black rounded-xl p-1.5 px-3 overflow-hidden",
                 incorrect && "bg-red-100 border-red-100",
               )}
             >
