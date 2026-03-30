@@ -18,7 +18,7 @@ const ResultsComponent: FrontendResultsComponent = ({ answer, question }) => {
         return (
           <div className="flex items-center" key={index}>
             <div className="flex-1 w-full border border-border rounded-xl p-1.5 px-3 text-sm overflow-hidden">
-              <RichTextDisplay>{left}</RichTextDisplay>
+              <RichTextDisplay>{left?.replace(/\\=/g, "=")}</RichTextDisplay>
             </div>
             <div className="h-0.25 w-5 bg-border" />
             <div
@@ -27,7 +27,7 @@ const ResultsComponent: FrontendResultsComponent = ({ answer, question }) => {
                 incorrect && "bg-red-100 border-red-100",
               )}
             >
-              <RichTextDisplay>{right}</RichTextDisplay>
+              <RichTextDisplay>{right?.replace(/\\=/g, "=")}</RichTextDisplay>
             </div>
           </div>
         );

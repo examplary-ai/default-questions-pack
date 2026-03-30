@@ -24,11 +24,13 @@ generation:
     Generate settings that look like this: {"pairs": ["Apple = Red", "Banana = Yellow", "Grapes = Purple"], "correctAnswer": ["Apple = Red", "Banana = Yellow", "Grapes = Purple"]}.
     `pairs` is an array of strings, where each string represents a correct match in the format 'left = right'. Make sure these exactly match the pairs specified, and always contains exactly ` = `.
     The field `correctAnswer` should contain exactly the same value as `pairs`. Generate between 2 and 5 pairs. Do not include any other fields.
+    If you wish to use `=` as a literal value, rather than the pair separator, you can escape it with a backslash, eg. `x \= 2 / 4 = x \= 0.5` will be shown to the student as `x = 2 / 4` (left) = `x = 0.5` (right).
 
 scanning:
   instructions: |
     The answer should be an array of strings, in the format of ["Apple = Red", "Banana = Yellow", "Grapes = Purple"].
-    Each string should contain exactly one ` = `.
+    Each string should contain exactly one ` = `. If there are multiple ` = ` in a string, only the first one will be used as the separator between left and right.
+    You can escape `=` with a backslash if you want to use it as a literal character, eg. `x \= 2 / 4 = x \= 0.5` will be shown to the student as `x = 2 / 4` (left) = `x = 0.5` (right).
     If an answer is close to the pairs in the settings, copy over the pair from the settings, eg. if the answer is "Apple = red", it should be changed to "Apple = Red".
     ONLY DO THIS IF THE ANSWER IS VERY CLOSE TO THE PAIR IN THE SETTINGS, OTHERWISE LEAVE THE ANSWER AS IS. The order of the pairs in the answer does not matter.
 

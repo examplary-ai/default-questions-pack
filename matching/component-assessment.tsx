@@ -15,9 +15,15 @@ import {
   RichTextDisplay,
 } from "@examplary/ui";
 import { useMemo } from "react";
-import { Item } from "./component-settings-area";
 
-type RightOption = { id: string; text: string };
+type Option = { id: string; label: string; value: string };
+type Item = {left: Option; right: Option};
+
+const processSide = (text: string): Option => ({
+  id: `${text}-${Math.random().toString(36)}`,
+  label: text.replace(/\\=/g, "="),
+  value: text,
+});
 
 const AssessmentComponent: FrontendAssessmentComponent = ({
   question,
@@ -30,7 +36,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
     () =>
       (question.settings.pairs || []).map((item: string) => {
         const [left, right] = item.split(" = ", 2);
-        return { left, right };
+        return { left: processSide(left), right: processSide(right) };
       }),
     [question],
   );
@@ -47,8 +53,8 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
     return items;
   }, [question]);
 
-  const rightOptions: RightOption[] = useMemo(
-    () => options.map((pair, i) => ({ id: `right-${i}`, text: pair.right })),
+  const rightOptions = useMemo(
+    () => options.map((pair) => pair.right),
     [options],
   );
 
@@ -56,15 +62,15 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   const placements: Record<number, string> = useMemo(() => {
     const map: Record<number, string> = {};
     const answers = (answer?.value as string[]) || [];
-    leftItems.forEach((leftItem: string, slotIndex: number) => {
+    leftItems.forEach((leftItem: Option, slotIndex: number) => {
       const answerMatch = answers.find((ans: string) =>
-        ans.startsWith(`${leftItem} = `),
+        ans.startsWith(`${leftItem.value} = `),
       );
       if (answerMatch) {
-        const rightText = answerMatch.split(" = ", 2)[1];
+        const rightValue = answerMatch.split(" = ", 2)[1];
         const placedIds = new Set(Object.values(map));
         const option = rightOptions.find(
-          (opt) => opt.text === rightText && !placedIds.has(opt.id),
+          (opt) => opt.value === rightValue && !placedIds.has(opt.id),
         );
         if (option) map[slotIndex] = option.id;
       }
@@ -72,7 +78,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
     return map;
   }, [leftItems, answer, rightOptions]);
 
-  const availableAnswers: RightOption[] = useMemo(() => {
+  const availableAnswers: Option[] = useMemo(() => {
     const placedIds = new Set(Object.values(placements));
     return rightOptions
       .filter((opt) => !placedIds.has(opt.id))
@@ -111,8 +117,8 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
     const newAnswers = Object.entries(newPlacements).map(
       ([slotIndex, optId]) => {
         const left = leftItems[Number(slotIndex)];
-        const right = rightOptions.find((opt) => opt.id === optId)!.text;
-        return `${left} = ${right}`;
+        const right = rightOptions.find((opt) => opt.id === optId)!;
+        return `${left.value} = ${right.value}`;
       },
     );
 
@@ -125,7 +131,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   return (
     <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
       <div className={cn("flex flex-col gap-3", horizontal && "md:flex-row!")}>
-        {leftItems.map((leftItem: string, index: number) => {
+        {leftItems.map((leftItem: Option, index: number) => {
           const placedOptionId = placements[index];
           const placedOption = placedOptionId
             ? rightOptions.find((o) => o.id === placedOptionId)
@@ -140,7 +146,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
             >
               <div className="flex-1 w-full border border-border rounded-3xl p-2 px-4 min-h-10 min-w-16 overflow-hidden">
                 <RichTextDisplay className="text-sm">
-                  {leftItem}
+                  {leftItem.label}
                 </RichTextDisplay>
               </div>
               <div
@@ -150,13 +156,13 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
               />
               <RightSlot
                 id={index}
-                value={placedOption?.text || ""}
+                value={placedOption?.label || ""}
                 reviewMode={reviewMode}
                 correctAnswer={question.settings.correctAnswer?.[index]}
               >
                 {placedOption && (
                   <RightItem id={placedOption.id} key={placedOption.id}>
-                    {placedOption.text}
+                    {placedOption.label}
                   </RightItem>
                 )}
               </RightSlot>
@@ -168,9 +174,9 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
       {availableAnswers.length > 0 && (
         <div className="mt-8 bg-bg rounded-xl p-5 flex flex-col gap-5 items-center">
           <div className="flex flex-wrap items-center justify-center gap-3">
-            {availableAnswers.map((opt: RightOption) => (
+            {availableAnswers.map((opt: Option) => (
               <RightItem className="border-black" id={opt.id} key={opt.id}>
-                {opt.text}
+                {opt.label}
               </RightItem>
             ))}
           </div>
@@ -199,9 +205,9 @@ const RightSlot = ({ children, id, value, reviewMode, correctAnswer }) => {
       )}
     >
       {reviewMode && correctAnswer && !hasValue && (
-        <div className="absolute inset-0 px-4 text-sm flex flex-1 items-center text-left ellipsis text-green-800/50 select-none">
-          {correctAnswer?.split(" = ")?.[1]}
-        </div>
+        <RichTextDisplay className="absolute inset-0 px-4 text-sm flex flex-1 items-center text-left ellipsis text-green-800/50 select-none">
+          {correctAnswer?.split(" = ")?.[1]?.replace(/\\=/g, "=")}
+        </RichTextDisplay>
       )}
       {children}
     </div>

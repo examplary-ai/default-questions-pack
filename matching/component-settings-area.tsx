@@ -15,15 +15,19 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
   const options: Item[] = [
     ...(settings.pairs || []).map((item: string) => {
       const [left, right] = item.split(" = ", 2);
-      return { left, right };
+      return {
+        left: left?.replace(/\\=/g, "="),
+        right: right?.replace(/\\=/g, "="),
+      };
     }),
     { left: "", right: "" },
   ];
 
   const setOptions = (options: Item[]) => {
+    const escape = (s: string) => s.replace(/=/g, "\\=");
     const filteredOptions = options
       .filter(({ left }) => left && left.trim() !== "")
-      .map(({ left, right }) => `${left} = ${right}`);
+      .map(({ left, right }) => `${escape(left)} = ${escape(right)}`);
 
     setMultipleSettings({
       pairs: filteredOptions,
@@ -70,7 +74,7 @@ const ItemRow = ({ index, value, options, setOptions, t, last }) => {
         placeholder={t("placeholder-item")}
         onChange={(val: string) => {
           const next = [...options];
-          next[index].left = val.replace(" = ", " - ");
+          next[index].left = val;
           setOptions(next);
         }}
       />
@@ -82,7 +86,7 @@ const ItemRow = ({ index, value, options, setOptions, t, last }) => {
         placeholder={t("placeholder-answer")}
         onChange={(val: string) => {
           const next = [...options];
-          next[index].right = val.replace(" = ", " - ");
+          next[index].right = val;
           setOptions(next);
         }}
       />

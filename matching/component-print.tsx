@@ -17,7 +17,10 @@ const PrintComponent: FrontendPrintComponent = ({ question, t }) => {
     () =>
       (question.settings.pairs || []).map((item: string) => {
         const [left, right] = item.split(" = ", 2);
-        return { left, right };
+        return {
+          left: left?.replace(/\\=/g, "="),
+          right: right?.replace(/\\=/g, "="),
+        };
       }),
     [question.settings.pairs]
   );
