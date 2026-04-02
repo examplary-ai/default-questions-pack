@@ -102,12 +102,10 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
 
         {complete ? (
           <div
-            className="bg-green-100 border-2 mt-10 p-4 rounded-lg w-full text-sm"
+            className="bg-green-100 border border-green-400 mt-10 p-4 rounded-lg w-full text-sm"
             key="done"
           >
-            <div className="bg-green-100 border-2 mt-10 p-4 rounded-lg w-full text-sm">
-              {t("completed")}
-            </div>
+            {t("completed")}
           </div>
         ) : (
           <ChatInput
