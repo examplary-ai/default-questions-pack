@@ -11,8 +11,8 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
       value={(answer?.value as string) || ""}
       placeholder={t("placeholder")}
       onChange={(value) => {
-        const valid = value.trim().length > 0;
-        saveAnswer({ value, completed: valid });
+        const valid = (value as string)?.trim().length > 0;
+        saveAnswer({ value: value as string, completed: valid });
       }}
       className={environment === "practice-space" ? "pr-16" : ""}
     />

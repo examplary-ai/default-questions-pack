@@ -9,7 +9,7 @@ const ResultsComponent: FrontendResultsComponent = ({ question, answer, t }) => 
 
   if (values.length === 0) return null;
 
-  const workLines = values.slice(0, -1).filter((l) => l.trim().length > 0);
+  const workLines = values.slice(0, -1).filter((l) => l?.trim().length > 0);
   const finalAnswer = values[values.length - 1] || "";
 
   return (

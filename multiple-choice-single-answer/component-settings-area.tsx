@@ -80,7 +80,7 @@ const OptionsArea: FrontendQuestionSettingsAreaComponent = ({
                 placeholder={t("option-placeholder")}
                 onKeyUp={(e) => {
                   const isLast = option.value && index === options.length - 1;
-                  const empty = !option.value.trim();
+                  const empty = !option.value?.trim();
 
                   const s = '[data-type="option-text"] [contenteditable]';
                   const opt = (e.target as HTMLElement).closest(
