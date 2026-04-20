@@ -23,7 +23,6 @@ const ResultsComponent: FrontendResultsComponent = ({ question, answer, t }) => 
         </div>
       )}
       <div className="inline-flex items-center gap-2 pt-1 border-t-2 border-border">
-        {prefix && <span className="text-sm">{prefix}</span>}
         {/* @ts-expect-error math-span */}
         <math-span>{finalAnswer}</math-span>
       </div>

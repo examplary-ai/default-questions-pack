@@ -24,7 +24,6 @@ const PrintComponent: FrontendPrintComponent = ({ question, t, answerBoxes }) =>
       {/* Answer row */}
       <div className="flex items-center gap-2 px-3 py-2 border-t border-gray-300 bg-gray-50">
         <span className="font-semibold text-sm">{t("answer")}</span>
-        {prefix && <span className="text-sm">{prefix}</span>}
         <AnswerBox />
       </div>
     </div>

@@ -44,9 +44,6 @@ scanning:
     No need to wrap anything in <inline-math>, since everything is math —
     just return the LaTeX math expressions themselves.
     For example: [`\\frac{1}{2} + \\frac{1}{3} = \\frac{5}{6}`, `\\frac{5}{6}`].
-    If a `prefix` setting is specified, please remove that prefix from the final line of the student's answer
-    before returning it. For example, if the final line is `y=\frac{1}{2}` and the prefix is `y=`,
-    return `\frac{1}{2}`.
 
 timeEstimateMinutes: 6
 
@@ -58,16 +55,6 @@ settings:
     type: number
     default: 4
     step: 1
-
-  - id: prefix
-    name:
-      en: Answer prefix
-      nl: Antwoordprefix
-    type: string
-    description: |
-      A prefix that appears before the final answer line.
-      Use this for something like € if the answer is a monetary amount,
-      or maybe `y = `, or leave it blank if there is no prefix.
 
 index: 515
 

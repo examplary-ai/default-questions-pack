@@ -155,7 +155,6 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
       {/* Answer row */}
       <div className="flex items-center gap-2 pl-4 border-t-2 border-border">
         <span className="font-semibold text-sm shrink-0">{t("answer")}</span>
-        {prefix && <span className="text-sm shrink-0">{prefix}</span>}
         <div className="flex-1">
           <MathLine value={finalAnswer} onChange={handleAnswerChange} />
         </div>
