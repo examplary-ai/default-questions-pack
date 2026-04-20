@@ -59,7 +59,6 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
 
   const initialLines =
     (question.settings?.initialLines as number) || DEFAULT_LINE_COUNT;
-  const prefix = (question.settings?.prefix as string) || "";
 
   const parseValue = useCallback(
     (val: unknown): { lines: string[]; answer: string } => {

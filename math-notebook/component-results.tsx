@@ -4,7 +4,6 @@ import "mathlive";
 const ResultsComponent: FrontendResultsComponent = ({ question, answer, t }) => {
   if (!answer.value) return null;
 
-  const prefix = (question.settings?.prefix as string) || "";
   const values: string[] = Array.isArray(answer.value) ? answer.value : [];
 
   if (values.length === 0) return null;

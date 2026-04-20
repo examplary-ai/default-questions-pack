@@ -1,10 +1,13 @@
 import { AnswerBox, FrontendPrintComponent } from "@examplary/ui";
 
-const PrintComponent: FrontendPrintComponent = ({ question, t, answerBoxes }) => {
+const PrintComponent: FrontendPrintComponent = ({
+  question,
+  t,
+  answerBoxes,
+}) => {
   if (!answerBoxes) return null;
 
   const initialLines = (question.settings?.initialLines as number) || 6;
-  const prefix = (question.settings?.prefix as string) || "";
 
   return (
     <div className="border border-gray-300 rounded">
@@ -15,10 +18,7 @@ const PrintComponent: FrontendPrintComponent = ({ question, t, answerBoxes }) =>
 
       {/* Empty lines for writing */}
       {Array.from({ length: initialLines }).map((_, i) => (
-        <div
-          key={i}
-          className="border-b border-gray-200 min-h-[2rem] px-3"
-        />
+        <div key={i} className="border-b border-gray-200 min-h-[2rem] px-3" />
       ))}
 
       {/* Answer row */}
