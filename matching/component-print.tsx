@@ -50,7 +50,7 @@ const PrintComponent: FrontendPrintComponent = ({ question, t }) => {
             data-type="matching-option"
           >
             <div
-              className="flex-1 w-full border border-black p-2 px-3 text-xs min-w-10 min-h-10 overflow-hidden"
+              className="flex-1 w-full border border-black p-2 px-3 min-w-10 min-h-10 overflow-hidden"
               key={index}
             >
               <RichTextDisplay>{option}</RichTextDisplay>
@@ -64,11 +64,11 @@ const PrintComponent: FrontendPrintComponent = ({ question, t }) => {
           </div>
         ))}
       </div>
-      <p className="mt-6 mb-2 text-xs">{t("possible-answers")}</p>
+      <p className="mt-6 mb-2">{t("possible-answers")}</p>
       <div className="flex flex-wrap items-start justify-start gap-2">
         {rightItems.map((item, index) => (
           <div
-            className="border border-black p-2 px-3 text-xs min-w-10 min-h-10 overflow-hidden"
+            className="border border-black p-2 px-3 min-w-10 min-h-10 overflow-hidden"
             key={index}
           >
             <RichTextDisplay>{item}</RichTextDisplay>
