@@ -4,7 +4,7 @@
   "type": "module",
   "devDependencies": {
     "@examplary/cli": "^1.6.0",
-    "@examplary/ui": "^1.43.0",
+    "@examplary/ui": "^1.53.1",
     "@types/react": ">=19.2.0",
     "react": ">=19.2.0",
     "react-image-crop": "^11.0.10"
