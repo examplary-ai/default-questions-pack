@@ -6,6 +6,13 @@ import {
   FrontendAssessmentComponent,
 } from "@examplary/ui";
 import { systemPrompt } from "./system-prompt";
+import { schema } from "./schema";
+
+type Chat = {
+  role: "system" | "user" | "assistant";
+  content: string;
+  hidden?: boolean;
+}[];
 
 const AssessmentComponent: FrontendAssessmentComponent = ({
   question,
@@ -20,7 +27,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   const started = useRef(false);
 
   const [complete, setComplete] = useState(answer?.completed || false);
-  const [chat, setChat] = useState(
+  const [chat, setChat] = useState<Chat>(
     () =>
       answer?.context?.chat || [
         {
@@ -45,34 +52,55 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
     }
   }, []);
 
-  const nextStep = async (newChat) => {
+  const nextStep = async (newChat: Chat) => {
     if (loading) return;
 
     setLoading(true);
 
-    const { data } = await api.post(`/public/exams/conversation`, {
-      chat: newChat,
-    });
+    // TODO: error handling
+
+    let response;
+    if ("ai" in api) {
+      // Use new AI API
+      if (newChat.length === 1) {
+        newChat.push({
+          role: "user",
+          content: "(conversation started)",
+          hidden: true,
+        });
+      }
+      response = await api.ai.generate({
+        messages: newChat,
+        schema,
+      });
+    } else {
+      // Or fall back to legacy API
+      // TODO: remove after June 2026
+      const { data } = await api.post(`/public/exams/conversation`, {
+        chat: newChat,
+      });
+      response = data;
+    }
 
     setLoading(false);
 
     if (
-      !data.completed &&
+      !response.completed &&
       newChat.filter((m) => m.role === "assistant").length >=
         question.settings.maxTurns
     ) {
-      data.completed = true;
-      data.completionReason = "maxTurns";
+      response.completed = true;
+      response.completionReason = "maxTurns";
     }
 
     newChat.push({
       role: "assistant",
-      ...data,
+      ...response,
     });
 
     setChat(newChat);
 
-    if (data.completed) setComplete(true);
+    if (response.completed) setComplete(true);
 
     saveAnswer({
       value: newChat
@@ -80,14 +108,13 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
         .map((m) => `<p>${m.role}: ${m.content}</p>`)
         .join("\n"),
       context: { chat: newChat },
-      completed: data.completed,
+      completed: response.completed,
     });
   };
 
-  const submit = async (message) => {
-    const newChat = [...chat, { role: "user", content: message }];
+  const submit = async (message: string) => {
+    const newChat: Chat = [...chat, { role: "user", content: message }];
     setChat(newChat);
-
     nextStep(newChat);
   };
 
