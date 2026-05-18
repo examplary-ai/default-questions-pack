@@ -96,3 +96,9 @@ translations:
   completed:
     en: Conversation completed
     nl: Gesprek voltooid
+  reasoning:
+    en: Reasoning
+    nl: Redenering
+  completion-reasoning:
+    en: Completion reason
+    nl: Voltooiingsreden
