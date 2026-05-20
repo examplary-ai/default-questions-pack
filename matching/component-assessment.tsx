@@ -205,7 +205,7 @@ const RightSlot = ({ children, id, value, reviewMode, correctAnswer }) => {
       )}
     >
       {reviewMode && correctAnswer && !hasValue && (
-        <RichTextDisplay className="absolute inset-0 px-4 text-sm flex flex-1 items-center text-left ellipsis text-green-800/50 select-none">
+        <RichTextDisplay className="absolute inset-0 px-4 text-sm flex flex-1 items-center overflow-hidden whitespace-nowrap text-left ellipsis text-green-800/50 select-none">
           {correctAnswer?.split(" = ")?.[1]?.replace(/\\=/g, "=")}
         </RichTextDisplay>
       )}
