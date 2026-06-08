@@ -51,7 +51,7 @@ const PrintComponent: FrontendPrintComponent = ({
             <RichTextDisplay>{option}</RichTextDisplay>
           </div>
         ))}
-        <p className="mt-6 mb-2">{t("possible-answers")}</p>
+        <p className="mt-6 mb-2 font-bold">{t("possible-answers")}</p>
         {rightItems.map((item, index) => (
           <div key={index} className="flex gap-2 items-center w-full">
             <span className="font-medium">
