@@ -14,9 +14,9 @@ const PrintComponent: FrontendPrintComponent = ({ answerBoxes, question }) => {
 
   if (!answerBoxes) {
     return (
-      <div className="space-y-2">
+      <div className="flex flex-col gap-2 mt-2 break-inside-avoid">
         {shuffledOptions.map((option, index) => (
-          <div key={index}>
+          <div key={index} className="flex gap-2 items-center w-full">
             <span className="font-medium">{index + 1}.</span>
             <RichTextDisplay as="span">{option}</RichTextDisplay>
           </div>
@@ -32,7 +32,9 @@ const PrintComponent: FrontendPrintComponent = ({ answerBoxes, question }) => {
           className="border border-black flex items-center gap-2"
           key={index}
         >
-          <RichTextDisplay className="ml-8 border-black border-l h-full p-1.5 px-2 min-h-8">{option}</RichTextDisplay>
+          <RichTextDisplay className="ml-8 border-black border-l h-full p-1.5 px-2 min-h-8">
+            {option}
+          </RichTextDisplay>
         </div>
       ))}
     </div>
