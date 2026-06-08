@@ -8,7 +8,11 @@ import { useMemo } from "react";
 
 import type { Item } from "./component-settings-area";
 
-const PrintComponent: FrontendPrintComponent = ({ question, t }) => {
+const PrintComponent: FrontendPrintComponent = ({
+  answerBoxes,
+  question,
+  t,
+}) => {
   const horizontal =
     question.settings.layout === "horizontal" &&
     question.settings.pairs?.length! <= 4;
@@ -22,7 +26,7 @@ const PrintComponent: FrontendPrintComponent = ({ question, t }) => {
           right: right?.replace(/\\=/g, "="),
         };
       }),
-    [question.settings.pairs]
+    [question.settings.pairs],
   );
 
   const leftItems = useMemo(() => {
@@ -38,6 +42,28 @@ const PrintComponent: FrontendPrintComponent = ({ question, t }) => {
     return items.sort(() => 0.5 - Math.random());
   }, [question]);
 
+  if (!answerBoxes) {
+    return (
+      <div className="flex flex-col gap-2 mt-2 break-inside-avoid">
+        {leftItems.map((option, index) => (
+          <div key={index} className="flex gap-2 items-center w-full">
+            <span className="font-medium">{index + 1}.</span>
+            <RichTextDisplay>{option}</RichTextDisplay>
+          </div>
+        ))}
+        <p className="mt-6 mb-2">{t("possible-answers")}</p>
+        {rightItems.map((item, index) => (
+          <div key={index} className="flex gap-2 items-center w-full">
+            <span className="font-medium">
+              {String.fromCharCode(65 + index)}.
+            </span>
+            <RichTextDisplay>{item}</RichTextDisplay>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <>
       <div className={cn("flex flex-col gap-3", horizontal && "md:flex-row!")}>
@@ -45,7 +71,7 @@ const PrintComponent: FrontendPrintComponent = ({ question, t }) => {
           <div
             className={cn(
               "flex items-center",
-              horizontal && "flex-1 md:flex-col"
+              horizontal && "flex-1 md:flex-col",
             )}
             data-type="matching-option"
           >

@@ -33,6 +33,10 @@ scanning:
     You can escape `=` with a backslash if you want to use it as a literal character, eg. `x \= 2 / 4 = x \= 0.5` will be shown to the student as `x = 2 / 4` (left) = `x = 0.5` (right).
     If an answer is close to the pairs in the settings, copy over the pair from the settings, eg. if the answer is "Apple = red", it should be changed to "Apple = Red".
     ONLY DO THIS IF THE ANSWER IS VERY CLOSE TO THE PAIR IN THE SETTINGS, OTHERWISE LEAVE THE ANSWER AS IS. The order of the pairs in the answer does not matter.
+    
+    The student might also use numbers and letters. The number represents the left part of the pair, the letter the right part (e.g. "1 = A" means the first left item is 
+    matched with the first right item, "Apple = Red" in the example above). In that case, convert the numbers and letters to the corresponding items from the settings. 
+    ONLY DO THIS IF THE ANSWER IS IN THE FORMAT OF NUMBERS AND LETTERS THAT CORRESPOND TO THE OPTIONS, OTHERWISE LEAVE IT AS IS.
 
 timeEstimateMinutes: 2
 hasSimpleScoring: true
@@ -41,7 +45,7 @@ settings:
   - id: pairs
     type: string-array
     name: Pairs
-    description: "Array containing pairs, where each pair is a string that contains ` = `. The text left of the ` = ` in each pair will be shown in the left column, and the rest in the right column. Example: `[\"Apple = Red\", \"Banana = Yellow\"]`."
+    description: 'Array containing pairs, where each pair is a string that contains ` = `. The text left of the ` = ` in each pair will be shown in the left column, and the rest in the right column. Example: `["Apple = Red", "Banana = Yellow"]`.'
     hidden: true
     required: true
 
