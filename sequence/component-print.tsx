@@ -9,18 +9,30 @@ const PrintComponent: FrontendPrintComponent = ({ answerBoxes, question }) => {
   const shuffledOptions = useMemo(
     () =>
       [...(question.settings.options || [])].sort(() => 0.5 - Math.random()),
-    [question.id]
+    [question.id],
   );
+
+  if (!answerBoxes) {
+    return (
+      <div className="space-y-2">
+        {shuffledOptions.map((option, index) => (
+          <div key={index}>
+            <span className="font-medium">{index + 1}.</span>
+            <RichTextDisplay as="span">{option}</RichTextDisplay>
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-2">
       {shuffledOptions.map((option, index) => (
         <div
-          className="border border-black p-1.5 px-2 flex items-center gap-2"
+          className="border border-black flex items-center gap-2"
           key={index}
         >
-          <span className="font-medium">{index + 1}.</span>
-          <RichTextDisplay>{option}</RichTextDisplay>
+          <RichTextDisplay className="ml-8 border-black border-l h-full p-1.5 px-2 min-h-8">{option}</RichTextDisplay>
         </div>
       ))}
     </div>
