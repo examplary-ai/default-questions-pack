@@ -2,7 +2,7 @@ import { FrontendPrintComponent, RichTextDisplay } from "@examplary/ui";
 
 const PrintComponent: FrontendPrintComponent = ({ question, answerBoxes }) => {
   return (
-    <div className="flex flex-col gap-2 mt-2">
+    <div className="flex flex-col gap-2 mt-2 break-inside-avoid">
       {(question.settings.options || []).map(
         (option: string, index: number) => (
           <div key={index} className="flex gap-2 items-center w-full">
