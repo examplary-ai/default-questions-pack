@@ -16,10 +16,10 @@ const PrintComponent: FrontendPrintComponent = ({ answerBoxes, question }) => {
     <div className="space-y-2">
       {shuffledOptions.map((option, index) => (
         <div
-          className="border border-black rounded-md p-2 px-3 flex items-center gap-2 text-sm"
+          className="border border-black p-1.5 px-2 flex items-center gap-2"
           key={index}
         >
-          <span className="font-medium text-sm">{index + 1}.</span>
+          <span className="font-medium">{index + 1}.</span>
           <RichTextDisplay>{option}</RichTextDisplay>
         </div>
       ))}
