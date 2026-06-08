@@ -25,7 +25,7 @@ const PrintComponent: FrontendPrintComponent = ({ answerBoxes, question }) => {
   }
 
   return (
-    <div className={cn("mt-2", answerBoxes ? "tracking-[28px]" : "")}>
+    <div className={cn("mt-2", answerBoxes ? "leading-[28px]" : "")}>
       {output}
     </div>
   );
