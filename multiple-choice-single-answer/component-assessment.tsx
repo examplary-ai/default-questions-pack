@@ -25,7 +25,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
       value={(answer?.value as string) || ""}
       onValueChange={(value) => saveAnswer({ value, completed: true })}
     >
-      <div className="flex flex-col items-start gap-3 pt-3">
+      <div className="flex flex-col items-start gap-3 pt-3 break-inside-avoid">
         {options.map((option: string, index: number) => (
           <label key={index} className="flex gap-2 items-start w-full">
             <RadioGroupItem value={option} />
