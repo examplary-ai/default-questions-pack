@@ -118,6 +118,14 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
     nextStep(newChat);
   };
 
+  if (!api) {
+    return (
+      <div className="bg-red-50 text-red-900 p-5 rounded-lg w-full text-sm text-center">
+        {t("error-no-api")}
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="flex flex-col w-full gap-2 items-start">

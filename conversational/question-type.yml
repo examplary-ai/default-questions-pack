@@ -102,3 +102,6 @@ translations:
   completion-reasoning:
     en: Completion reason
     nl: Voltooiingsreden
+  error-no-api:
+    en: The API is not available, so we can't start the question.
+    nl: De API is niet beschikbaar, dus we kunnen de vraag niet starten.
