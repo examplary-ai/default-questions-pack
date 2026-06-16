@@ -1,12 +1,12 @@
 import {
   FrontendQuestionSettingsAreaComponent,
+  Input,
   RichTextField,
 } from "@examplary/ui";
 
 const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
   settings,
   setSetting,
-  api,
   t,
 }) => {
   const correctAnswer = (settings.correctAnswer as string[]) || [];
@@ -49,12 +49,11 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
             {Array.from({ length: blanks }).map((_, index) => (
               <div key={index} className="mb-2 flex items-center gap-1">
                 {index + 1}.{" "}
-                <RichTextField
-                  singleLine
+                <Input
                   value={correctAnswer[index] || ""}
-                  onChange={(value) => {
+                  onChange={(e) => {
                     const next = [...correctAnswer];
-                    next[index] = value;
+                    next[index] = e.target.value;
                     setSetting("correctAnswer", next);
                   }}
                   className="min-w-24"
