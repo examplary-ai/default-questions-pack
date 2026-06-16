@@ -1,13 +1,7 @@
-import { useState } from "react";
-
 import {
-  RadioGroup,
-  RadioGroupItem,
   FrontendQuestionSettingsAreaComponent,
-  cn,
   RichTextField,
 } from "@examplary/ui";
-import { ImageIcon, Loader2Icon, Trash2Icon, UploadIcon } from "lucide-react";
 
 const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
   settings,
