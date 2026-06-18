@@ -24,6 +24,9 @@ generation:
     which should be a year (e.g. 1925) if 'dateType' is 'year', or a full date (e.g. 1925-12-31) if 'dateType' is 'full-date'.
     Ensure the `correctAnswer` setting exists (REQUIRED!) and matches the specified dateType.
 
+    You don't have to instruct the user on what format to use, the UI will handle that for you. 
+    Just make sure the correctAnswer is a valid year or date based on the dateType setting.
+
 scanning:
   instructions: |
     If the dateType setting is 'year', the answer should be a 4-digit year (e.g. 1925).
@@ -61,16 +64,13 @@ responseProcessing:
   condition: |
     =$trim($.answer.value) = $trim($.question.settings.correctAnswer)
   testCases:
-    - question:
-        { settings: { dateType: "year", correctAnswer: "1925" } }
+    - question: { settings: { dateType: "year", correctAnswer: "1925" } }
       answer: { value: "1925" }
       expectedOutcome: true
-    - question:
-        { settings: { dateType: "year", correctAnswer: "1925" } }
+    - question: { settings: { dateType: "year", correctAnswer: "1925" } }
       answer: { value: "  1925 " }
       expectedOutcome: true
-    - question:
-        { settings: { dateType: "year", correctAnswer: "1925" } }
+    - question: { settings: { dateType: "year", correctAnswer: "1925" } }
       answer: { value: "1926" }
       expectedOutcome: false
     - question:
