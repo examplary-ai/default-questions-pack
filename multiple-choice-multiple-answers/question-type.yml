@@ -61,7 +61,7 @@ settings:
 
 responseProcessing:
   condition: |
-    =$join($sort($.answer.value), ',') = $join($sort($.question.settings.correctAnswer), ',')
+    =$join($sort($.answer.value), '|') = $join($sort($.question.settings.correctAnswer), '|')
   testCases:
     - question:
         {
