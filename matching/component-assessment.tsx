@@ -158,7 +158,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
                 id={index}
                 value={placedOption?.label || ""}
                 reviewMode={reviewMode}
-                correctAnswer={question.settings.correctAnswer?.[index]}
+                correctAnswer={question.settings.pairs?.find((pair: string) => pair.split(" = ", 2)[0] === leftItem.value)}
               >
                 {placedOption && (
                   <RightItem id={placedOption.id} key={placedOption.id}>

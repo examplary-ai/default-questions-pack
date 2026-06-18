@@ -31,7 +31,6 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
 
     setMultipleSettings({
       pairs: filteredOptions,
-      correctAnswer: filteredOptions,
     });
   };
 

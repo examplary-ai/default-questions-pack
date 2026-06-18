@@ -21,8 +21,8 @@ components:
 generation:
   enabled: true
   instructions: |
-    Generate settings that look like this: {"options": ["First", "Second", "Third", "Fourth", "Fifth"], "correctAnswer": ["First", "Second", "Third", "Fourth", "Fifth"]},
-    where `options` contains the items that the student should rearrange (can contain simple HTML markup), in the correct order, and `correctAnswer` should be the exact same.
+    Generate settings that look like this: {"options": ["First", "Second", "Third", "Fourth", "Fifth"]}.
+    where `options` contains the items that the student should rearrange (can contain simple HTML markup), in the correct order.
 
 scanning:
   instructions: |
@@ -41,12 +41,38 @@ settings:
     hidden: true
     required: true
 
-  - id: correctAnswer
-    type: string-array
-    name: Correct answer
-    description: Should exactly mirror `options`.
-    hidden: true
-    required: true
+responseProcessing:
+  condition: |
+    =$join($.answer.value, '|') = $join($.question.settings.options, '|')
+  testCases:
+    - question:
+        {
+          settings:
+            { options: ["First", "Second", "Third", "Fourth", "Fifth"] },
+        }
+      answer: { value: ["First", "Second", "Third", "Fourth", "Fifth"] }
+      expectedOutcome: true
+    - question:
+        {
+          settings:
+            { options: ["First", "Second", "Third", "Fourth", "Fifth"] },
+        }
+      answer: { value: ["First", "Third", "Second", "Fourth", "Fifth"] }
+      expectedOutcome: false
+    - question:
+        {
+          settings:
+            { options: ["First", "Second", "Third", "Fourth", "Fifth"] },
+        }
+      answer: { value: ["First", "Second", "Third", "Fifth", "Fourth"] }
+      expectedOutcome: false
+    - question:
+        {
+          settings:
+            { options: ["First", "Second", "Third", "Fourth", "Fifth"] },
+        }
+      answer: { value: ["Fifth", "Fourth", "Third", "Second", "First"] }
+      expectedOutcome: false
 
 export:
   qti3:
@@ -54,6 +80,7 @@ export:
       type: OrderInteraction
       options:
         choices: "=$map($.question.settings.options, function($option, $index) { { 'identifier': $option, 'content': $option } })"
+    # TODO: specify response processing?
 
 translations:
   options:

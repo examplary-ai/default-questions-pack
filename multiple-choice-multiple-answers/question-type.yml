@@ -59,6 +59,39 @@ settings:
     description: Whether to show the answer options in random order each time.
     default: false
 
+responseProcessing:
+  condition: |
+    =$join($sort($.answer.value), '|') = $join($sort($.question.settings.correctAnswer), '|')
+  testCases:
+    - question:
+        {
+          settings:
+            { options: ["A", "B", "C", "D"], correctAnswer: ["B", "C"] },
+        }
+      answer: { value: ["B", "C"] }
+      expectedOutcome: true
+    - question:
+        {
+          settings:
+            { options: ["A", "B", "C", "D"], correctAnswer: ["B", "C"] },
+        }
+      answer: { value: ["C", "B"] }
+      expectedOutcome: true
+    - question:
+        {
+          settings:
+            { options: ["A", "B", "C", "D"], correctAnswer: ["B", "C"] },
+        }
+      answer: { value: ["B"] }
+      expectedOutcome: false
+    - question:
+        {
+          settings:
+            { options: ["A", "B", "C", "D"], correctAnswer: ["B", "C"] },
+        }
+      answer: { value: ["B", "C", "D"] }
+      expectedOutcome: false
+
 export:
   qti3:
     interaction:

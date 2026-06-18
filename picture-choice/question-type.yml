@@ -43,6 +43,31 @@ settings:
     hidden: true
     required: true
 
+responseProcessing:
+  condition: |
+    =$.answer.value = $.question.settings.correctAnswer
+  testCases:
+    - question:
+        {
+          settings:
+            {
+              options: ["https://x.test/a.jpg", "https://x.test/b.jpg"],
+              correctAnswer: "https://x.test/b.jpg",
+            },
+        }
+      answer: { value: "https://x.test/b.jpg" }
+      expectedOutcome: true
+    - question:
+        {
+          settings:
+            {
+              options: ["https://x.test/a.jpg", "https://x.test/b.jpg"],
+              correctAnswer: "https://x.test/b.jpg",
+            },
+        }
+      answer: { value: "https://x.test/a.jpg" }
+      expectedOutcome: false
+
 export:
   qti3:
     interaction:
