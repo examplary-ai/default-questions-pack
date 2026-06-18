@@ -12,8 +12,8 @@ const ResultsComponent: FrontendResultsComponent = ({ answer, question }) => {
       {answer.value?.map?.((option: string, index: number) => {
         const [left, right] = option.split(" = ", 2);
         const incorrect =
-          question.settings?.correctAnswer &&
-          !question.settings.correctAnswer.includes(option);
+          question.settings?.pairs &&
+          !question.settings.pairs.includes(option);
 
         return (
           <div className="flex items-center" key={index}>

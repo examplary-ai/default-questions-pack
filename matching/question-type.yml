@@ -21,9 +21,9 @@ components:
 generation:
   enabled: true
   instructions: |
-    Generate settings that look like this: {"pairs": ["Apple = Red", "Banana = Yellow", "Grapes = Purple"], "correctAnswer": ["Apple = Red", "Banana = Yellow", "Grapes = Purple"]}.
+    Generate settings that look like this: {"pairs": ["Apple = Red", "Banana = Yellow", "Grapes = Purple"]}.
     `pairs` is an array of strings, where each string represents a correct match in the format 'left = right'. Make sure these exactly match the pairs specified, and always contains exactly ` = `.
-    The field `correctAnswer` should contain exactly the same value as `pairs`. Generate between 2 and 5 pairs. Do not include any other fields.
+    Generate between 2 and 5 pairs. Do not include any other fields.
     If you wish to use `=` as a literal value, rather than the pair separator, you can escape it with a backslash, eg. `x \= 2 / 4 = x \= 0.5` will be shown to the student as `x = 2 / 4` (left) = `x = 0.5` (right).
 
 scanning:
@@ -46,13 +46,6 @@ settings:
     type: string-array
     name: Pairs
     description: 'Array containing pairs, where each pair is a string that contains ` = `. The text left of the ` = ` in each pair will be shown in the left column, and the rest in the right column. Example: `["Apple = Red", "Banana = Yellow"]`.'
-    hidden: true
-    required: true
-
-  - id: correctAnswer
-    type: string-array
-    name: Correct answer
-    description: Should exactly mirror the `pairs` setting.
     hidden: true
     required: true
 
@@ -80,6 +73,39 @@ settings:
       nl: Willekeurige volgorde
     description: Whether to show the options in a random order to the student.
     default: false
+
+responseProcessing:
+  condition: |
+    =$join($sort($.answer.value), ',') = $join($sort($.question.settings.pairs), ',')
+  testCases:
+    - question:
+        {
+          settings:
+            { pairs: ["Apple = Red", "Banana = Yellow", "Grapes = Purple"] },
+        }
+      answer: { value: ["Apple = Red", "Banana = Yellow", "Grapes = Purple"] }
+      expectedOutcome: true
+    - question:
+        {
+          settings:
+            { pairs: ["Apple = Red", "Banana = Yellow", "Grapes = Purple"] },
+        }
+      answer: { value: ["Grapes = Purple", "Apple = Red", "Banana = Yellow"] }
+      expectedOutcome: true
+    - question:
+        {
+          settings:
+            { pairs: ["Apple = Red", "Banana = Yellow", "Grapes = Purple"] },
+        }
+      answer: { value: ["Apple = Yellow", "Banana = Red", "Grapes = Purple"] }
+      expectedOutcome: false
+    - question:
+        {
+          settings:
+            { pairs: ["Apple = Red", "Banana = Yellow", "Grapes = Purple"] },
+        }
+      answer: { value: ["Apple = Red", "Banana = Yellow"] }
+      expectedOutcome: false
 
 translations:
   pairs:
