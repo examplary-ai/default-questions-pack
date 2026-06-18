@@ -23,7 +23,7 @@ import {
 
 const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
   settings,
-  setMultipleSettings,
+  setSetting,
   t,
 }) => {
   const options: string[] = [...(settings.options || []), ""];
@@ -32,15 +32,12 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   const setOptions = (options: string[]) => {
     const filteredOptions = options.filter((o) => o && o.trim() !== "");
-    setMultipleSettings({
-      options: filteredOptions,
-      correctAnswer: filteredOptions,
-    });
+    setSetting("options", filteredOptions);
   };
 
   function handleDragEnd(event: any) {
@@ -127,7 +124,7 @@ const SortableItem = ({ index, value, options, setOptions, t }) => {
 
             const s = '[data-type="option-text"] [contenteditable]';
             const opt = (e.target as HTMLElement).closest(
-              '[data-type="option"]'
+              '[data-type="option"]',
             );
             const nextInput = opt?.nextElementSibling?.querySelector(s);
             const prevInput = opt?.previousElementSibling?.querySelector(s);
