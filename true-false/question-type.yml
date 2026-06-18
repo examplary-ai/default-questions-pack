@@ -48,6 +48,23 @@ settings:
           en: "False"
           nl: Onwaar
 
+responseProcessing:
+  condition: |
+    =$.answer.value = $.question.settings.correctAnswer
+  testCases:
+    - question: { settings: { correctAnswer: "true" } }
+      answer: { value: "true" }
+      expectedOutcome: true
+    - question: { settings: { correctAnswer: "true" } }
+      answer: { value: "false" }
+      expectedOutcome: false
+    - question: { settings: { correctAnswer: "false" } }
+      answer: { value: "false" }
+      expectedOutcome: true
+    - question: { settings: { correctAnswer: "false" } }
+      answer: { value: "true" }
+      expectedOutcome: false
+
 export:
   qti3:
     interaction:

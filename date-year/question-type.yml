@@ -57,6 +57,31 @@ settings:
     hidden: true
     required: true
 
+responseProcessing:
+  condition: |
+    =$trim($.answer.value) = $trim($.question.settings.correctAnswer)
+  testCases:
+    - question:
+        { settings: { dateType: "year", correctAnswer: "1925" } }
+      answer: { value: "1925" }
+      expectedOutcome: true
+    - question:
+        { settings: { dateType: "year", correctAnswer: "1925" } }
+      answer: { value: "  1925 " }
+      expectedOutcome: true
+    - question:
+        { settings: { dateType: "year", correctAnswer: "1925" } }
+      answer: { value: "1926" }
+      expectedOutcome: false
+    - question:
+        { settings: { dateType: "full-date", correctAnswer: "1925-12-31" } }
+      answer: { value: "1925-12-31" }
+      expectedOutcome: true
+    - question:
+        { settings: { dateType: "full-date", correctAnswer: "1925-12-31" } }
+      answer: { value: "1925-12-30" }
+      expectedOutcome: false
+
 export:
   qti3:
     interaction:

@@ -60,6 +60,23 @@ settings:
     description: Whether to show the answer options in random order each time.
     default: false
 
+responseProcessing:
+  condition: |
+    =$.answer.value = $.question.settings.correctAnswer
+  testCases:
+    - question:
+        { settings: { options: ["Red", "Green", "Blue"], correctAnswer: "Green" } }
+      answer: { value: "Green" }
+      expectedOutcome: true
+    - question:
+        { settings: { options: ["Red", "Green", "Blue"], correctAnswer: "Green" } }
+      answer: { value: "Red" }
+      expectedOutcome: false
+    - question:
+        { settings: { options: ["Red", "Green", "Blue"], correctAnswer: "Green" } }
+      answer: { value: "green" }
+      expectedOutcome: false
+
 export:
   qti3:
     interaction:

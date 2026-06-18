@@ -21,7 +21,7 @@ components:
 generation:
   enabled: true
   instructions: |
-    Generate settings that look like this: {text: "The capital of France is ___ and the capital of Spain is ___", correctAnswer: ["Paris", "Madrid"]}
+    Generate settings that look like this: {"text": "The capital of France is ___ and the capital of Spain is ___", "correctAnswer": ["Paris", "Madrid"]}
     There needs to be at least one blank (___) in the text, and the correctAnswer array needs to have the same number of entries as there are blanks in the text. 
     Only include the text with blanks in the `text` field in the settings. Do not add it to the description, and do not give away the correct answers other than 
     in the `correctAnswer` field in the settings. Do not include underscores within <inline-math> expressions.
@@ -56,8 +56,66 @@ settings:
     name:
       en: Ignore spaces and capitals
       nl: Negeer spaties en hoofdletters
-    description: When enabled, leading/trailing whitespace and letter casing are ignored when comparing the student's answer to the correct answer.
+    description: Leading/trailing whitespace is always ignored when comparing the student's answer to the correct answer. When this is enabled, letter casing is ignored too.
     default: false
+
+responseProcessing:
+  condition: |
+    =$.question.settings.exactValuesCaseInsensitive
+      ? $join($map($.answer.value, function($v) { $trim($lowercase($v)) }), '|') = $join($map($.question.settings.correctAnswer, function($c) { $trim($lowercase($c)) }), '|')
+      : $join($map($.answer.value, function($v) { $trim($v) }), '|') = $join($map($.question.settings.correctAnswer, function($c) { $trim($c) }), '|')
+  testCases:
+    - question:
+        {
+          settings:
+            {
+              text: "Capital of France is ___ and Spain is ___",
+              correctAnswer: ["Paris", "Madrid"],
+            },
+        }
+      answer: { value: ["Paris", "Madrid"] }
+      expectedOutcome: true
+    - question:
+        {
+          settings:
+            {
+              text: "Capital of France is ___ and Spain is ___",
+              correctAnswer: ["Paris", "Madrid"],
+            },
+        }
+      answer: { value: ["Madrid", "Paris"] }
+      expectedOutcome: false
+    - question:
+        {
+          settings:
+            {
+              text: "Capital of France is ___",
+              correctAnswer: ["Paris"],
+            },
+        }
+      answer: { value: ["paris"] }
+      expectedOutcome: false
+    - question:
+        {
+          settings:
+            {
+              text: "Capital of France is ___",
+              correctAnswer: ["Paris"],
+            },
+        }
+      answer: { value: ["  Paris "] }
+      expectedOutcome: true
+    - question:
+        {
+          settings:
+            {
+              text: "Capital of France is ___",
+              correctAnswer: ["Paris"],
+              exactValuesCaseInsensitive: true,
+            },
+        }
+      answer: { value: ["  paris "] }
+      expectedOutcome: true
 
 translations:
   text:
