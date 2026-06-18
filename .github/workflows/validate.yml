@@ -1,0 +1,47 @@
+name: Validate
+
+on:
+  pull_request:
+  push:
+    branches-ignore:
+      - main
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+
+      - name: Validate
+        run: |
+          # Install dependencies
+          yarn
+
+          # Validate each question type
+          failed=0
+          for dir in */; do
+            # Skip if the directory does not contain a question-type config file
+            if [ ! -f "$dir/question-type.json" ] && [ ! -f "$dir/question-type.yml" ]; then
+              continue
+            fi
+
+            # Bundle and run responseProcessing test cases
+            echo "::group::Validating ${dir%/}"
+            if ! (cd "$dir" && npx @examplary/cli@latest validate); then
+              failed=1
+            fi
+            echo "::endgroup::"
+          done
+
+          exit $failed
