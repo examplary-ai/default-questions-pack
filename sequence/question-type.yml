@@ -43,7 +43,7 @@ settings:
 
 responseProcessing:
   condition: |
-    =$join($.answer.value, ',') = $join($.question.settings.options, ',')
+    =$join($.answer.value, '|') = $join($.question.settings.options, '|')
   testCases:
     - question:
         {
