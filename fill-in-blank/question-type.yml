@@ -25,6 +25,7 @@ generation:
     There needs to be at least one blank (___) in the text, and the correctAnswer array needs to have the same number of entries as there are blanks in the text. 
     Only include the text with blanks in the `text` field in the settings. Do not add it to the description, and do not give away the correct answers other than 
     in the `correctAnswer` field in the settings. Do not include underscores within <inline-math> expressions.
+    Since this question type is either always good or wrong, by default make sure this question has a 1 point value, unless otherwise specified.
 
 scanning:
   instructions: |
