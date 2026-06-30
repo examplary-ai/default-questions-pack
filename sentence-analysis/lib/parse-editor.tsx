@@ -16,11 +16,12 @@ type ParseEditorProps = {
   parse: SentenceParse;
   enabledLabels: ZinsdeelCode[];
   requirePersoonsvorm: boolean;
-  onChange: (parse: SentenceParse) => void;
+  onChange?: (parse: SentenceParse) => void;
   t: (key: string | string[], options?: any) => string;
   reviewParse?: SentenceParse;
   className?: string;
   framed?: boolean;
+  readOnly?: boolean;
 };
 
 const ParseEditor = ({
@@ -32,11 +33,16 @@ const ParseEditor = ({
   reviewParse,
   className,
   framed = false,
+  readOnly = false,
 }: ParseEditorProps) => {
+  const updateParse = (nextParse: SentenceParse) => {
+    if (!readOnly) onChange?.(nextParse);
+  };
+
   return (
     <div
       className={cn(
-        "flex flex-wrap items-end gap-y-3",
+        "flex flex-wrap items-start gap-1 gap-y-3",
         framed && "rounded-lg border border-border p-3",
         className,
       )}
@@ -82,43 +88,61 @@ const ParseEditor = ({
                         startToken: token.index,
                         endToken: token.index,
                       });
+                    const isWrongPv = reviewParse && isPv && !isReviewPv;
 
                     return (
                       <Fragment key={token.index}>
-                        <Tooltipped
-                          content={
-                            requirePersoonsvorm && !isPv
-                              ? t("toggle-pv")
-                              : undefined
-                          }
-                        >
-                          <button
-                            type="button"
-                            disabled={!requirePersoonsvorm}
-                            onClick={() =>
-                              onChange(togglePersoonsvorm(parse, token.index))
-                            }
+                        {readOnly ? (
+                          <span
                             className={cn(
                               "rounded px-0.5 text-sm leading-6",
-                              requirePersoonsvorm &&
-                                "hover:bg-white cursor-pointer",
                               isPv &&
                                 "underline decoration-2 underline-offset-4",
                               isReviewPv && "text-green-800",
+                              isWrongPv && "text-red-800",
                             )}
-                            title={
-                              requirePersoonsvorm ? t("toggle-pv") : undefined
-                            }
                           >
                             {token.text}
-                          </button>
-                        </Tooltipped>
-                        {token.index < segment.endToken && (
+                          </span>
+                        ) : (
+                          <Tooltipped
+                            content={
+                              requirePersoonsvorm && !isPv
+                                ? t("toggle-pv")
+                                : undefined
+                            }
+                          >
+                            <button
+                              type="button"
+                              disabled={!requirePersoonsvorm}
+                              onClick={() =>
+                                updateParse(
+                                  togglePersoonsvorm(parse, token.index),
+                                )
+                              }
+                              className={cn(
+                                "rounded px-0.5 text-sm leading-6",
+                                requirePersoonsvorm &&
+                                  "hover:bg-white cursor-pointer",
+                                isPv &&
+                                  "underline decoration-2 underline-offset-4",
+                                isReviewPv && "text-green-800",
+                                isWrongPv && "text-red-800",
+                              )}
+                              title={
+                                requirePersoonsvorm ? t("toggle-pv") : undefined
+                              }
+                            >
+                              {token.text}
+                            </button>
+                          </Tooltipped>
+                        )}
+                        {!readOnly && token.index < segment.endToken && (
                           <Tooltipped content={t("split-boundary")}>
                             <button
                               type="button"
                               onClick={() =>
-                                onChange(toggleBoundary(parse, token.index))
+                                updateParse(toggleBoundary(parse, token.index))
                               }
                               className="mx-0.5 rounded px-1 text-xs text-zinc-500 cursor-pointer hover:bg-white hover:text-black"
                               title={t("split-boundary")}
@@ -131,21 +155,28 @@ const ParseEditor = ({
                     );
                   })}
               </div>
-              <LabelDropdown
-                t={t}
-                value={segment.label}
-                onChange={(newLabel) =>
-                  onChange(
-                    setSegmentLabel(
-                      parse,
-                      segmentIndex,
-                      (newLabel as ZinsdeelCode) || null,
-                    ),
-                  )
-                }
-                enabledLabels={enabledLabels}
-              />
+              {readOnly ? (
+                <span className="ml-1 -mr-1 rounded-2xl px-1.5 h-6 text-[10px] font-bold text-zinc-700/80 flex items-center">
+                  {segment.label || "..."}
+                </span>
+              ) : (
+                <LabelDropdown
+                  t={t}
+                  value={segment.label}
+                  onChange={(newLabel) =>
+                    updateParse(
+                      setSegmentLabel(
+                        parse,
+                        segmentIndex,
+                        (newLabel as ZinsdeelCode) || null,
+                      ),
+                    )
+                  }
+                  enabledLabels={enabledLabels}
+                />
+              )}
               {reviewParse &&
+                !readOnly &&
                 reviewSegment &&
                 reviewSegment.label !== segment.label && (
                   <div className="mt-1 text-xs text-green-800">
@@ -153,14 +184,14 @@ const ParseEditor = ({
                   </div>
                 )}
             </div>
-            {segment.endToken < parse.tokens.length - 1 && (
+            {!readOnly && segment.endToken < parse.tokens.length - 1 && (
               <Tooltipped content={t("merge-boundary")}>
                 <button
                   type="button"
                   onClick={() =>
-                    onChange(toggleBoundary(parse, segment.endToken))
+                    updateParse(toggleBoundary(parse, segment.endToken))
                   }
-                  className="flex w-4 mx-1 items-center justify-center cursor-pointer rounded-md text-sm text-zinc-500 hover:bg-zinc-100 hover:text-black"
+                  className="flex w-4 ml-1 items-center justify-center cursor-pointer rounded-md text-sm text-zinc-500 hover:bg-zinc-100 hover:text-black"
                   title={t("merge-boundary")}
                 >
                   +
