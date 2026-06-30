@@ -5,18 +5,16 @@ import {
   Textarea,
 } from "@examplary/ui";
 import type { FrontendQuestionSettingsAreaComponent } from "@examplary/ui";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 
 import {
   DEFAULT_LABELS,
   LABELS,
-  createFullySplitParse,
+  createSingleSegmentParse,
   normalizeParse,
   segmentText,
-  setSegmentLabel,
-  toggleBoundary,
-  togglePersoonsvorm,
 } from "./shared";
+import ParseEditor from "./lib/parse-editor";
 import type { SentenceParse, ZinsdeelCode } from "./shared";
 
 const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
@@ -36,7 +34,7 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
   const setSentence = (value: string) => {
     setMultipleSettings({
       sentence: value,
-      correctAnswer: createFullySplitParse(value),
+      correctAnswer: createSingleSegmentParse(value),
     });
   };
 
@@ -75,7 +73,7 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
       requirePersoonsvorm: true,
       correctAnswer: {
         raw,
-        tokens: createFullySplitParse(raw).tokens,
+        tokens: createSingleSegmentParse(raw).tokens,
         segments: [
           { startToken: 0, endToken: 0, label: "BWB" },
           { startToken: 1, endToken: 1, label: "WG" },
@@ -230,7 +228,7 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
               <button
                 type="button"
                 className="rounded-md border border-border px-2.5 py-1 text-xs hover:bg-zinc-50"
-                onClick={() => setParse(createFullySplitParse(sentence))}
+                onClick={() => setParse(createSingleSegmentParse(sentence))}
               >
                 {t("reset-parse")}
               </button>
@@ -251,92 +249,14 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
             </div>
           </div>
 
-          <div className="flex flex-wrap items-end gap-y-3 rounded-lg border border-border p-3">
-            {correctAnswer.segments.map((segment, segmentIndex) => (
-              <div className="flex items-stretch" key={segment.startToken}>
-                <div className="min-w-20 rounded-lg border border-border bg-white px-2 py-2">
-                  <div className="flex flex-wrap gap-x-1 gap-y-1">
-                    {correctAnswer.tokens
-                      .slice(segment.startToken, segment.endToken + 1)
-                      .map((token) => {
-                        const isPv =
-                          correctAnswer.persoonsvorm?.startToken === token.index &&
-                          correctAnswer.persoonsvorm?.endToken === token.index;
-                        return (
-                          <Fragment key={token.index}>
-                            <button
-                              type="button"
-                              disabled={!requirePv}
-                              onClick={() =>
-                                setParse(
-                                  togglePersoonsvorm(correctAnswer, token.index),
-                                )
-                              }
-                              className={
-                                "rounded px-0.5 text-sm leading-6 " +
-                                (isPv
-                                  ? "underline decoration-2 underline-offset-4"
-                                  : "hover:bg-zinc-100")
-                              }
-                              title={t("toggle-pv")}
-                            >
-                              {token.text}
-                            </button>
-                            {token.index < segment.endToken && (
-                              <button
-                                type="button"
-                                onClick={() =>
-                                  setParse(toggleBoundary(correctAnswer, token.index))
-                                }
-                                className="mx-0.5 rounded px-1 text-xs text-zinc-300 hover:bg-zinc-100 hover:text-black"
-                                title={t("toggle-boundary")}
-                              >
-                                |
-                              </button>
-                            )}
-                          </Fragment>
-                        );
-                      })}
-                  </div>
-                  <select
-                    className="mt-2 h-8 w-full rounded-md border border-border bg-white px-2 text-xs"
-                    value={segment.label || ""}
-                    onChange={(event) =>
-                      setParse(
-                        setSegmentLabel(
-                          correctAnswer,
-                          segmentIndex,
-                          (event.target.value || null) as ZinsdeelCode | null,
-                        ),
-                      )
-                    }
-                  >
-                    <option value="">{t("no-label")}</option>
-                    {enabledLabels.map((code) => {
-                      const label = LABELS.find((item) => item.code === code);
-                      return (
-                        <option value={code} key={code}>
-                          {code} - {label?.nl || code}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </div>
-                {segment.endToken < correctAnswer.tokens.length - 1 && (
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setParse(toggleBoundary(correctAnswer, segment.endToken))
-                    }
-                    className="mx-1 flex w-8 items-center justify-center rounded-md border border-dashed border-zinc-300 text-xs text-zinc-500 hover:border-zinc-700 hover:text-black"
-                    title={t("toggle-boundary")}
-                  >
-                    |
-                  </button>
-                )}
-              </div>
-            ))}
-          </div>
+          <ParseEditor
+            parse={correctAnswer}
+            enabledLabels={enabledLabels}
+            requirePersoonsvorm={requirePv}
+            onChange={setParse}
+            t={t}
+            framed
+          />
 
           <div className="mt-2 text-xs text-zinc-500">
             {correctAnswer.segments.map((segment) => (

@@ -196,8 +196,8 @@ translations:
     en: Model answer
     nl: Modelantwoord
   reset-parse:
-    en: Reset split
-    nl: Opnieuw splitsen
+    en: Reset segments
+    nl: Segmenten herstellen
   ai-parse:
     en: Analyse with AI
     nl: Ontleed met AI
@@ -216,6 +216,12 @@ translations:
   toggle-boundary:
     en: Split or merge here
     nl: Hier splitsen of samenvoegen
+  split-boundary:
+    en: Split
+    nl: Splits
+  merge-boundary:
+    en: Merge
+    nl: Samenvoegen
   toggle-pv:
     en: Mark as finite verb
     nl: Markeer als persoonsvorm

@@ -88,7 +88,7 @@ tokens:     Vandaag   maken   wij   de   jaarplanner   voor   klas   2 .
 boundaries:        b0      b1    b2   b3            b4     b5    b6   b7
 ```
 
-Every inter-token boundary `bᵢ` is a **toggle**: *split* (the two sides are different zinsdelen) or *joined* (same zinsdeel). The set of split boundaries fully determines the segmentation. Default initial state = **fully split** (one segment per word, matching the reference screenshots); the student/teacher merges words together to form multi-word zinsdelen.
+Every inter-token boundary `bᵢ` is a **toggle**: *split* (the two sides are different zinsdelen) or *joined* (same zinsdeel). The set of split boundaries fully determines the segmentation. Default initial state = **fully joined** (one segment for the whole sentence); the student/teacher clicks line dividers to split it into zinsdelen.
 
 Three independent things are being authored/answered:
 
@@ -161,8 +161,8 @@ Mirrors Learnbeat's two-panel flow, with the AI button doing real work.
                   (maken = persoonsvorm, underlined)
 ```
 
-1. Read the sentence (pre-split into single words).
-2. **Merge/split** with the `→|←` boundary controls to form zinsdelen.
+1. Read the sentence (initially shown as one segment).
+2. **Split/merge** with the boundary controls to form zinsdelen.
 3. **Label** each segment via its `▼` dropdown (enabled labels only).
 4. **Mark PV** by tapping the finite verb (toggles an underline).
 5. Submit.
@@ -384,7 +384,7 @@ Emit scoring events into the existing Firehose → S3 → Athena pipeline:
 
 ## 15. Open questions
 
-1. **Boundary default** — start fully split (per the screenshots) or fully joined (per Learnbeat's article text)? Recommend fully split; confirm with a teacher.
+1. **Boundary default** — start fully joined so students add the cuts themselves; confirm with pilot teachers.
 2. **Boundary-only partial credit** — award anything for correct cut but wrong label? Default off; ask the pilot teachers.
 3. **`BVB` modelling in v1** — ship the flat-partition limitation, or hold `BVB` for v2 nesting?
 4. **Alternate-acceptance policy** — per-question teacher toggle, or org-level default?

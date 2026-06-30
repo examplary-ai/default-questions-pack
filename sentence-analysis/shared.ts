@@ -39,17 +39,18 @@ export const LABELS: {
   code: ZinsdeelCode;
   en: string;
   nl: string;
+  color?: string;
 }[] = [
-  { code: "OW", en: "Subject", nl: "Onderwerp" },
-  { code: "WG", en: "Verbal predicate", nl: "Werkwoordelijk gezegde" },
-  { code: "NG", en: "Nominal predicate", nl: "Naamwoordelijk gezegde" },
-  { code: "LV", en: "Direct object", nl: "Lijdend voorwerp" },
-  { code: "MV", en: "Indirect object", nl: "Meewerkend voorwerp" },
-  { code: "VV", en: "Prepositional object", nl: "Voorzetselvoorwerp" },
-  { code: "BWB", en: "Adverbial adjunct", nl: "Bijwoordelijke bepaling" },
-  { code: "BVB", en: "Attributive modifier", nl: "Bijvoeglijke bepaling" },
-  { code: "DB", en: "Predicative adjunct", nl: "Dubbelverbonden bepaling" },
-  { code: "VW", en: "Conjunction", nl: "Voegwoord" },
+  { code: "OW", en: "Subject", nl: "Onderwerp", color: 'bg-blue-100 text-blue-800' },
+  { code: "WG", en: "Verbal predicate", nl: "Werkwoordelijk gezegde", color: 'bg-green-100 text-green-800' },
+  { code: "NG", en: "Nominal predicate", nl: "Naamwoordelijk gezegde", color: 'bg-yellow-100 text-yellow-800' },
+  { code: "LV", en: "Direct object", nl: "Lijdend voorwerp", color: 'bg-red-100 text-red-800' },
+  { code: "MV", en: "Indirect object", nl: "Meewerkend voorwerp", color: 'bg-purple-100 text-purple-800' },
+  { code: "VV", en: "Prepositional object", nl: "Voorzetselvoorwerp", color: 'bg-pink-100 text-pink-800' },
+  { code: "BWB", en: "Adverbial adjunct", nl: "Bijwoordelijke bepaling", color: 'bg-teal-100 text-teal-800' },
+  { code: "BVB", en: "Attributive modifier", nl: "Bijvoeglijke bepaling", color: 'bg-indigo-100 text-indigo-800' },
+  { code: "DB", en: "Predicative adjunct", nl: "Dubbelverbonden bepaling", color: 'bg-gray-100 text-gray-800' },
+  { code: "VW", en: "Conjunction", nl: "Voegwoord", color: 'bg-orange-100 text-orange-800' },
 ];
 
 export const DEFAULT_LABELS: ZinsdeelCode[] = ["OW", "WG", "LV", "BWB"];
@@ -71,16 +72,20 @@ export const tokenize = (raw: string): Token[] => {
   return tokens;
 };
 
-export const createFullySplitParse = (raw: string): SentenceParse => {
+export const createSingleSegmentParse = (raw: string): SentenceParse => {
   const tokens = tokenize(raw);
   return {
     raw,
     tokens,
-    segments: tokens.map((token) => ({
-      startToken: token.index,
-      endToken: token.index,
-      label: null,
-    })),
+    segments: tokens.length
+      ? [
+          {
+            startToken: 0,
+            endToken: tokens.length - 1,
+            label: null,
+          },
+        ]
+      : [],
     persoonsvorm: null,
   };
 };
@@ -95,7 +100,7 @@ export const normalizeParse = (
     return { raw, tokens, segments: [], persoonsvorm: null };
   }
 
-  const fallback = createFullySplitParse(raw);
+  const fallback = createSingleSegmentParse(raw);
   const incomingSegments = Array.isArray(parse?.segments)
     ? parse?.segments
     : fallback.segments;
