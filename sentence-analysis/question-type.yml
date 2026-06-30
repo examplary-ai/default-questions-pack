@@ -210,6 +210,9 @@ translations:
   explanation-placeholder:
     en: Explain why the sentence is split and labelled this way.
     nl: Leg uit waarom de zin zo is verdeeld en benoemd.
+  assessment-help:
+    en: Click to split segments, then select a label for each segment.
+    nl: Klik om zinsdelen te splitsen, en selecteer daarna een label voor elk segment.
   no-label:
     en: No label
     nl: Geen label

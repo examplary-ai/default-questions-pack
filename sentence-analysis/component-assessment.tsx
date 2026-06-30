@@ -20,7 +20,8 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   reviewMode,
   t,
 }) => {
-  const raw = question.settings.sentence || question.settings.correctAnswer?.raw || "";
+  const raw =
+    question.settings.sentence || question.settings.correctAnswer?.raw || "";
   const requirePv = question.settings.requirePersoonsvorm !== false;
   const enabledLabels =
     (question.settings.enabledLabels as ZinsdeelCode[]) || DEFAULT_LABELS;
@@ -62,20 +63,26 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
         reviewParse={reviewMode ? model : undefined}
       />
 
-      {requirePv && (
-        <div className="text-xs text-zinc-500">
-          {t("pv-help")}
-          {reviewMode && model.persoonsvorm ? (
-            <span className="ml-1 text-green-800">
-              {t("correct-pv")}:{" "}
-              {model.tokens
-                .slice(model.persoonsvorm.startToken, model.persoonsvorm.endToken + 1)
-                .map((token) => token.text)
-                .join(" ")}
-            </span>
-          ) : null}
-        </div>
-      )}
+      <div className="text-xs text-zinc-500">
+        {t("assessment-help")}{" "}
+        {requirePv && (
+          <>
+            {t("pv-help")}
+            {reviewMode && model.persoonsvorm ? (
+              <span className="ml-1 text-green-800">
+                {t("correct-pv")}:{" "}
+                {model.tokens
+                  .slice(
+                    model.persoonsvorm.startToken,
+                    model.persoonsvorm.endToken + 1,
+                  )
+                  .map((token) => token.text)
+                  .join(" ")}
+              </span>
+            ) : null}
+          </>
+        )}
+      </div>
 
       {reviewMode && (
         <div className="rounded-lg bg-zinc-50 p-3 text-xs text-zinc-600">
