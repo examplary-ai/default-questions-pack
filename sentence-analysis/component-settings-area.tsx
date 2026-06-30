@@ -148,9 +148,8 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
           value={sentence}
           onChange={(event) => setSentence(event.target.value)}
           placeholder={t("sentence-placeholder")}
-          className="w-full"
+          className="w-full rounded-xl"
         />
-        <div className="mt-1.5 text-xs text-zinc-500">{t("sentence-help")}</div>
       </div>
 
       <div>

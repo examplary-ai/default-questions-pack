@@ -35,19 +35,24 @@ export const LabelDropdown = ({
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        {enabledLabels.map((code) => {
-          const label = LABELS.find((item) => item.code === code);
-          return (
-            <DropdownMenuCheckboxItem
-              key={code}
-              checked={value === code}
-              onCheckedChange={(checked) => onChange(checked ? code : null)}
-            >
-              <Badge className={cn(label?.color, "mr-1.5")}>{code}</Badge>{" "}
-              {label?.nl || code}
-            </DropdownMenuCheckboxItem>
-          );
-        })}
+        {LABELS.filter((label) => enabledLabels.includes(label.code)).map(
+          (label) => {
+            return (
+              <DropdownMenuCheckboxItem
+                key={label.code}
+                checked={value === label.code}
+                onCheckedChange={(checked) =>
+                  onChange(checked ? label.code : null)
+                }
+              >
+                <Badge className={cn(label?.color, "mr-1.5")}>
+                  {label.code}
+                </Badge>{" "}
+                {label.nl || label.code}
+              </DropdownMenuCheckboxItem>
+            );
+          },
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );

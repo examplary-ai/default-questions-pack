@@ -17,6 +17,8 @@ components:
   results: ./component-results.tsx
   settings-area: ./component-settings-area.tsx
 
+hasSimpleScoring: true
+
 generation:
   enabled: true
   instructions: |
@@ -167,14 +169,11 @@ export:
 
 translations:
   sentence:
-    en: Sentence
-    nl: Zin
+    en: Sentence to analyze
+    nl: Zin om te ontleden
   sentence-placeholder:
-    en: Vandaag maken wij de jaarplanner voor klas 2.
-    nl: Vandaag maken wij de jaarplanner voor klas 2.
-  sentence-help:
-    en: Enter one Dutch sentence. Punctuation stays attached to the preceding word.
-    nl: Vul een Nederlandse zin in. Leestekens blijven bij het vorige woord staan.
+    en: The quick fox jumps over the lazy dog.
+    nl: De snelle vos springt over de luie hond.
   enabled-labels:
     en: Labels students can choose
     nl: Zinsdelen die leerlingen kunnen kiezen

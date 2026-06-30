@@ -42,8 +42,8 @@ const ParseEditor = ({
   return (
     <div
       className={cn(
-        "flex flex-wrap items-start gap-x-1 gap-y-3",
-        framed && "rounded-lg border border-border p-3",
+        "flex flex-wrap items-start gap-x-1 gap-y-3 w-full",
+        framed && "rounded-xl border border-border p-3",
         className,
       )}
     >
@@ -63,18 +63,18 @@ const ParseEditor = ({
 
         return (
           <div
-            className="flex flex-wrap items-stretch"
+            className="flex flex-wrap items-start max-w-full"
             key={segment.startToken}
           >
             <div
               className={cn(
-                "min-w-20 min-h-8 items-center flex shrink-0 rounded-3xl bg-accent px-2.5",
+                "min-w-20 min-h-8 items-center flex flex-wrap shrink-0 rounded-2xl bg-accent px-2.5 py-1 max-w-full",
                 correct && "border-green-300 bg-green-50",
                 incorrect && "border-red-200 bg-red-50",
                 !correct && !incorrect && label?.color,
               )}
             >
-              <div className="flex flex-wrap gap-x-1 gap-y-1">
+              <div className="flex flex-wrap max-w-full gap-1 shrink-0">
                 {parse.tokens
                   .slice(segment.startToken, segment.endToken + 1)
                   .map((token) => {
@@ -191,7 +191,7 @@ const ParseEditor = ({
                   onClick={() =>
                     updateParse(toggleBoundary(parse, segment.endToken))
                   }
-                  className="flex w-4 ml-1 items-center justify-center cursor-pointer rounded-md text-sm text-zinc-500 hover:bg-zinc-100 hover:text-black"
+                  className="flex w-4 min-h-8 ml-1 items-center justify-center cursor-pointer rounded-md text-sm text-zinc-500 hover:bg-zinc-100 hover:text-black"
                   title={t("merge-boundary")}
                 >
                   +
