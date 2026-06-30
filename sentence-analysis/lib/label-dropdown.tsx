@@ -28,7 +28,7 @@ export const LabelDropdown = ({
         <button
           type="button"
           className="ml-1 -mr-1.5 rounded-2xl px-1.5 h-6 text-[10px] font-bold text-zinc-700/80 hover:bg-black/5 data-[state=open]:bg-black/5 hover:text-black flex items-center"
-          title={t("toggle-boundary")}
+          title={value ? (LABELS.find((label) => label.code === value)?.nl ?? value) : t("no-label")}
         >
           {value || "..."}
           <ChevronDownIcon className="ml-0.5 h-3.5 w-3.5" />
