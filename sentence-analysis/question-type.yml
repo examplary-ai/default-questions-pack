@@ -78,6 +78,7 @@ settings:
       en: Sentence
       nl: Zin
     description: The single Dutch sentence the student should analyse.
+    hidden: true
     required: true
 
   - id: enabledLabels

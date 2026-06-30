@@ -153,6 +153,34 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
         <div className="mt-1.5 text-xs text-zinc-500">{t("sentence-help")}</div>
       </div>
 
+      <div>
+        <label className="mb-2 block font-heading font-semibold">
+          {t("enabled-labels")}
+        </label>
+        <div className="grid gap-1.5 sm:grid-cols-2">
+          {LABELS.map((label) => {
+            const checked = enabledLabels.includes(label.code);
+            return (
+              <label
+                key={label.code}
+                className={cn(
+                  "flex items-center gap-2 rounded-xl border border-border px-3 py-1.5 text-sm",
+                  checked && "bg-accent",
+                )}
+              >
+                <input
+                  type="checkbox"
+                  checked={checked}
+                  onChange={() => toggleLabel(label.code)}
+                />
+                <span className="font-semibold">{label.code}</span>
+                <span>{label.nl}</span>
+              </label>
+            );
+          })}
+        </div>
+      </div>
+
       {sentence.trim() && (
         <div>
           <div className="mb-2 flex items-center justify-between gap-3">
@@ -188,39 +216,6 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
           />
         </div>
       )}
-
-      <div>
-        <label className="mb-2 block font-heading font-semibold">
-          {t("enabled-labels")}
-        </label>
-        <div className="grid gap-2 sm:grid-cols-2">
-          {LABELS.map((label) => (
-            <label
-              key={label.code}
-              className="flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm"
-            >
-              <input
-                type="checkbox"
-                checked={enabledLabels.includes(label.code)}
-                onChange={() => toggleLabel(label.code)}
-              />
-              <span className="font-semibold">{label.code}</span>
-              <span>{label.nl}</span>
-            </label>
-          ))}
-        </div>
-      </div>
-
-      <label className="flex items-center gap-2 text-sm">
-        <input
-          type="checkbox"
-          checked={requirePv}
-          onChange={(event) =>
-            setSetting("requirePersoonsvorm", event.target.checked)
-          }
-        />
-        {t("require-pv")}
-      </label>
     </div>
   );
 };
