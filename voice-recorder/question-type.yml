@@ -1,0 +1,76 @@
+# yaml-language-server: $schema=https://schemas.examplary.ai/question-type.json
+
+id: examplary.expansion.voice-recorder
+public: true
+isDefault: false
+
+name:
+  en: Voice recorder
+  nl: Spraakopname
+description:
+  en: Ask the student to record a spoken answer.
+  nl: Vraag de leerling om een gesproken antwoord op te nemen.
+
+icon: ./icon.svg
+components:
+  assessment: ./component-assessment.tsx
+  results: ./component-results.tsx
+
+generation:
+  enabled: true
+  instructions: |
+    Use this question type when the student should answer by speaking. The question prompt should clearly tell the student what to explain, describe, pronounce, read aloud, or reflect on.
+
+    Settings may include maxDurationSeconds, the maximum recording length in seconds. Keep it reasonable for the task. Use 60-120 seconds for short spoken answers and up to 300 seconds for longer oral explanations.
+
+timeEstimateMinutes: 5
+
+settings:
+  - id: maxDurationSeconds
+    name:
+      en: Maximum recording length
+      nl: Maximale opnameduur
+    description: Maximum recording length in seconds.
+    type: number
+    default: 300
+    min: 10
+    max: 900
+    step: 10
+
+translations:
+  empty-answer:
+    en: Empty answer
+    nl: Leeg antwoord
+  start-recording:
+    en: Start recording
+    nl: Start opname
+  stop-recording:
+    en: Stop recording
+    nl: Stop opname
+  recording:
+    en: Recording
+    nl: Neemt op
+  uploading:
+    en: Uploading recording...
+    nl: Opname uploaden...
+  recorded-answer:
+    en: Recorded answer
+    nl: Opgenomen antwoord
+  replace-recording:
+    en: Replace recording
+    nl: Vervang opname
+  remove-recording:
+    en: Remove recording
+    nl: Verwijder opname
+  microphone-unavailable:
+    en: Microphone recording is not available in this browser.
+    nl: Microfoonopname is niet beschikbaar in deze browser.
+  microphone-denied:
+    en: Could not access the microphone. Check browser permissions and try again.
+    nl: Geen toegang tot de microfoon. Controleer de browserrechten en probeer opnieuw.
+  upload-unavailable:
+    en: Recording upload is not available right now.
+    nl: Uploaden van opnames is nu niet beschikbaar.
+  upload-failed:
+    en: Could not upload the recording. Please try again.
+    nl: De opname kon niet worden geüpload. Probeer het opnieuw.

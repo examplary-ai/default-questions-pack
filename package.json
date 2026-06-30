@@ -3,7 +3,7 @@
   "description": "Default question types for Examplary",
   "type": "module",
   "devDependencies": {
-    "@examplary/cli": "^1.9.1",
+    "@examplary/cli": "^1.10.0",
     "@examplary/ui": "^1.60.0",
     "@types/react": ">=19.2.0",
     "react": ">=19.2.0",
