@@ -186,7 +186,7 @@ const ParseEditor = ({
             </div>
             {!readOnly && segment.endToken < parse.tokens.length - 1 && (
               <Tooltipped content={t("merge-boundary")}>
-                <button
+                <button aria-label={t("merge-boundary")}
                   type="button"
                   onClick={() =>
                     updateParse(toggleBoundary(parse, segment.endToken))
