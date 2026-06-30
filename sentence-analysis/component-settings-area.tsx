@@ -1,9 +1,4 @@
-import {
-  AiIcon,
-  cn,
-  Input,
-  Textarea,
-} from "@examplary/ui";
+import { AiIcon, Button, cn, Input } from "@examplary/ui";
 import type { FrontendQuestionSettingsAreaComponent } from "@examplary/ui";
 import { useState } from "react";
 
@@ -12,7 +7,6 @@ import {
   LABELS,
   createSingleSegmentParse,
   normalizeParse,
-  segmentText,
 } from "./shared";
 import ParseEditor from "./lib/parse-editor";
 import type { SentenceParse, ZinsdeelCode } from "./shared";
@@ -63,27 +57,6 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
       ? enabledLabels.filter((label) => label !== code)
       : [...enabledLabels, code];
     setEnabledLabels(next);
-  };
-
-  const applyExample = () => {
-    const raw = "Vandaag maken wij de jaarplanner voor klas 2.";
-    setMultipleSettings({
-      sentence: raw,
-      enabledLabels: ["BWB", "WG", "OW", "LV"],
-      requirePersoonsvorm: true,
-      correctAnswer: {
-        raw,
-        tokens: createSingleSegmentParse(raw).tokens,
-        segments: [
-          { startToken: 0, endToken: 0, label: "BWB" },
-          { startToken: 1, endToken: 1, label: "WG" },
-          { startToken: 2, endToken: 2, label: "OW" },
-          { startToken: 3, endToken: 4, label: "LV" },
-          { startToken: 5, endToken: 7, label: "BWB" },
-        ],
-        persoonsvorm: { startToken: 1, endToken: 1 },
-      },
-    });
   };
 
   const draftWithAi = async () => {
@@ -177,13 +150,44 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
           placeholder={t("sentence-placeholder")}
           className="w-full"
         />
-        <div className="mt-1.5 text-xs text-zinc-500">
-          {t("sentence-help")}{" "}
-          <button className="underline" type="button" onClick={applyExample}>
-            {t("use-example")}
-          </button>
-        </div>
+        <div className="mt-1.5 text-xs text-zinc-500">{t("sentence-help")}</div>
       </div>
+
+      {sentence.trim() && (
+        <div>
+          <div className="mb-2 flex items-center justify-between gap-3">
+            <label className="block font-heading font-semibold">
+              {t("model-answer")}
+            </label>
+            <div className="flex items-center gap-2">
+              {(api as any).ai?.generate && (
+                <Button
+                  size="sm"
+                  variant="secondary"
+                  className={cn(
+                    "py-1 pr-2 pl-1.5 text-xs h-auto bg-fuchsia-100 text-fuchsia-700 hover:bg-fuchsia-200",
+                    aiBusy && "bg-fuchsia-200 animate-pulse",
+                  )}
+                  onClick={draftWithAi}
+                  disabled={aiBusy || !sentence.trim()}
+                >
+                  <AiIcon className="size-3.5" />
+                  {aiBusy ? t("ai-working") : t("ai-parse")}
+                </Button>
+              )}
+            </div>
+          </div>
+
+          <ParseEditor
+            parse={correctAnswer}
+            enabledLabels={enabledLabels}
+            requirePersoonsvorm={requirePv}
+            onChange={setParse}
+            t={t}
+            framed
+          />
+        </div>
+      )}
 
       <div>
         <label className="mb-2 block font-heading font-semibold">
@@ -217,68 +221,6 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
         />
         {t("require-pv")}
       </label>
-
-      {sentence.trim() && (
-        <div>
-          <div className="mb-2 flex items-center justify-between gap-3">
-            <label className="block font-heading font-semibold">
-              {t("model-answer")}
-            </label>
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                className="rounded-md border border-border px-2.5 py-1 text-xs hover:bg-zinc-50"
-                onClick={() => setParse(createSingleSegmentParse(sentence))}
-              >
-                {t("reset-parse")}
-              </button>
-              {(api as any).ai?.generate && (
-                <button
-                  type="button"
-                  className={cn(
-                    "inline-flex items-center gap-1 rounded-md border border-border bg-black px-2.5 py-1 text-xs text-white",
-                    "hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-50",
-                  )}
-                  disabled={aiBusy || !sentence.trim()}
-                  onClick={draftWithAi}
-                >
-                  <AiIcon className={cn("size-3.5", aiBusy && "animate-pulse")} />
-                  {aiBusy ? t("ai-working") : t("ai-parse")}
-                </button>
-              )}
-            </div>
-          </div>
-
-          <ParseEditor
-            parse={correctAnswer}
-            enabledLabels={enabledLabels}
-            requirePersoonsvorm={requirePv}
-            onChange={setParse}
-            t={t}
-            framed
-          />
-
-          <div className="mt-2 text-xs text-zinc-500">
-            {correctAnswer.segments.map((segment) => (
-              <span key={segment.startToken} className="mr-3 inline-block">
-                {segmentText(correctAnswer, segment)}: {segment.label || "-"}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-
-      <div>
-        <label className="mb-1 block font-heading font-semibold">
-          {t("explanation")}
-        </label>
-        <Textarea
-          value={settings.explanation || ""}
-          onChange={(event) => setSetting("explanation", event.target.value)}
-          placeholder={t("explanation-placeholder")}
-          className="min-h-20 w-full"
-        />
-      </div>
     </div>
   );
 };

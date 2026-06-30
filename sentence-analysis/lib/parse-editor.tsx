@@ -42,7 +42,7 @@ const ParseEditor = ({
   return (
     <div
       className={cn(
-        "flex flex-wrap items-start gap-1 gap-y-3",
+        "flex flex-wrap items-start gap-x-1 gap-y-3",
         framed && "rounded-lg border border-border p-3",
         className,
       )}
@@ -96,7 +96,7 @@ const ParseEditor = ({
                           <span
                             className={cn(
                               "rounded px-0.5 text-sm leading-6",
-                              isPv &&
+                              requirePersoonsvorm && isPv &&
                                 "underline decoration-2 underline-offset-4",
                               isReviewPv && "text-green-800",
                               isWrongPv && "text-red-800",
@@ -124,7 +124,7 @@ const ParseEditor = ({
                                 "rounded px-0.5 text-sm leading-6",
                                 requirePersoonsvorm &&
                                   "hover:bg-white cursor-pointer",
-                                isPv &&
+                                requirePersoonsvorm && isPv &&
                                   "underline decoration-2 underline-offset-4",
                                 isReviewPv && "text-green-800",
                                 isWrongPv && "text-red-800",

@@ -41,8 +41,7 @@ generation:
           {"startToken": 5, "endToken": 7, "label": "BWB"}
         ],
         "persoonsvorm": {"startToken": 1, "endToken": 1}
-      },
-      "explanation": "Korte uitleg van de ontleding."
+      }
     }
 
     The correctAnswer must be a gapless ordered partition of all tokens. Token indices are zero-based. Use only these labels: OW, WG, NG, LV, MV, VV, BWB, BVB, DB, VW. Keep enabledLabels to the labels that occur in the sentence. The persoonsvorm is a token range, usually one token inside WG or NG. Use null for persoonsvorm only when requirePersoonsvorm is false. Prefer one clear single-clause Dutch sentence.
@@ -107,13 +106,6 @@ settings:
     description: SentenceParse JSON containing tokens, ordered gapless segments, labels, and persoonsvorm. This field is hidden from the student-facing front-end.
     hidden: true
     required: true
-
-  - id: explanation
-    type: string
-    name:
-      en: Explanation
-      nl: Uitleg
-    description: Optional explanation shown during review or self-check.
 
 responseProcessing:
   condition: |
@@ -183,9 +175,6 @@ translations:
   sentence-help:
     en: Enter one Dutch sentence. Punctuation stays attached to the preceding word.
     nl: Vul een Nederlandse zin in. Leestekens blijven bij het vorige woord staan.
-  use-example:
-    en: Use example
-    nl: Voorbeeld gebruiken
   enabled-labels:
     en: Labels students can choose
     nl: Zinsdelen die leerlingen kunnen kiezen
@@ -196,20 +185,14 @@ translations:
     en: Model answer
     nl: Modelantwoord
   reset-parse:
-    en: Reset segments
-    nl: Segmenten herstellen
+    en: Reset
+    nl: Reset
   ai-parse:
     en: Analyse with AI
     nl: Ontleed met AI
   ai-working:
     en: Analysing...
     nl: Bezig met ontleden...
-  explanation:
-    en: Explanation
-    nl: Uitleg
-  explanation-placeholder:
-    en: Explain why the sentence is split and labelled this way.
-    nl: Leg uit waarom de zin zo is verdeeld en benoemd.
   assessment-help:
     en: Click to split segments, then select a label for each segment.
     nl: Klik om zinsdelen te splitsen, en selecteer daarna een label voor elk segment.
