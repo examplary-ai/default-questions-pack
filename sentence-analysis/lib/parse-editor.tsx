@@ -139,7 +139,7 @@ const ParseEditor = ({
                         )}
                         {!readOnly && token.index < segment.endToken && (
                           <Tooltipped content={t("split-boundary")}>
-                            <button
+                            <button aria-label={t("split-boundary")}
                               type="button"
                               onClick={() =>
                                 updateParse(toggleBoundary(parse, token.index))
