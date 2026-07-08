@@ -1,46 +1,36 @@
-import {
-  AnswerBox,
-  cn,
-  FrontendPrintComponent,
-  RichTextDisplay,
-} from "@examplary/ui";
+import { cn, FrontendPrintComponent, RichTextDisplay } from "@examplary/ui";
 import { useMemo } from "react";
 
-import type { Item } from "./component-settings-area";
+import { getMatchingData, orderOptions } from "./shared";
 
 const PrintComponent: FrontendPrintComponent = ({
   answerBoxes,
   question,
   t,
 }) => {
-  const horizontal =
-    question.settings.layout === "horizontal" &&
-    question.settings.pairs?.length! <= 4;
-
-  const options: Item[] = useMemo(
-    () =>
-      (question.settings.pairs || []).map((item: string) => {
-        const [left, right] = item.split(" = ", 2);
-        return {
-          left: left?.replace(/\\=/g, "="),
-          right: right?.replace(/\\=/g, "="),
-        };
-      }),
-    [question.settings.pairs],
+  const { left, right } = useMemo(
+    () => getMatchingData(question.settings),
+    [question],
   );
 
-  const leftItems = useMemo(() => {
-    const items = options.map((pair: Item) => pair.left) || [];
-    if (question.settings.shuffle) {
-      return items.sort(() => 0.5 - Math.random());
-    }
-    return items;
-  }, [question]);
+  const horizontal =
+    question.settings.layout === "horizontal" && left.length <= 4;
 
-  const rightItems = useMemo(() => {
-    const items = options.map((pair: Item) => pair.right) || [];
-    return items.sort(() => 0.5 - Math.random());
-  }, [question]);
+  const leftItems = useMemo(() => {
+    const labels = left.map((option) => option.label);
+    if (question.settings.shuffle) {
+      return labels.sort(() => 0.5 - Math.random());
+    }
+    return labels;
+  }, [left]);
+
+  const rightItems = useMemo(
+    () =>
+      orderOptions(right, question.settings.shuffle).map(
+        (option) => option.label,
+      ),
+    [right],
+  );
 
   if (!answerBoxes) {
     return (

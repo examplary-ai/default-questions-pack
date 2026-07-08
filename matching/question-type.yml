@@ -21,31 +21,53 @@ components:
 generation:
   enabled: true
   instructions: |
-    Generate settings that look like this: {"pairs": ["Apple = Red", "Banana = Yellow", "Grapes = Purple"]}.
-    `pairs` is an array of strings, where each string represents a correct match in the format 'left = right'. Make sure these exactly match the pairs specified, and always contains exactly ` = `.
-    Generate between 2 and 5 pairs. Do not include any other fields.
-    If you wish to use `=` as a literal value, rather than the pair separator, you can escape it with a backslash, eg. `x \= 2 / 4 = x \= 0.5` will be shown to the student as `x = 2 / 4` (left) = `x = 0.5` (right).
+    Generate settings that look like this: 
+    {
+      "left": ["Apple", "Banana", "Grapes"],
+      "right": ["Red", "Yellow", "Purple"],
+      "correctAnswer": ["Apple = Red", "Banana = Yellow", "Grapes = Purple"],
+      "layout": "vertical",
+      "shuffle": false
+    }
+
+    Generate between 2 and 5 pairs. Do not include any other fields. Make sure that the left and right arrays contain unique items, and that the correctAnswer 
+    array contains pairs that EXACTLY match the items in the left and right arrays.
 
 scanning:
   instructions: |
     The answer should be an array of strings, in the format of ["Apple = Red", "Banana = Yellow", "Grapes = Purple"].
     Each string should contain exactly one ` = `. If there are multiple ` = ` in a string, only the first one will be used as the separator between left and right.
-    You can escape `=` with a backslash if you want to use it as a literal character, eg. `x \= 2 / 4 = x \= 0.5` will be shown to the student as `x = 2 / 4` (left) = `x = 0.5` (right).
-    If an answer is close to the pairs in the settings, copy over the pair from the settings, eg. if the answer is "Apple = red", it should be changed to "Apple = Red".
+    If an answer is close to one of the pairs in the `correctAnswer` setting, copy over the pair from the settings, eg. if the answer is "Apple = red", it should be changed to "Apple = Red".
     ONLY DO THIS IF THE ANSWER IS VERY CLOSE TO THE PAIR IN THE SETTINGS, OTHERWISE LEAVE THE ANSWER AS IS. The order of the pairs in the answer does not matter.
-    
-    The student might also use numbers and letters. The number represents the left part of the pair, the letter the right part (e.g. "1 = A" means the first left item is 
-    matched with the first right item, "Apple = Red" in the example above). In that case, convert the numbers and letters to the corresponding items from the settings. 
+
+    The student might also use numbers and letters, referring to the printed sheet. The number represents an item from the `left` setting ("1" is the first item). The letter
+    represents an item from the `right` setting; on the printed sheet these are sorted alphabetically unless the shuffle setting is enabled, so "A" is the alphabetically first
+    item (e.g. with right items ["Red", "Yellow", "Purple"], "1 = A" means the first left item matched with "Purple"). In that case, convert the numbers and letters to the
+    corresponding items from the settings. In which case, make sure to copy over all formatting, including <p> tags etc. from the original left/right options.
     ONLY DO THIS IF THE ANSWER IS IN THE FORMAT OF NUMBERS AND LETTERS THAT CORRESPOND TO THE OPTIONS, OTHERWISE LEAVE IT AS IS.
 
 timeEstimateMinutes: 2
 hasSimpleScoring: true
 
 settings:
-  - id: pairs
+  - id: left
     type: string-array
-    name: Pairs
-    description: 'Array containing pairs, where each pair is a string that contains ` = `. The text left of the ` = ` in each pair will be shown in the left column, and the rest in the right column. Example: `["Apple = Red", "Banana = Yellow"]`.'
+    name: Left items
+    description: 'Array containing the items shown in the left column (or top row). Example: `["Apple", "Banana"]`.'
+    hidden: true
+    required: true
+
+  - id: right
+    type: string-array
+    name: Right items
+    description: 'Array containing the answer options the student can match with, shown in the right column (or bottom row). Example: `["Red", "Yellow"]`.'
+    hidden: true
+    required: true
+
+  - id: correctAnswer
+    type: string-array
+    name: Correct answer
+    description: 'Array containing the correct pairs, where each pair is a string that contains ` = `. The text left of the ` = ` must exactly match an item from `left`, the text right of it an item from `right`. Example: `["Apple = Red", "Banana = Yellow"]`.'
     hidden: true
     required: true
 
@@ -71,20 +93,63 @@ settings:
     name:
       en: Shuffle options
       nl: Willekeurige volgorde
-    description: Whether to show the options in a random order to the student.
+    description: Whether to show the options in a random order to the student. If disabled, the answer options are shown in alphabetical order.
     default: false
 
 responseProcessing:
   condition: |
-    =$join($sort($.answer.value), '|') = $join($sort($.question.settings.pairs), '|')
+    =$join($sort($.answer.value), '|') = $join($sort($exists($.question.settings.correctAnswer) ? $.question.settings.correctAnswer : $.question.settings.pairs), '|')
   testCases:
     - question:
         {
           settings:
-            { pairs: ["Apple = Red", "Banana = Yellow", "Grapes = Purple"] },
+            {
+              left: ["Apple", "Banana", "Grapes"],
+              right: ["Red", "Yellow", "Purple"],
+              correctAnswer:
+                ["Apple = Red", "Banana = Yellow", "Grapes = Purple"],
+            },
         }
       answer: { value: ["Apple = Red", "Banana = Yellow", "Grapes = Purple"] }
       expectedOutcome: true
+    - question:
+        {
+          settings:
+            {
+              left: ["Apple", "Banana", "Grapes"],
+              right: ["Red", "Yellow", "Purple"],
+              correctAnswer:
+                ["Apple = Red", "Banana = Yellow", "Grapes = Purple"],
+            },
+        }
+      answer: { value: ["Grapes = Purple", "Apple = Red", "Banana = Yellow"] }
+      expectedOutcome: true
+    - question:
+        {
+          settings:
+            {
+              left: ["Apple", "Banana", "Grapes"],
+              right: ["Red", "Yellow", "Purple"],
+              correctAnswer:
+                ["Apple = Red", "Banana = Yellow", "Grapes = Purple"],
+            },
+        }
+      answer: { value: ["Apple = Yellow", "Banana = Red", "Grapes = Purple"] }
+      expectedOutcome: false
+    - question:
+        {
+          settings:
+            {
+              left: ["Apple", "Banana", "Grapes"],
+              right: ["Red", "Yellow", "Purple"],
+              correctAnswer:
+                ["Apple = Red", "Banana = Yellow", "Grapes = Purple"],
+            },
+        }
+      answer: { value: ["Apple = Red", "Banana = Yellow"] }
+      expectedOutcome: false
+    # Questions created before the left/right/correctAnswer settings only
+    # have a legacy `pairs` setting, which is still supported:
     - question:
         {
           settings:
@@ -92,20 +157,6 @@ responseProcessing:
         }
       answer: { value: ["Grapes = Purple", "Apple = Red", "Banana = Yellow"] }
       expectedOutcome: true
-    - question:
-        {
-          settings:
-            { pairs: ["Apple = Red", "Banana = Yellow", "Grapes = Purple"] },
-        }
-      answer: { value: ["Apple = Yellow", "Banana = Red", "Grapes = Purple"] }
-      expectedOutcome: false
-    - question:
-        {
-          settings:
-            { pairs: ["Apple = Red", "Banana = Yellow", "Grapes = Purple"] },
-        }
-      answer: { value: ["Apple = Red", "Banana = Yellow"] }
-      expectedOutcome: false
 
 translations:
   pairs:

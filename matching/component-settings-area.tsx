@@ -5,32 +5,49 @@ import {
   RichTextField,
 } from "@examplary/ui";
 
-export type Item = { left: string; right: string };
+import {
+  findLabel,
+  getMatchingData,
+  joinPair,
+  splitPair,
+  type Item,
+} from "./shared";
 
 const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
   settings,
   setMultipleSettings,
   t,
 }) => {
+  const { left, right, correctAnswer } = getMatchingData(settings);
+  const leftValues = left.map((option) => option.value);
+
   const options: Item[] = [
-    ...(settings.pairs || []).map((item: string) => {
-      const [left, right] = item.split(" = ", 2);
+    ...correctAnswer.map((pair: string) => {
+      const { left: leftValue, right: rightValue } = splitPair(
+        pair,
+        leftValues,
+      );
       return {
-        left: left?.replace(/\\=/g, "="),
-        right: right?.replace(/\\=/g, "="),
+        left: findLabel(left, leftValue),
+        right: findLabel(right, rightValue),
       };
     }),
     { left: "", right: "" },
   ];
 
+  // Saving always writes the current settings format; questions that still
+  // use the legacy `pairs` setting are migrated on their first edit
   const setOptions = (options: Item[]) => {
-    const escape = (s: string) => s.replace(/=/g, "\\=");
-    const filteredOptions = options
-      .filter(({ left }) => left && left.trim() !== "")
-      .map(({ left, right }) => `${escape(left)} = ${escape(right)}`);
+    const filteredOptions = options.filter(
+      ({ left }) => left && left.trim() !== "",
+    );
 
     setMultipleSettings({
-      pairs: filteredOptions,
+      left: filteredOptions.map(({ left }) => left),
+      right: filteredOptions.map(({ right }) => right),
+      correctAnswer: filteredOptions.map(({ left, right }) =>
+        joinPair(left, right),
+      ),
     });
   };
 
