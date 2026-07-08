@@ -1,7 +1,7 @@
 import { cn, FrontendPrintComponent, RichTextDisplay } from "@examplary/ui";
 import { useMemo } from "react";
 
-import { getMatchingData, orderOptions } from "./shared";
+import { getMatchingData } from "./shared";
 
 const PrintComponent: FrontendPrintComponent = ({
   answerBoxes,
@@ -16,21 +16,10 @@ const PrintComponent: FrontendPrintComponent = ({
   const horizontal =
     question.settings.layout === "horizontal" && left.length <= 4;
 
-  const leftItems = useMemo(() => {
-    const labels = left.map((option) => option.label);
-    if (question.settings.shuffle) {
-      return labels.sort(() => 0.5 - Math.random());
-    }
-    return labels;
-  }, [left]);
-
-  const rightItems = useMemo(
-    () =>
-      orderOptions(right, question.settings.shuffle).map(
-        (option) => option.label,
-      ),
-    [right],
-  );
+  // Printed sheets always show both columns in the order of the settings,
+  // so scanned number/letter answers can be traced back to the items
+  const leftItems = left.map((option) => option.label);
+  const rightItems = right.map((option) => option.label);
 
   if (!answerBoxes) {
     return (

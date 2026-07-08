@@ -9,6 +9,7 @@ import {
   findLabel,
   getMatchingData,
   joinPair,
+  shuffleUnaligned,
   splitPair,
   type Item,
 } from "./shared";
@@ -44,7 +45,7 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
 
     setMultipleSettings({
       left: filteredOptions.map(({ left }) => left),
-      right: filteredOptions.map(({ right }) => right),
+      right: shuffleUnaligned(filteredOptions.map(({ right }) => right)),
       correctAnswer: filteredOptions.map(({ left, right }) =>
         joinPair(left, right),
       ),

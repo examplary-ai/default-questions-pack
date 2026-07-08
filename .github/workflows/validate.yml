@@ -11,6 +11,26 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+
+      - name: Test
+        run: |
+          # Install dependencies
+          yarn
+
+          # Run unit tests
+          yarn test
+
   validate:
     runs-on: ubuntu-latest
     steps:

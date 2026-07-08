@@ -30,8 +30,10 @@ generation:
       "shuffle": false
     }
 
-    Generate between 2 and 5 pairs. Do not include any other fields. Make sure that the left and right arrays contain unique items, and that the correctAnswer 
+    Generate between 2 and 5 pairs. Do not include any other fields. Make sure that the left and right arrays contain unique items, and that the correctAnswer
     array contains pairs that EXACTLY match the items in the left and right arrays.
+    Put the items in the right array in a different order than their matches in the left array, since printed sheets show both lists in this exact order and the
+    answers should not be guessable from the item positions.
 
 scanning:
   instructions: |
@@ -40,10 +42,10 @@ scanning:
     If an answer is close to one of the pairs in the `correctAnswer` setting, copy over the pair from the settings, eg. if the answer is "Apple = red", it should be changed to "Apple = Red".
     ONLY DO THIS IF THE ANSWER IS VERY CLOSE TO THE PAIR IN THE SETTINGS, OTHERWISE LEAVE THE ANSWER AS IS. The order of the pairs in the answer does not matter.
 
-    The student might also use numbers and letters, referring to the printed sheet. The number represents an item from the `left` setting ("1" is the first item). The letter
-    represents an item from the `right` setting; on the printed sheet these are sorted alphabetically unless the shuffle setting is enabled, so "A" is the alphabetically first
-    item (e.g. with right items ["Red", "Yellow", "Purple"], "1 = A" means the first left item matched with "Purple"). In that case, convert the numbers and letters to the
-    corresponding items from the settings. In which case, make sure to copy over all formatting, including <p> tags etc. from the original left/right options.
+    The student might also use numbers and letters, referring to the printed sheet. The number represents an item from the `left` setting ("1" is the first item), the letter an
+    item from the `right` setting ("A" is the first item), both in the order they appear in the settings (e.g. with left items ["Apple", "Banana"] and right items
+    ["Red", "Yellow"], "2 = A" means "Banana = Red"). In that case, convert the numbers and letters to the corresponding items from the settings. In which case, make sure to
+    copy over all formatting, including <p> tags etc. from the original left/right options.
     ONLY DO THIS IF THE ANSWER IS IN THE FORMAT OF NUMBERS AND LETTERS THAT CORRESPOND TO THE OPTIONS, OTHERWISE LEAVE IT AS IS.
 
 timeEstimateMinutes: 2
@@ -93,7 +95,7 @@ settings:
     name:
       en: Shuffle options
       nl: Willekeurige volgorde
-    description: Whether to show the options in a random order to the student. If disabled, the answer options are shown in alphabetical order.
+    description: Whether to show the options in a random order to the student during digital assessments. If disabled, the options in both columns are shown in alphabetical order. Printed sheets always show the items in the order of the settings.
     default: false
 
 responseProcessing:

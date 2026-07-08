@@ -88,6 +88,17 @@ export const findLabel = (options: MatchingOption[], value: string) =>
   options.find((option) => option.value === value)?.label ??
   unescapeLegacy(value);
 
+// Stores the right column in a shuffled order, so printed sheets (which
+// show the arrays in settings order) do not give away the answers by
+// having the matches line up
+export const shuffleUnaligned = (items: string[]): string[] => {
+  const shuffled = [...items].sort(() => 0.5 - Math.random());
+  if (items.length > 1 && shuffled.every((item, i) => item === items[i])) {
+    shuffled.push(shuffled.shift()!);
+  }
+  return shuffled;
+};
+
 // With shuffle enabled the options are shown in a random order; without
 // it they are shown alphabetically.
 export const orderOptions = <T extends { label: string }>(

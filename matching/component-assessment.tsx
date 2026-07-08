@@ -43,10 +43,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
     question.settings.layout === "horizontal" && left.length <= 4;
 
   const leftItems: MatchingOption[] = useMemo(
-    () =>
-      question.settings.shuffle
-        ? [...left].sort(() => 0.5 - Math.random())
-        : left,
+    () => orderOptions(left, question.settings.shuffle),
     [left],
   );
 
