@@ -63,4 +63,9 @@ question:
       persoonsvorm:
         startToken: 1
         endToken: 1
-answer: {}
+answer:
+  value:
+    - 0-0:BWB
+    - 1-1:WG
+    - 2-2:OW
+    - PV:1-1
