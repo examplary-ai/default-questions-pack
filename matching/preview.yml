@@ -16,8 +16,4 @@ question:
       - Grapes = Purple
     layout: vertical
     shuffle: false
-answer:
-  value:
-    - Apple = Red
-    - Banana = Yellow
-    - Grapes = Purple
+answer: {}
