@@ -8,8 +8,8 @@
     "previews": "node .github/scripts/generate-previews.mjs"
   },
   "devDependencies": {
-    "@examplary/cli": "^1.10.1",
-    "@examplary/ui": "^1.60.0",
+    "@examplary/cli": "^1.11.0",
+    "@examplary/ui": "^1.67.2",
     "@types/react": ">=19.2.0",
     "puppeteer-core": "^25.4.0",
     "react": ">=19.2.0",

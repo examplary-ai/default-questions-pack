@@ -327,27 +327,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@examplary/cli@npm:^1.10.1":
-  version: 1.10.1
-  resolution: "@examplary/cli@npm:1.10.1"
+"@examplary/cli@npm:^1.11.0":
+  version: 1.11.0
+  resolution: "@examplary/cli@npm:1.11.0"
   dependencies:
     "@examplary/schemas": "npm:*"
     "@examplary/ui": "npm:*"
-    "@hono/node-server": "npm:^2.0.4"
+    "@hono/node-server": "npm:^2.0.10"
     "@tailwindcss/postcss": "npm:^4.3.0"
     "@tailwindcss/vite": "npm:^4.3.0"
     esbuild: "npm:^0.28.1"
-    hono: "npm:^4.12.25"
+    hono: "npm:^4.12.27"
     jsonata: "npm:^2.2.0"
     lucide-react: "npm:^0.535.0"
     open: "npm:^11.0.0"
     tailwindcss: "npm:^4.2.1"
-    ws: "npm:^8.21.0"
+    ws: "npm:^8.21.1"
     yaml: "npm:^2.8.3"
     yargs: "npm:^18.0.0"
   bin:
     exp: dist/index.js
-  checksum: 10c0/1ae8c6b6f05456948b3c77ce86ee485267452f3b513eddedd55895df44d2130f48422e5d3ea0a308bc5439c780cc7b87166648f43acf29f263fb0a7740b0aef3
+  checksum: 10c0/c14365b3cfe3d9dd99eb3816bc942c3abe10a3ed6d26b38632e931c76c3aae9fb6ad30f8d21653c5bea1d5eb7e26edcbf3a137681b302771c9f499014d84ddc4
   languageName: node
   linkType: hard
 
@@ -358,8 +358,8 @@ __metadata:
     "@dnd-kit/core": "npm:^6.3.1"
     "@dnd-kit/sortable": "npm:^10.0.0"
     "@dnd-kit/utilities": "npm:^3.2.2"
-    "@examplary/cli": "npm:^1.10.1"
-    "@examplary/ui": "npm:^1.60.0"
+    "@examplary/cli": "npm:^1.11.0"
+    "@examplary/ui": "npm:^1.67.2"
     "@types/react": "npm:>=19.2.0"
     mathlive: "npm:^0.108.3"
     puppeteer-core: "npm:^25.4.0"
@@ -381,7 +381,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@examplary/ui@npm:*, @examplary/ui@npm:^1.60.0":
+"@examplary/ui@npm:*":
   version: 1.67.1
   resolution: "@examplary/ui@npm:1.67.1"
   dependencies:
@@ -461,6 +461,88 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@examplary/ui@npm:^1.67.2":
+  version: 1.67.2
+  resolution: "@examplary/ui@npm:1.67.2"
+  dependencies:
+    "@dnd-kit/core": "npm:^6.3.1"
+    "@dnd-kit/modifiers": "npm:^9.0.0"
+    "@dnd-kit/sortable": "npm:^10.0.0"
+    "@dnd-kit/utilities": "npm:^3.2.2"
+    "@examplary/schemas": "npm:*"
+    "@floating-ui/dom": "npm:^1.7.4"
+    "@floating-ui/react": "npm:^0.27.19"
+    "@radix-ui/react-checkbox": "npm:^1.3.3"
+    "@radix-ui/react-dialog": "npm:^1.1.15"
+    "@radix-ui/react-dropdown-menu": "npm:^2.1.16"
+    "@radix-ui/react-label": "npm:^2.1.8"
+    "@radix-ui/react-popover": "npm:^1.1.15"
+    "@radix-ui/react-radio-group": "npm:^1.3.7"
+    "@radix-ui/react-select": "npm:^2.2.6"
+    "@radix-ui/react-separator": "npm:^1.1.8"
+    "@radix-ui/react-slider": "npm:^1.3.6"
+    "@radix-ui/react-slot": "npm:^1.2.4"
+    "@radix-ui/react-switch": "npm:^1.2.6"
+    "@radix-ui/react-tooltip": "npm:^1.2.8"
+    "@tailwindcss/forms": "npm:^0.5.10"
+    "@tailwindcss/typography": "npm:^0.5.19"
+    "@tanstack/react-table": "npm:^8.21.3"
+    "@tiptap/core": "npm:^3.17.1"
+    "@tiptap/extension-bold": "npm:^3.11.1"
+    "@tiptap/extension-collaboration": "npm:^3.22.2"
+    "@tiptap/extension-document": "npm:^3.11.1"
+    "@tiptap/extension-file-handler": "npm:^3.11.1"
+    "@tiptap/extension-highlight": "npm:^3.19.0"
+    "@tiptap/extension-image": "npm:^3.22.5"
+    "@tiptap/extension-italic": "npm:^3.11.1"
+    "@tiptap/extension-link": "npm:^3.22.5"
+    "@tiptap/extension-placeholder": "npm:^3.13.0"
+    "@tiptap/extension-table": "npm:^3.11.1"
+    "@tiptap/extension-typography": "npm:^3.19.0"
+    "@tiptap/extensions": "npm:^3.17.1"
+    "@tiptap/pm": "npm:^3.21.0"
+    "@tiptap/react": "npm:^3.15.3"
+    "@tiptap/starter-kit": "npm:^3.11.1"
+    "@tiptap/y-tiptap": "npm:^3.0.2"
+    axios: "npm:^1.18.1"
+    chrono-node: "npm:^2.9.1"
+    class-variance-authority: "npm:^0.7.1"
+    clsx: "npm:^2.1.1"
+    cmdk: "npm:^1.1.1"
+    date-fns: "npm:^4.4.0"
+    fuse.js: "npm:^7.1.0"
+    i18next: "npm:^26.3.4"
+    i18next-browser-languagedetector: "npm:^8.2.0"
+    katex: "npm:^0.16.44"
+    lucide-react: "npm:^0.575.0"
+    lucide-static: "npm:^0.575.0"
+    mathlive: "npm:0.108.3"
+    motion: "npm:^12.35.0"
+    nanoid: "npm:^5.1.16"
+    radix-ui: "npm:^1.4.3"
+    react-colorful: "npm:^5.6.1"
+    react-day-picker: "npm:^10.0.1"
+    react-hook-form: "npm:^7.71.2"
+    react-hot-toast: "npm:^2.6.0"
+    react-hotkeys-hook: "npm:^5.2.1"
+    react-i18next: "npm:^17.0.8"
+    react-image-crop: "npm:^11.0.10"
+    react-resizable-panels: "npm:^4.11.1"
+    tailwind-animate: "npm:^0.2.10"
+    tailwind-merge: "npm:^3.4.0"
+    tailwindcss-animate: "npm:^1.0.7"
+    tiptap-inline-comments: "npm:^1.2.0"
+    usehooks-ts: "npm:^3.1.1"
+    y-protocols: "npm:^1.0.7"
+    yjs: "npm:^13.6.30"
+    zustand: "npm:^5.0.11"
+  peerDependencies:
+    react: ">=18.0.0"
+    react-dom: ">=18.0.0"
+  checksum: 10c0/fae27fc0e26fee127f1e55580be65cf3b419375a7ee56811d85fb601a35a98d405add03eb0e943632df7065f5a1981db7156761c11c70a839284864ce028b331
+  languageName: node
+  linkType: hard
+
 "@floating-ui/core@npm:^1.7.5":
   version: 1.7.5
   resolution: "@floating-ui/core@npm:1.7.5"
@@ -513,12 +595,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hono/node-server@npm:^2.0.4":
-  version: 2.0.8
-  resolution: "@hono/node-server@npm:2.0.8"
+"@hono/node-server@npm:^2.0.10":
+  version: 2.0.12
+  resolution: "@hono/node-server@npm:2.0.12"
   peerDependencies:
     hono: ^4
-  checksum: 10c0/2284799e7ea8c3ea18dcd29fbc523792d7e42768f11dff8a937ce2e4ec965785552da4e9649354b00079243946bd9f65d23b8d9b923cef4984175e507398bb72
+  checksum: 10c0/c3f56e286ddf81394cab02f74391ebead7d601c1140f2bbcafe24e09b49ceb77519982965b0e069b0c2c9ad1840cba088ac67844a6c98b356f7eedf28801db0d
   languageName: node
   linkType: hard
 
@@ -2266,6 +2348,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tiptap/extension-bold@npm:^3.11.1":
+  version: 3.29.2
+  resolution: "@tiptap/extension-bold@npm:3.29.2"
+  peerDependencies:
+    "@tiptap/core": 3.29.2
+  checksum: 10c0/ceb6e63ea7cd9e9ee168dadb70aba34cdd76f4afec0def3b124353ad06da0fc16102f31aca06596f778ec819ef450c62363314ea775f60ba67e01c68daeaedc1
+  languageName: node
+  linkType: hard
+
 "@tiptap/extension-bold@npm:^3.27.3":
   version: 3.27.3
   resolution: "@tiptap/extension-bold@npm:3.27.3"
@@ -2419,6 +2510,15 @@ __metadata:
   peerDependencies:
     "@tiptap/core": 3.27.3
   checksum: 10c0/f08fc9c8fabd3775ced8d71c7f76215c6397fa4564c9747de3880f0b760184b7bcdec9122bfe26fa9bfdfa17f0eed76788acb0366c8fcbc83dd6f8269b28edd9
+  languageName: node
+  linkType: hard
+
+"@tiptap/extension-italic@npm:^3.11.1":
+  version: 3.29.2
+  resolution: "@tiptap/extension-italic@npm:3.29.2"
+  peerDependencies:
+    "@tiptap/core": 3.29.2
+  checksum: 10c0/afafddbc4c56343151d4ba6ed7211433050d0606bb9fa0502c25525b0841a5a209f68e646756f3ea0cf880a28eee45f3c4fbac7838062c6b0b891fe358ac7fda
   languageName: node
   linkType: hard
 
@@ -3451,10 +3551,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hono@npm:^4.12.25":
-  version: 4.12.28
-  resolution: "hono@npm:4.12.28"
-  checksum: 10c0/ae40349d1e2bbc3cd1f08083644287dc8cbdb9ca6ed8f1bcd5cd896a72763a79dd38a4153ef9bfb4102ae8f2203c36fa9033863f03431f9f52d21f4d720dbce5
+"hono@npm:^4.12.27":
+  version: 4.12.33
+  resolution: "hono@npm:4.12.33"
+  checksum: 10c0/519d7e40acd8dcf9015f2012d536e56fd4896909602264a2cbc590a480ba5418dd56f68051dd5e624f3fd383abe766aaa95b5399261e9ab298dff2471271f3da
   languageName: node
   linkType: hard
 
@@ -4893,21 +4993,6 @@ __metadata:
     string-width: "npm:^7.0.0"
     strip-ansi: "npm:^7.1.0"
   checksum: 10c0/3305839b9a0d6fb930cb63a52f34d3936013d8b0682ff3ec133c9826512620f213800ffa19ea22904876d5b7e9a3c1f40682f03597d986a4ca881fa7b033688c
-  languageName: node
-  linkType: hard
-
-"ws@npm:^8.21.0":
-  version: 8.21.0
-  resolution: "ws@npm:8.21.0"
-  peerDependencies:
-    bufferutil: ^4.0.1
-    utf-8-validate: ">=5.0.2"
-  peerDependenciesMeta:
-    bufferutil:
-      optional: true
-    utf-8-validate:
-      optional: true
-  checksum: 10c0/ef4a243476283fc49bc7550966c4af4aa0eef56273837211e700de3b664e08604a760cdddcb5ba43c049140e74ccfec5b0ee0bb439e08c2adf9138902fdde5f9
   languageName: node
   linkType: hard
 
