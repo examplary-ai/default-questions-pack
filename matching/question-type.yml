@@ -35,6 +35,10 @@ generation:
     Put the items in the right array in a different order than their matches in the left array, since printed sheets show both lists in this exact order and the
     answers should not be guessable from the item positions.
 
+    Don't add any items in `correctAnswer` that are not in the `left` and `right` arrays. Don't add any items in `left` or `right` that are not in `correctAnswer`. 
+
+    If you want to use math in the items, use <inline-math> tags, e.g. <inline-math>x^2 + 3x + 2</inline-math>. This ensures it will be displayed with the correct formatting.
+
 scanning:
   instructions: |
     The answer should be an array of strings, in the format of ["Apple = Red", "Banana = Yellow", "Grapes = Purple"].
