@@ -128,9 +128,9 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
       </div>
 
       {/* Notebook lines */}
-      <div className="divide-y divide-border">
+      <div>
         {lines.map((line, i) => (
-          <div key={i} className="flex items-center min-h-[2.5rem]">
+          <div key={i} className="flex items-center min-h-[2.5rem] border-b border-border">
             <div className="w-full">
               <MathLine
                 value={line}
@@ -152,7 +152,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
       </button>
 
       {/* Answer row */}
-      <div className="flex items-center gap-2 pl-4 border-t-2 border-border">
+      <div className="flex items-center gap-2 pl-4 border-t border-border">
         <span className="font-semibold text-sm shrink-0">{t("answer")}</span>
         <div className="flex-1">
           <MathLine value={finalAnswer} onChange={handleAnswerChange} />

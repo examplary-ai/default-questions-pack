@@ -1,0 +1,61 @@
+name: Generate previews
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**/question-type.yml"
+      - "**/preview.yml"
+      - "**/*.tsx"
+      - "**/icon.svg"
+      - ".github/scripts/**"
+      - ".github/workflows/previews.yml"
+      - "package.json"
+      - "yarn.lock"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: previews
+  cancel-in-progress: true
+
+jobs:
+  previews:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Install emoji fonts
+        run: sudo apt-get update && sudo apt-get install -y fonts-noto-color-emoji
+
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+
+      - name: Generate previews
+        run: node .github/scripts/generate-previews.mjs
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+
+      - name: Commit updated previews
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add '*/preview.png'
+          if git diff --cached --quiet; then
+            echo "No preview changes to commit"
+          else
+            git commit -m "chore: regenerate question type previews"
+            git push
+          fi

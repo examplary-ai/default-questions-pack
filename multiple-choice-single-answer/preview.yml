@@ -1,0 +1,12 @@
+question:
+  title: Capital of Australia
+  description: What is the capital city of Australia?
+  settings:
+    options:
+      - Sydney
+      - Canberra
+      - Melbourne
+      - Perth
+    correctAnswer: Canberra
+answer:
+  value: Canberra

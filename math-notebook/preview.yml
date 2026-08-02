@@ -1,0 +1,7 @@
+question:
+  title: Solve step by step
+  description: Solve <inline-math>2x + 3 = 7</inline-math>. Show every step of
+    your reasoning on a separate line, ending with the final answer.
+  settings:
+    initialLines: 4
+answer: {}

@@ -1,0 +1,16 @@
+question:
+  title: Noble gases
+  description: Which of the following elements are noble gases? Select all that apply.
+  settings:
+    options:
+      - Helium
+      - Oxygen
+      - Neon
+      - Nitrogen
+    correctAnswer:
+      - Helium
+      - Neon
+answer:
+  value:
+    - Helium
+    - Neon

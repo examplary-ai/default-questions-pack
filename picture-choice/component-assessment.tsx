@@ -22,11 +22,11 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
               <img
                 src={option}
                 alt={`Option ${index + 1}`}
-                className="w-full max-w-sm max-h-64 object-contain rounded border-2 transition"
+                className="w-full max-w-sm max-h-64 object-contain rounded border border-border transition"
               />
               <RadioGroupItem
                 value={option}
-                className="absolute top-2 left-2 bg-white/90 border-2"
+                className="absolute top-2 left-2 bg-white/90"
               />
             </div>
           </label>

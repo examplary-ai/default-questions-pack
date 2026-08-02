@@ -1,0 +1,6 @@
+question:
+  title: Solve for x
+  description: Solve the equation <inline-math>2x + 3 = 7</inline-math> and enter
+    your final answer as a formula.
+  settings: {}
+answer: {}

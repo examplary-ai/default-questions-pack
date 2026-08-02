@@ -1,0 +1,7 @@
+question:
+  title: Start of the French Revolution
+  description: In which year did the French Revolution begin?
+  settings:
+    dateType: year
+    correctAnswer: "1789"
+answer: {}

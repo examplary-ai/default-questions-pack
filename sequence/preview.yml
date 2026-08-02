@@ -1,0 +1,17 @@
+question:
+  title: Order the events
+  description: Arrange these historical events in chronological order.
+  settings:
+    options:
+      - Fall of the Western Roman Empire
+      - The Crusades
+      - The Renaissance
+      - The French Revolution
+      - World War I
+answer:
+  value:
+    - Fall of the Western Roman Empire
+    - The Crusades
+    - The Renaissance
+    - The French Revolution
+    - World War I

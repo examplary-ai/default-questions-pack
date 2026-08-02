@@ -1,0 +1,7 @@
+question:
+  title: The Great Wall of China
+  description: The Great Wall of China is visible from space with the naked eye.
+  settings:
+    correctAnswer: "false"
+answer:
+  value: "false"

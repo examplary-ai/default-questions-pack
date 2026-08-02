@@ -1,0 +1,23 @@
+question:
+  title: Match the fruit to its colour
+  description: Connect each fruit on the left with its colour on the right.
+  settings:
+    left:
+      - Apple
+      - Banana
+      - Grapes
+    right:
+      - Yellow
+      - Purple
+      - Red
+    correctAnswer:
+      - Apple = Red
+      - Banana = Yellow
+      - Grapes = Purple
+    layout: vertical
+    shuffle: false
+answer:
+  value:
+    - Apple = Red
+    - Banana = Yellow
+    - Grapes = Purple

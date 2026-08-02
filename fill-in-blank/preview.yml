@@ -1,0 +1,12 @@
+question:
+  title: European capitals
+  description: Fill in the missing capitals.
+  settings:
+    text: The capital of France is ___ and the capital of Spain is ___.
+    correctAnswer:
+      - Paris
+      - Madrid
+answer:
+  value:
+    - Paris
+    - Madrid

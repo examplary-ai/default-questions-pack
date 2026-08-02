@@ -1,0 +1,14 @@
+question:
+  title: The Industrial Revolution
+  description: Write an essay about the social impact of the Industrial Revolution
+    on working-class families in Europe. Use headings to structure your answer.
+  settings:
+    minWords: 150
+    maxWords: 600
+answer:
+  value: <h2>A changing society</h2><p>The Industrial Revolution transformed
+    European society in profound ways. Families that had worked the land for
+    generations moved into rapidly growing cities, where factory work replaced
+    agricultural labour.</p><p>Working conditions were often harsh, and child
+    labour was common until reforms in the late nineteenth century began to
+    improve daily life.</p>

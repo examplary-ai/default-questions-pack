@@ -1,0 +1,7 @@
+question:
+  title: Read aloud
+  description: "Read the following passage aloud, paying attention to
+    pronunciation: “The quick brown fox jumps over the lazy dog.”"
+  settings:
+    maxDurationSeconds: 120
+answer: {}

@@ -1,0 +1,7 @@
+question:
+  title: Chemical symbols
+  description: What is the chemical symbol for gold?
+  settings:
+    maxLength: 10
+answer:
+  value: Au

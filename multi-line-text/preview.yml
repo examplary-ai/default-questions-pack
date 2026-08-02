@@ -1,0 +1,8 @@
+question:
+  title: The water cycle
+  description: Describe the main stages of the water cycle in a few sentences.
+  settings: {}
+answer:
+  value: Water evaporates from oceans and lakes, condenses into clouds, and falls
+    back to the surface as precipitation. It then flows back to the sea through
+    rivers and groundwater, completing the cycle.

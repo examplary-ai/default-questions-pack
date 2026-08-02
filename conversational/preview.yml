@@ -1,0 +1,10 @@
+question:
+  title: "Class discussion: photosynthesis"
+  description: Discuss with the AI tutor what role sunlight plays in
+    photosynthesis. Explain your reasoning in your own words.
+  settings:
+    conversationalPrompt: You are a friendly biology tutor. Ask the student about
+      the role of sunlight in photosynthesis and probe their understanding.
+    maxTurns: 10
+    aiStarts: false
+answer: {}
