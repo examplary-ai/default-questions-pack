@@ -6,11 +6,11 @@ const ResultsComponent: FrontendResultsComponent = ({ question, answer }) => {
   const text = question.settings.text || "";
   const value = (answer?.value as string[]) || [];
 
-  const places = text.split("___");
+  const places = text?.split("___");
 
   return (
     <div>
-      {places.map((place, index) => (
+      {places?.map?.((place, index) => (
         <span key={index}>
           {index > 0 && (
             <span className="p-1 px-2 bg-accent rounded-lg font-medium">

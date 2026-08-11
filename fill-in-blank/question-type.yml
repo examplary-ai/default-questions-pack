@@ -34,6 +34,9 @@ scanning:
     Make sure to return only the array of strings as the answer, without any additional text or formatting.
     We're doing exact value matching for the blanks, so each entry in the answer array should exactly be only the blank's value.
 
+    Example: If the `text` setting is "The capital of France is ___ and the capital of Spain is ___", and the student has 
+    written "The capital of France is Paris and the capital of Spain is Madrid", then the answer value should be ["Paris", "Madrid"].
+
 timeEstimateMinutes: 2
 hasSimpleScoring: true
 
