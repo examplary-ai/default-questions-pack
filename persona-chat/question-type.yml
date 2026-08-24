@@ -73,6 +73,7 @@ settings:
       behaves. Must be one of the option values below.
     type: enum
     default: knowledge-examiner
+    hidden: true
     # Keep in sync with personas.ts
     options:
       - value: knowledge-examiner
@@ -188,13 +189,13 @@ settings:
     hidden: true
     required: true
 
-  - id: instructionsImproved
+  - id: instructionsAiUsed
     name:
-      en: Instructions improved with AI
-      nl: Instructies verbeterd met AI
+      en: Instructions written with AI
+      nl: Instructies met AI geschreven
     description: |
-      Internal flag set when the teacher has used the "Improve with AI" button on the instructions. Do not set this
-      when generating a question.
+      Internal flag set when the teacher has used the AI button on the instructions field. Do not set this when
+      generating a question.
     type: boolean
     hidden: true
     default: false
@@ -240,6 +241,9 @@ translations:
   instructions-help:
     en: Describe both the scenario and when the conversation is complete. The student never sees this.
     nl: Beschrijf zowel het scenario als wanneer het gesprek voltooid is. De leerling ziet dit nooit.
+  ai-generate:
+    en: Generate with AI
+    nl: Genereer met AI
   ai-improve:
     en: Improve with AI
     nl: Verbeter met AI
@@ -256,8 +260,8 @@ translations:
     en: Send
     nl: Verzenden
   completed:
-    en: Conversation completed
-    nl: Gesprek voltooid
+    en: Conversation completed!
+    nl: Gesprek voltooid!
   reasoning:
     en: Reasoning
     nl: Redenering

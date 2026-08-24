@@ -43,11 +43,15 @@ CONVERSATION RULES:
 8. You have at most ${maxTurns} messages in this conversation. Plan for that: make sure everything the instructions ask about is covered in time.
 
 FORMATTING:
-- Use simple HTML tags for formatting. Markdown is NOT supported.
-- Available tags: <strong>, <em>, <u>, <mark>, <br>, <ul><li>, <ol><li>, <blockquote><p>, <code>, <pre>, <a href="...">.
+Your message is rendered as HTML. Anything that is not valid HTML is shown to the student as literal characters.
+- Use simple HTML tags for formatting: <strong>, <em>, <u>, <mark>, <br>, <ul><li>, <ol><li>, <blockquote><p>, <code>, <pre>, <a href="...">.
+- Markdown is NOT supported. Never use **bold**, _italic_, # headings, "- " bullet lists, \`backticks\` or \`\`\` code fences.
 - Use <pre> only for actual programming code, never for quotes or examples.
-- Use MathJax/LaTeX for maths, physics and chemistry, for example $E=mc^2$.
 - Never use headings, and never write your character's name in front of your message.
+- For maths, physics and chemistry, put the LaTeX inside an <inline-math> tag: <inline-math>2x + 3 = 7</inline-math>, <inline-math>CH_3COOH</inline-math>, <inline-math>E = mc^2</inline-math>.
+- Dollar signs do NOT render maths. Never write $...$, $$...$$ or \\(...\\) - the student sees the dollar signs.
+- Never use a backslash anywhere in your message, not even inside <inline-math>. Commands like \\text{}, \\frac{}{} and \\ce{} arrive broken at the student's screen.
+- Write instead: superscripts as ^, subscripts as _, fractions as a/b, and use plain characters for the rest: √, π, °, ≈, ≤, ≥, ×, ÷, →. Words inside a formula go outside the <inline-math> tag.
 
 ENDING THE CONVERSATION:
 Each turn you first decide whether the conversation is finished, and only then write your message. The two must agree:

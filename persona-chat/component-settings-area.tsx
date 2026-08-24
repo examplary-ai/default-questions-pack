@@ -14,13 +14,10 @@ import {
 
 import { defaultPersonaId, localized, personas } from "./personas";
 import {
-  improveInstructionsMessages,
-  improveInstructionsSchema,
-  stripHtml,
+  instructionsAiMode,
+  instructionsMessages,
+  instructionsSchema,
 } from "./shared";
-
-// Below this, there is not enough of a draft for the AI to build on
-const minimumDraftLength = 20;
 
 const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
   api,
@@ -37,29 +34,29 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
   const instructions = settings?.instructions || "";
   const generate = (api as any).ai?.generate;
 
-  // The button is a one-shot helper for teachers writing their own
-  // instructions: it disappears once it has been used, and it never shows up
-  // for questions the AI wrote itself (those already have full instructions)
-  const canImprove =
-    !!generate &&
-    !settings?.instructionsImproved &&
-    !question?.traceId &&
-    stripHtml(instructions).length >= minimumDraftLength;
+  // A one-shot helper for teachers writing their own instructions: it writes a
+  // first version from the title and description, or finishes the draft they
+  // started. It disappears once it has been used, and it never shows up for
+  // questions the AI wrote itself (those already have full instructions)
+  const mode =
+    generate && !settings?.instructionsAiUsed && !question?.traceIds?.length
+      ? instructionsAiMode(question, settings)
+      : null;
 
-  const improveWithAi = async () => {
-    if (!canImprove || aiBusy) return;
+  const writeWithAi = async () => {
+    if (!mode || aiBusy) return;
 
     setAiBusy(true);
     try {
       const result = await generate({
-        messages: improveInstructionsMessages(question, settings, language),
-        schema: improveInstructionsSchema,
+        messages: instructionsMessages(question, settings, mode, language),
+        schema: instructionsSchema,
       });
 
       if (result?.instructions) {
         setMultipleSettings({
           instructions: result.instructions,
-          instructionsImproved: true,
+          instructionsAiUsed: true,
         });
       }
     } finally {
@@ -96,7 +93,7 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
           <label className="block font-semibold font-heading">
             {t("instructions-label")}
           </label>
-          {canImprove && (
+          {mode && (
             <Button
               size="sm"
               variant="secondary"
@@ -104,11 +101,13 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
                 "py-1 pr-2 pl-1.5 text-xs h-auto bg-fuchsia-100 text-fuchsia-700 hover:bg-fuchsia-200",
                 aiBusy && "bg-fuchsia-200 animate-pulse",
               )}
-              onClick={improveWithAi}
+              onClick={writeWithAi}
               disabled={aiBusy}
             >
               <AiIcon className="size-3.5" />
-              {aiBusy ? t("ai-working") : t("ai-improve")}
+              {aiBusy
+                ? t("ai-working")
+                : t(mode === "generate" ? "ai-generate" : "ai-improve")}
             </Button>
           )}
         </div>

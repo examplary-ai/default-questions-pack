@@ -30,7 +30,9 @@ The instructions field does two jobs, and it needs to do both:
 1. **The scenario** - the situation, the subject matter, and what the character should get the student to do.
 2. **The completion criteria** - what the student has to have demonstrated before the conversation may end. A `<ul>` list of concrete, checkable criteria works best.
 
-Keep the criteria achievable within the message budget: roughly one criterion per two messages. If you have started writing and want help finishing, use the **Improve with AI** button next to the field - it completes your draft into a full scenario plus criteria, in your own words and language.
+Keep the criteria achievable within the message budget: roughly one criterion per two messages.
+
+The AI button next to the field helps either way. With the field still empty and a title and description filled in, it says **Generate with AI** and writes a first version from those. Once you have started writing yourself, it says **Improve with AI** and completes your draft into a full scenario plus criteria, in your own words and language. It is a one-shot helper: after you have used it, the field is yours to edit.
 
 ## Grading
 
