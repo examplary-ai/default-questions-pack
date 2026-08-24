@@ -183,6 +183,7 @@ const RightSlot = ({ children, id, value, reviewMode, correctAnswer }) => {
   return (
     <div
       ref={setNodeRef}
+      data-type="matching-right-slot"
       className={cn(
         "flex-1 w-full rounded-3xl min-h-10 min-w-16 flex-shrink-0",
         "[&>button]:w-full [&>button]:flex-1 relative",
@@ -214,6 +215,7 @@ const RightItem = ({ children, id, className = "" }) => {
   return (
     <button
       ref={setNodeRef}
+      data-type="matching-value"
       className={cn(
         "bg-accent px-4 min-h-10 rounded-3xl border border-border text-left cursor-move text-sm",
         isDragging && "shadow-xl",
