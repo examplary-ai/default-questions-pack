@@ -1,9 +1,6 @@
-import {
-  cn,
-  FrontendAssessmentComponent,
-  Input,
-  RichTextDisplay,
-} from "@examplary/ui";
+import { cn, FrontendAssessmentComponent, Input } from "@examplary/ui";
+
+import { BlankText, countBlanks } from "./shared";
 
 const AssessmentComponent: FrontendAssessmentComponent = ({
   question,
@@ -13,9 +10,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
 }) => {
   const text = question.settings.text || "";
   const value = (answer?.value as string[]) || [];
-
-  const places = text.split("___");
-  const blankCount = places.length - 1;
+  const blankCount = countBlanks(text);
 
   const setValue = (index: number, newValue: string) => {
     // Build the array from the blank count rather than from the existing
@@ -33,11 +28,10 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
     });
   };
 
-  const output = [];
-  let index = 0;
-  for (const place of places) {
-    if (output.length) {
-      output.push(
+  return (
+    <BlankText
+      text={text}
+      renderBlank={(index) => (
         <Input
           className={cn(
             "w-48 px-1.5 py-0 m-0.5 rounded-lg h-8 inline-flex mx-1",
@@ -48,20 +42,11 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
           placeholder={
             reviewMode ? question.settings.correctAnswer?.[index] : undefined
           }
-          onChange={(event) =>
-            setValue(
-              Number(event.currentTarget.dataset.index),
-              event.currentTarget.value,
-            )
-          }
-        />,
-      );
-      index++;
-    }
-    output.push(<RichTextDisplay as="span">{place}</RichTextDisplay>);
-  }
-
-  return output;
+          onChange={(event) => setValue(index, event.currentTarget.value)}
+        />
+      )}
+    />
+  );
 };
 
 export default AssessmentComponent;
