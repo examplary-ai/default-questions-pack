@@ -17,11 +17,11 @@ import {
 import { useMemo } from "react";
 
 import {
+  assignPairsToSlots,
   findLabel,
   getMatchingData,
   joinPair,
   orderOptions,
-  pairPrefix,
   type MatchingOption,
 } from "./shared";
 
@@ -61,13 +61,11 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   const placements: Record<number, string> = useMemo(() => {
     const map: Record<number, string> = {};
     const answers = (answer?.value as string[]) || [];
-    leftItems.forEach((leftItem, slotIndex) => {
-      const prefix = pairPrefix(leftItem.value);
-      const match = answers.find((ans) => ans.startsWith(prefix));
-      if (!match) return;
+    assignPairsToSlots(leftItems, answers).forEach((value, slotIndex) => {
+      if (value === undefined) return;
       const placed = Object.values(map);
       const option = rightOptions.find(
-        (opt) => opt.value === match.slice(prefix.length) && !placed.includes(opt.id),
+        (opt) => opt.value === value && !placed.includes(opt.id),
       );
       if (option) map[slotIndex] = option.id;
     });
@@ -79,10 +77,16 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
     (opt) => !placedIds.includes(opt.id),
   );
 
-  const correctLabelFor = (leftItem: MatchingOption) => {
-    const prefix = pairPrefix(leftItem.value);
-    const pair = correctAnswer.find((p) => p.startsWith(prefix));
-    return pair && findLabel(right, pair.slice(prefix.length));
+  // The correct value per slot, resolved the same way as the answer so that
+  // duplicate left items each show their own match in review mode
+  const correctValues = useMemo(
+    () => assignPairsToSlots(leftItems, correctAnswer),
+    [leftItems, correctAnswer],
+  );
+
+  const correctLabelFor = (slotIndex: number) => {
+    const value = correctValues[slotIndex];
+    return value === undefined ? undefined : findLabel(right, value);
   };
 
   const sensors = useSensors(
@@ -144,7 +148,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
                 id={index}
                 value={placedOption?.label || ""}
                 reviewMode={reviewMode}
-                correctAnswer={correctLabelFor(leftItem)}
+                correctAnswer={correctLabelFor(index)}
               >
                 {placedOption && (
                   <RightItem id={placedOption.id} key={placedOption.id}>

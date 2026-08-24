@@ -84,6 +84,28 @@ export const getMatchingData = (
   };
 };
 
+// Resolves the right-hand value shown in each left-hand slot. Left items may
+// repeat, so pairs are consumed as they are assigned: the Nth slot with a
+// given left value takes the Nth pair for that value, rather than every
+// duplicate slot resolving to the same first pair.
+export const assignPairsToSlots = (
+  leftItems: { value: string }[],
+  pairs: string[],
+): (string | undefined)[] => {
+  const leftValues = leftItems.map(({ value }) => value);
+  const resolved = pairs.map((pair) => splitPair(pair, leftValues));
+  const used = new Set<number>();
+
+  return leftItems.map(({ value }) => {
+    const index = resolved.findIndex(
+      (item, i) => !used.has(i) && item.left === value,
+    );
+    if (index === -1) return undefined;
+    used.add(index);
+    return resolved[index].right;
+  });
+};
+
 export const findLabel = (options: MatchingOption[], value: string) =>
   options.find((option) => option.value === value)?.label ??
   unescapeLegacy(value);

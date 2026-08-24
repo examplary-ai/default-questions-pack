@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  assignPairsToSlots,
   findLabel,
   getMatchingData,
   joinPair,
@@ -138,5 +139,51 @@ describe("orderOptions", () => {
     const input = [...options];
     orderOptions(input, false);
     expect(input).toEqual(options);
+  });
+});
+
+describe("assignPairsToSlots", () => {
+  const slots = (...values: string[]) => values.map((value) => ({ value }));
+
+  it("resolves the right-hand value for each slot", () => {
+    expect(
+      assignPairsToSlots(slots("Apple", "Banana"), [
+        "Banana = Yellow",
+        "Apple = Red",
+      ]),
+    ).toEqual(["Red", "Yellow"]);
+  });
+
+  it("gives duplicate left items a pair each, in slot order", () => {
+    expect(
+      assignPairsToSlots(slots("Apple", "Apple", "Banana"), [
+        "Apple = Red",
+        "Apple = Green",
+        "Banana = Yellow",
+      ]),
+    ).toEqual(["Red", "Green", "Yellow"]);
+  });
+
+  it("leaves slots without a pair undefined", () => {
+    expect(
+      assignPairsToSlots(slots("Apple", "Apple"), ["Apple = Red"]),
+    ).toEqual(["Red", undefined]);
+  });
+
+  it("keeps duplicate right-hand values on separate slots", () => {
+    expect(
+      assignPairsToSlots(slots("Apple", "Banana"), [
+        "Apple = Red",
+        "Banana = Red",
+      ]),
+    ).toEqual(["Red", "Red"]);
+  });
+
+  it("prefers an exact match for left items containing ` = `", () => {
+    expect(assignPairsToSlots(slots("a = b"), ["a = b = c"])).toEqual(["c"]);
+  });
+
+  it("handles an empty pair list", () => {
+    expect(assignPairsToSlots(slots("Apple"), [])).toEqual([undefined]);
   });
 });

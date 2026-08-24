@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { dragOnto } from "../.tests/dnd";
+import { dragOnto, dragToNowhere } from "../.tests/dnd";
 import { renderAssessment } from "../.tests/render-assessment";
 
 // vi.mock is hoisted above the imports, so the factory has to pull the
@@ -26,6 +26,16 @@ const placed = () =>
   rows().map((row) => row.querySelector<HTMLElement>('[data-type="matching-right-slot"]')?.textContent ?? "");
 
 const stems = () => rows().map((row) => row.children[0].textContent);
+
+/** The correct-answer hint shown in each empty slot during review mode */
+const hints = () =>
+  rows().map(
+    (row) =>
+      row
+        .querySelector('[data-type="matching-right-slot"]')
+        ?.querySelector(':scope > :not([data-type="matching-value"])')
+        ?.textContent ?? "",
+  );
 
 /** Labels of the options still sitting in the tray */
 const available = () =>
@@ -70,6 +80,32 @@ describe("duplicate right-hand values", () => {
     expect(available()).toEqual(["Yellow"]);
   });
 
+  it("moves a placed duplicate to another slot without cloning it", () => {
+    const harness = renderAssessment(AssessmentComponent, {
+      settings,
+      answer: { value: ["Apple = Red"] },
+    });
+
+    dragOnto(option(0), 1);
+
+    expect(placed()).toEqual(["", "Red", ""]);
+    expect(available()).toEqual(["Red", "Yellow"]);
+    expect(harness.lastSaved()?.value).toEqual(["Banana = Red"]);
+  });
+
+  it("returns one copy to the tray while the other stays placed", () => {
+    const harness = renderAssessment(AssessmentComponent, {
+      settings,
+      answer: { value: ["Apple = Red", "Banana = Red"] },
+    });
+
+    dragToNowhere(option(0)); // the copy sitting on Apple
+
+    expect(placed()).toEqual(["", "Red", ""]);
+    expect(available()).toEqual(["Red", "Yellow"]);
+    expect(harness.lastSaved()?.value).toEqual(["Banana = Red"]);
+  });
+
   it("completes once every slot is filled", () => {
     const harness = renderAssessment(AssessmentComponent, { settings });
 
@@ -110,6 +146,12 @@ describe("duplicate left-hand stems", () => {
       "Apple = Red",
       "Apple = Green",
     ]);
+  });
+
+  it("shows each stem its own correct value in review mode", () => {
+    renderAssessment(AssessmentComponent, { settings, reviewMode: true });
+
+    expect(hints()).toEqual(["Red", "Green", "Yellow"]);
   });
 
   it("restores an answer that fills both duplicate stems", () => {
