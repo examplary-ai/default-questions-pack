@@ -81,19 +81,24 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
     }
 
     let response;
-    if ("ai" in api) {
-      // Use new AI API
-      response = await api.ai.generate({ messages, schema });
-    } else {
-      // Or fall back to legacy API
-      // TODO: remove after June 2026
-      const { data } = await (api as any).post(`/public/exams/conversation`, {
-        chat: messages,
-      });
-      response = data;
+    try {
+      if ((api as any).ai?.generate) {
+        // Use new AI API
+        response = await (api as any).ai.generate({ messages, schema });
+      } else {
+        // Or fall back to legacy API
+        // TODO: remove after June 2026
+        const { data } = await (api as any).post(`/public/exams/conversation`, {
+          chat: messages,
+        });
+        response = data;
+      }
+    } catch (error) {
+      console.error(error);
+      return;
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
 
     response = resolveTurn(response, { priorAssistantTurns, maxTurns });
 
