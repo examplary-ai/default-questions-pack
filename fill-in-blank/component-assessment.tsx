@@ -15,15 +15,21 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
   const value = (answer?.value as string[]) || [];
 
   const places = text.split("___");
+  const blankCount = places.length - 1;
 
   const setValue = (index: number, newValue: string) => {
-    const newAnswer = [...value];
+    // Build the array from the blank count rather than from the existing
+    // answer: skipping a blank would otherwise leave a hole, which serialises
+    // to null and makes responseProcessing error out on it
+    const newAnswer = Array.from(
+      { length: blankCount },
+      (_, i) => value[i] ?? "",
+    );
     newAnswer[index] = newValue;
     saveAnswer({
       value: newAnswer,
       completed:
-        newAnswer.filter((v) => v && v.trim().length > 0).length >=
-        places.length - 1,
+        newAnswer.filter((v) => v && v.trim().length > 0).length >= blankCount,
     });
   };
 
