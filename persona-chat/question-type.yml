@@ -1,0 +1,273 @@
+# yaml-language-server: $schema=https://schemas.examplary.ai/question-type.json
+
+id: examplary.default.persona-chat
+public: true
+isDefault: true
+
+name:
+  en: Persona chat
+  nl: Personagesprek
+description:
+  en: Let the AI play a character - tutor, customer, debater - and hold a conversation with the student.
+  nl: Laat de AI een personage spelen - docent, klant, debater - en een gesprek voeren met de leerling.
+
+icon: ./icon.svg
+components:
+  assessment: ./component-assessment.tsx
+  print: ./component-print.tsx
+  settings-area: ./component-settings-area.tsx
+  results: ./component-results.tsx
+
+isAi: true
+generation:
+  enabled: true
+  instructions: |
+    This question type has the AI play a character (the persona) that holds a chat conversation with the student. The
+    full transcript is graded afterwards.
+
+    Pick the `persona` that fits the assignment. Only use one of the ids listed in the persona setting below; when in
+    doubt use `knowledge-examiner`.
+
+    Write `instructions` as HTML, in the language of the exam. The instructions are read by the AI character, never by
+    the student, and must always contain both of these:
+    1. The scenario: the situation, the subject matter and what the character should get the student to do.
+    2. The completion criteria: what the student has to have demonstrated before the conversation may be ended. Write
+       these as a `<ul>` list of concrete, checkable criteria.
+
+    Do not repeat the persona description in the instructions - the persona already defines how the character behaves.
+    Do not write example dialogue. Keep the criteria achievable within the `maxTurns` message budget (roughly one
+    criterion per two messages).
+
+    Put the assignment for the student in the question title and description instead; the student sees those, and they
+    should not give away the completion criteria.
+
+grading:
+  enabled: true
+  instructions: |
+    The answer value is the transcript of the conversation as HTML: one `<div>` per message, each starting with either
+    `<b>student:</b>` or `<b>assistant:</b>`. The `assistant` messages are the AI character, the `student` messages are
+    the candidate. `answer.context.chat` holds the same conversation as structured messages, including the AI's own
+    reasoning per turn.
+
+    Only grade the student's messages, against the completion criteria in the `instructions` setting and the question's
+    scoring criteria. Judge the substance of what the student demonstrated, not their typing, spelling or chat style,
+    unless the criteria explicitly say otherwise.
+
+    Take the course of the conversation into account: an answer that only came after heavy prompting by the character
+    is worth less than one the student gave unprompted. If the conversation ended because the message limit was
+    reached (the last AI message has `completionReason: maxTurns`), grade only what was actually covered and do not
+    penalise the student for criteria the conversation never got to.
+
+isPreviewRefreshable: true
+timeEstimateMinutes: 10
+
+index: 1
+
+settings:
+  - id: persona
+    name:
+      en: Persona
+      nl: Personage
+    description: |
+      The character the AI plays in the conversation. Each persona carries its own system prompt describing how it
+      behaves. Must be one of the option values below.
+    type: enum
+    default: knowledge-examiner
+    hidden: true
+    # Keep in sync with personas.ts
+    options:
+      - value: knowledge-examiner
+        label:
+          en: "Knowledge examiner"
+          nl: "Kennisexaminator"
+      - value: socratic-tutor
+        label:
+          en: "Socratic tutor"
+          nl: "Socratische gespreksleider"
+      - value: language-tutor
+        label:
+          en: "Language tutor"
+          nl: "Taaldocent"
+      - value: conversation-partner
+        label:
+          en: "Native conversation partner"
+          nl: "Moedertaalspreker"
+      - value: math-tutor
+        label:
+          en: "Math tutor"
+          nl: "Wiskundedocent"
+      - value: debater
+        label:
+          en: "Debater"
+          nl: "Debater"
+      - value: devils-advocate
+        label:
+          en: "Devil's advocate"
+          nl: "Advocaat van de duivel"
+      - value: curious-novice
+        label:
+          en: "Curious novice"
+          nl: "Nieuwsgierige leek"
+      - value: quiz-master
+        label:
+          en: "Quiz master"
+          nl: "Quizmaster"
+      - value: job-interviewer
+        label:
+          en: "Job interviewer"
+          nl: "Recruiter (sollicitatiegesprek)"
+      - value: customer
+        label:
+          en: "Customer"
+          nl: "Klant"
+      - value: client-briefing
+        label:
+          en: "Client with a brief"
+          nl: "Opdrachtgever"
+      - value: patient
+        label:
+          en: "Patient"
+          nl: "Patiënt"
+      - value: social-work-client
+        label:
+          en: "Social work client"
+          nl: "Cliënt (sociaal werk)"
+      - value: helpdesk-caller
+        label:
+          en: "Helpdesk caller"
+          nl: "Helpdeskbeller"
+      - value: historical-figure
+        label:
+          en: "Historical figure"
+          nl: "Historisch figuur"
+      - value: journalist
+        label:
+          en: "Journalist"
+          nl: "Journalist"
+      - value: lab-partner
+        label:
+          en: "Lab partner"
+          nl: "Practicumpartner"
+      - value: code-reviewer
+        label:
+          en: "Code reviewer"
+          nl: "Codereviewer"
+      - value: philosopher
+        label:
+          en: "Philosophical dialogue partner"
+          nl: "Filosofische gesprekspartner"
+      - value: case-examiner
+        label:
+          en: "Case examiner"
+          nl: "Casusexaminator"
+      - value: investor
+        label:
+          en: "Investor"
+          nl: "Investeerder"
+      - value: writing-coach
+        label:
+          en: "Writing coach"
+          nl: "Schrijfcoach"
+      - value: story-partner
+        label:
+          en: "Story partner"
+          nl: "Verhaalpartner"
+      - value: municipal-official
+        label:
+          en: "Municipal official"
+          nl: "Ambtenaar (gemeenteloket)"
+
+  - id: instructions
+    name:
+      en: Instructions
+      nl: Instructies
+    description: |
+      Instructions for the AI character, as HTML. Must describe both the scenario (the situation, the topic and what
+      the character should get the student to do) and the completion criteria (what the student has to have shown
+      before the conversation may end, as a <ul> list). Never shown to the student.
+    type: string
+    hidden: true
+    required: true
+
+  - id: instructionsAiUsed
+    name:
+      en: Instructions written with AI
+      nl: Instructies met AI geschreven
+    description: |
+      Internal flag set when the teacher has used the AI button on the instructions field. Do not set this when
+      generating a question.
+    type: boolean
+    hidden: true
+    default: false
+
+  - id: aiStarts
+    name:
+      en: AI starts conversation
+      nl: AI start gesprek
+    type: boolean
+    default: false
+
+  - id: maxTurns
+    name:
+      en: Maximum number of responses
+      nl: Maximaal aantal antwoorden
+    description: |
+      The maximum number of messages the AI character may send. The conversation always ends with the AI's closing
+      message once this budget is used up.
+    type: number
+    default: 10
+    max: 20
+    min: 2
+
+translations:
+  empty-answer:
+    en: Empty answer
+    nl: Leeg antwoord
+  persona-label:
+    en: Persona
+    nl: Personage
+  persona-placeholder:
+    en: Choose a persona
+    nl: Kies een personage
+  persona-help:
+    en: The character the AI plays in the conversation.
+    nl: Het personage dat de AI speelt in het gesprek.
+  instructions-label:
+    en: Instructions
+    nl: Instructies
+  instructions-placeholder:
+    en: "Describe the scenario and when the conversation is complete. For example: 'Discuss the role of sunlight in photosynthesis. The conversation is complete once the student has explained the role of chlorophyll and named the reaction products.'"
+    nl: "Beschrijf het scenario en wanneer het gesprek voltooid is. Bijvoorbeeld: 'Bespreek de rol van zonlicht bij fotosynthese. Het gesprek is voltooid zodra de leerling de rol van bladgroen heeft uitgelegd en de reactieproducten heeft benoemd.'"
+  instructions-help:
+    en: Describe both the scenario and when the conversation is complete. The student never sees this.
+    nl: Beschrijf zowel het scenario als wanneer het gesprek voltooid is. De leerling ziet dit nooit.
+  ai-generate:
+    en: Generate with AI
+    nl: Genereer met AI
+  ai-improve:
+    en: Improve with AI
+    nl: Verbeter met AI
+  ai-working:
+    en: Working...
+    nl: Bezig...
+  start-placeholder:
+    en: Start the conversation...
+    nl: Begin het gesprek...
+  response-placeholder:
+    en: Type your response here...
+    nl: Typ hier je antwoord...
+  send:
+    en: Send
+    nl: Verzenden
+  completed:
+    en: Conversation completed!
+    nl: Gesprek voltooid!
+  reasoning:
+    en: Reasoning
+    nl: Redenering
+  completion-reasoning:
+    en: Completion reason
+    nl: Voltooiingsreden
+  error-no-api:
+    en: The API is not available, so we can't start the question.
+    nl: De API is niet beschikbaar, dus we kunnen de vraag niet starten.
