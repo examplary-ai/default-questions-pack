@@ -47,6 +47,7 @@ jobs:
             # Bundle and upload to Examplary
             cd $dir
             npx @examplary/cli@latest upload --host https://api-staging.examplary.ai
+            sleep 20
             cd ..
           done
 
@@ -60,5 +61,6 @@ jobs:
             # Bundle and upload to Examplary
             cd $dir
             npx @examplary/cli@latest upload
+            sleep 20
             cd ..
           done
