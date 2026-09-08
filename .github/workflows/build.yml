@@ -48,8 +48,6 @@ jobs:
             cd $dir
             npx @examplary/cli@latest upload --host https://api-staging.examplary.ai
             cd ..
-            
-            sleep 20
           done
 
           # Upload each question type to Examplary production
@@ -63,6 +61,4 @@ jobs:
             cd $dir
             npx @examplary/cli@latest upload
             cd ..
-            
-            sleep 20
           done
