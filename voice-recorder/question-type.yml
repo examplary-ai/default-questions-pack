@@ -23,6 +23,13 @@ generation:
 
     Settings may include maxDurationSeconds, the maximum recording length in seconds. Keep it reasonable for the task. Use 60-120 seconds for short spoken answers and up to 300 seconds for longer oral explanations.
 
+grading:
+  enabled: true
+  instructions: |
+    The answer value is an array of `[url, name, mimeType, durationSeconds]` for the recording the student made. The audio file itself is attached to the end of this prompt, so listen to it and grade what the student actually said.
+    Grade on the content of the spoken answer. Only weigh delivery, pronunciation or fluency when the question asks for it. Ignore recording artefacts such as background noise or a slow start, and do not penalise the student for them.
+  fileInputs: "=answer.value[0]"
+
 timeEstimateMinutes: 5
 
 settings:

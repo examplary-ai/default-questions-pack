@@ -21,7 +21,8 @@ generation:
 grading:
   enabled: true
   instructions: |
-    Look at the file uploaded, by following the link.
+    The answer value is an array of `[url, name]` for the file the student uploaded. The file itself is attached to the end of this prompt, so grade its contents directly rather than following the link.
+  fileInputs: "=answer.value[0]"
 
 timeEstimateMinutes: 20
 
