@@ -58,8 +58,8 @@ settings:
   - id: exactValuesCaseInsensitive
     type: boolean
     name:
-      en: Ignore spaces and capitals
-      nl: Negeer spaties en hoofdletters
+      en: Ignore spaces/capitals
+      nl: Negeer spaties/hoofdletters
     description: Leading/trailing whitespace is always ignored when comparing the student's answer to the correct answer. When this is enabled, letter casing is ignored too.
     default: true
 
