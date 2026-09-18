@@ -20,3 +20,5 @@ Scored automatically: each blank is compared against the corresponding entry in 
 | --- | --- |
 | Text | The passage containing one or more blanks, written as `___` (three underscores). |
 | Correct answers | One correct answer per blank, in the same order as the blanks appear in the text. |
+| Ignore spaces and capitals | Leading and trailing whitespace is always ignored; enable this to ignore letter casing too. |
+| Exact order | On by default: every blank has to match the correct answer configured for it. Turn it off to accept any of the correct answers in any blank, as long as each one is used exactly once. |

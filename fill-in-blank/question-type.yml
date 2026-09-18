@@ -61,13 +61,27 @@ settings:
       en: Ignore spaces and capitals
       nl: Negeer spaties en hoofdletters
     description: Leading/trailing whitespace is always ignored when comparing the student's answer to the correct answer. When this is enabled, letter casing is ignored too.
-    default: false
+    default: true
+
+  - id: exactOrder
+    type: boolean
+    name:
+      en: Exact order
+      nl: Exacte volgorde
+    description: When enabled, every blank has to be filled in with the correct answer configured for that blank. When disabled, any of the correct answers is accepted in any blank, as long as each correct answer is used exactly once.
+    default: true
 
 responseProcessing:
   condition: |
-    =$.question.settings.exactValuesCaseInsensitive
-      ? $join($map($.answer.value, function($v) { $trim($lowercase($v)) }), '|') = $join($map($.question.settings.correctAnswer, function($c) { $trim($lowercase($c)) }), '|')
-      : $join($map($.answer.value, function($v) { $trim($v) }), '|') = $join($map($.question.settings.correctAnswer, function($c) { $trim($c) }), '|')
+    =(
+      $caseInsensitive := $.question.settings.exactValuesCaseInsensitive = true;
+      $normalise := function($v) { $caseInsensitive ? $trim($lowercase($v)) : $trim($v) };
+      $given := $map($.answer.value, $normalise);
+      $expected := $map($.question.settings.correctAnswer, $normalise);
+      $.question.settings.exactOrder = false
+        ? $join($sort($given), '|') = $join($sort($expected), '|')
+        : $join($given, '|') = $join($expected, '|')
+    )
   testCases:
     - question:
         {
@@ -119,6 +133,62 @@ responseProcessing:
             },
         }
       answer: { value: ["  paris "] }
+      expectedOutcome: true
+    - question:
+        {
+          settings:
+            {
+              text: "Capital of France is ___ and Spain is ___",
+              correctAnswer: ["Paris", "Madrid"],
+              exactOrder: true,
+            },
+        }
+      answer: { value: ["Madrid", "Paris"] }
+      expectedOutcome: false
+    - question:
+        {
+          settings:
+            {
+              text: "Capital of France is ___ and Spain is ___",
+              correctAnswer: ["Paris", "Madrid"],
+              exactOrder: false,
+            },
+        }
+      answer: { value: ["Madrid", "Paris"] }
+      expectedOutcome: true
+    - question:
+        {
+          settings:
+            {
+              text: "Capital of France is ___ and Spain is ___",
+              correctAnswer: ["Paris", "Madrid"],
+              exactOrder: false,
+            },
+        }
+      answer: { value: ["Paris", "Paris"] }
+      expectedOutcome: false
+    - question:
+        {
+          settings:
+            {
+              text: "Capital of France is ___ and Spain is ___",
+              correctAnswer: ["Paris", "Madrid"],
+              exactOrder: false,
+            },
+        }
+      answer: { value: ["Paris"] }
+      expectedOutcome: false
+    - question:
+        {
+          settings:
+            {
+              text: "Capital of France is ___ and Spain is ___",
+              correctAnswer: ["Paris", "Madrid"],
+              exactOrder: false,
+              exactValuesCaseInsensitive: true,
+            },
+        }
+      answer: { value: [" madrid", "paris "] }
       expectedOutcome: true
 
 translations:
