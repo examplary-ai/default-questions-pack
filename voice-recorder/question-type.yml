@@ -2,7 +2,7 @@
 
 id: examplary.expansion.voice-recorder
 public: true
-isDefault: false
+isDefault: true
 
 name:
   en: Voice recorder
