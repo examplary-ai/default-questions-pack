@@ -2,6 +2,7 @@
 
 id: examplary.expansion.sentence-analysis
 public: true
+isDefault: false
 
 name:
   en: Sentence analysis
