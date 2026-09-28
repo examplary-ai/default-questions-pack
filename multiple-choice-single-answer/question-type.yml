@@ -24,7 +24,8 @@ generation:
     Settings should look like this: {"options": ["Option 1", "Option 2", "Option 3"], "correctAnswer": "Option 2"}.
     Make sure the `correctAnswer` is always set, exactly matches one of the options strings, and that all options are unique.
     Also include exactly one scoring criteria, which should just be 'Correct answer selected', and be worth at least one point unless specified otherwise.
-    If the answer is a math equation, it should be formatted like such: <inline-math>2x + 3 = 7</inline-math> - this ensures it will be displayed LaTeX-like.
+    If the option is a math equation, it should be formatted like such: <inline-math>2x + 3 = 7</inline-math> - this ensures it will be displayed LaTeX-like.
+    Just using LaTeX formatting without the <inline-math> tags will not render the equation correctly.
 
 scanning:
   instructions: |
@@ -41,7 +42,7 @@ settings:
   - id: options
     type: string-array
     name: Multiple choice answer options
-    description: An array of option strings that represent the choices to the student. Each value can contain HTML.
+    description: An array of option strings that represent the choices to the student. Each value can contain HTML and <inline-math> tags.
     hidden: true
     required: true
 
