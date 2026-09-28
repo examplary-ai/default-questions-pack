@@ -22,7 +22,7 @@ generation:
   instructions: |
     The settings should include a 'dateType' field, which can be either 'year' or 'full-date', and a 'correctAnswer' field,
     which should be a year (e.g. 1925) if 'dateType' is 'year', or a full date (e.g. 1925-12-31) if 'dateType' is 'full-date'.
-    Ensure the `correctAnswer` setting exists (REQUIRED!) and matches the specified dateType.
+    Always set `correctAnswer`, in the format that matches the dateType.
 
     You don't have to instruct the user on what format to use, the UI will handle that for you. 
     Just make sure the correctAnswer is a valid year or date based on the dateType setting.

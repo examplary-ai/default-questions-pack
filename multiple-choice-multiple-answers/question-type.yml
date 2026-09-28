@@ -48,7 +48,7 @@ settings:
   - id: correctAnswer
     type: string-array
     name: Correct answer(s)
-    description: An array of strings of the correct answer values, matching the `value` field of the options. There can be multiple correct answers. Needs to be an exact match to one or more of the options, including punctuation and capitalisation!
+    description: The correct answers; there can be more than one. Each entry must be an exact copy of one of the strings in `options`, including punctuation, capitalisation and any HTML or <inline-math> tags, because scoring compares the strings directly.
     hidden: true
     required: true
 

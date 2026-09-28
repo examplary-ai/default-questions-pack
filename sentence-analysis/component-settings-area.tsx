@@ -7,6 +7,7 @@ import {
   LABELS,
   createSingleSegmentParse,
   normalizeParse,
+  tokenize,
 } from "./shared";
 import ParseEditor from "./lib/parse-editor";
 import type { SentenceParse, ZinsdeelCode } from "./shared";
@@ -70,13 +71,17 @@ const SettingsAreaComponent: FrontendQuestionSettingsAreaComponent = ({
           {
             role: "system",
             content:
-              "Je ontleedt Nederlandse zinnen redekundig. Geef alleen geldige JSON terug volgens het schema.",
+              "Je ontleedt Nederlandse zinnen redekundig.",
           },
           {
             role: "user",
             content: JSON.stringify({
               task: "Ontleed deze zin in zinsdelen.",
               sentence,
+              tokens: tokenize(sentence).map(({ index, text }) => ({
+                index,
+                text,
+              })),
               enabledLabels,
               requirePersoonsvorm: requirePv,
               labels: LABELS.map((label) => ({

@@ -46,7 +46,7 @@ generation:
       }
     }
 
-    The correctAnswer must be a gapless ordered partition of all tokens. Token indices are zero-based. Use only these labels: OW, WG, NG, LV, MV, VV, BWB, BVB, DB, VW. Keep enabledLabels to the labels that occur in the sentence. The persoonsvorm is a token range, usually one token inside WG or NG. Use null for persoonsvorm only when requirePersoonsvorm is false. Prefer one clear single-clause Dutch sentence.
+    Tokens are the sentence split on whitespace, so punctuation stays attached to the word before it ("2." in the example is one token). List every token in `tokens`. The correctAnswer must be a gapless ordered partition of all tokens. Token indices are zero-based. Use only these labels: OW, WG, NG, LV, MV, VV, BWB, BVB, DB, VW. Keep enabledLabels to the labels that occur in the sentence. The persoonsvorm is a token range, usually one token inside WG or NG. Use null for persoonsvorm only when requirePersoonsvorm is false. Prefer one clear single-clause Dutch sentence.
 
 grading:
   enabled: true
@@ -62,7 +62,7 @@ scanning:
     The expected answer value format is:
     ["startToken-endToken:LABEL", "startToken-endToken:LABEL", "PV:startToken-endToken"]
 
-    Use the question settings sentence/correctAnswer tokens as the token index source. Token indices are zero-based and must refer to the original sentence tokens, not to character positions. Segment entries must be ordered from left to right and must form the student's observed segmentation. A segment entry contains the inclusive token range, then a colon, then the zinsdeel label code.
+    Use the question settings sentence/correctAnswer tokens as the token index source. Tokens are the sentence split on whitespace, with punctuation attached to the word before it. Token indices are zero-based and must refer to the original sentence tokens, not to character positions. Segment entries must be ordered from left to right and must form the student's observed segmentation. A segment entry contains the inclusive token range, then a colon, then the zinsdeel label code.
 
     Valid label codes are OW, WG, NG, LV, MV, VV, BWB, BVB, DB, and VW. If the student wrote the full Dutch label, convert it to the code:
     Onderwerp = OW; Werkwoordelijk gezegde = WG; Naamwoordelijk gezegde = NG; Lijdend voorwerp = LV; Meewerkend voorwerp = MV; Voorzetselvoorwerp = VV; Bijwoordelijke bepaling = BWB; Bijvoeglijke bepaling = BVB; Dubbelverbonden bepaling = DB; Voegwoord = VW.

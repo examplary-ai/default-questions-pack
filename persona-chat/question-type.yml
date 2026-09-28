@@ -204,6 +204,10 @@ settings:
     name:
       en: AI starts conversation
       nl: AI start gesprek
+    description: |
+      Whether the AI character sends the first message. Enable it when the scenario naturally opens with the
+      character speaking (an interviewer welcoming the candidate, a patient describing a complaint); leave it off when
+      the student is expected to open the conversation.
     type: boolean
     default: false
 

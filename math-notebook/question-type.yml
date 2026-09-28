@@ -52,6 +52,7 @@ settings:
     name:
       en: Initial number of lines
       nl: Beginaantal regels
+    description: The number of empty lines shown to the student at the start, including the final answer line. Students can add more lines, and printed sheets show exactly this many. Set it to roughly the number of steps the worked solution needs.
     type: number
     default: 4
     step: 1

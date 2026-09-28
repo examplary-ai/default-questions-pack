@@ -82,17 +82,7 @@ const AssessmentComponent: FrontendAssessmentComponent = ({
 
     let response;
     try {
-      if ((api as any).ai?.generate) {
-        // Use new AI API
-        response = await (api as any).ai.generate({ messages, schema });
-      } else {
-        // Or fall back to legacy API
-        // TODO: remove after June 2026
-        const { data } = await (api as any).post(`/public/exams/conversation`, {
-          chat: messages,
-        });
-        response = data;
-      }
+      response = await (api as any).ai.generate({ messages, schema });
     } catch (error) {
       console.error(error);
       return;

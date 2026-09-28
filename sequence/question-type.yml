@@ -27,8 +27,8 @@ generation:
 scanning:
   instructions: |
     The answer should be an array of strings, in the format of ["First", "Second", "Third", "Fourth", "Fifth"].
-    Each value should exactly match one of the options specified in the settings, including punctuation and capitalisation. If the answer is close to one of the options, change it to match the option exactly. ONLY DO THIS IF THE ANSWER IS VERY CLOSE TO THE OPTION, OTHERWISE LEAVE IT AS IS. The order of the answers matters, keep the order the STUDENT specified.
-    The student might instead use letters to specify their answer, eg. 'A' for the first option (index 0), 'B' for the second (index 1), etc. In that case, convert the letters to the corresponding options in the correct order. ONLY DO THIS IF THE ANSWER IS IN THE FORMAT OF LETTERS THAT CORRESPOND TO THE OPTIONS, OTHERWISE LEAVE IT AS IS.
+    Each value should exactly match one of the options specified in the settings, including punctuation and capitalisation. If the answer is close to one of the options, change it to match the option exactly. Only do this if the answer is very close to the option, otherwise leave it as is. The order of the answers is what gets scored, so keep the order the student specified, even when it is wrong.
+    The student might instead use letters to specify their answer, eg. 'A' for the first option (index 0), 'B' for the second (index 1), etc. In that case, convert the letters to the corresponding options, keeping the order in which the student wrote them. Only do this if the answer is in the format of letters that correspond to the options, otherwise leave it as is.
 
 timeEstimateMinutes: 2
 hasSimpleScoring: true

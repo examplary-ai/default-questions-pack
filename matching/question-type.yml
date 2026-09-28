@@ -44,13 +44,13 @@ scanning:
     The answer should be an array of strings, in the format of ["Apple = Red", "Banana = Yellow", "Grapes = Purple"].
     Each string should contain exactly one ` = `. If there are multiple ` = ` in a string, only the first one will be used as the separator between left and right.
     If an answer is close to one of the pairs in the `correctAnswer` setting, copy over the pair from the settings, eg. if the answer is "Apple = red", it should be changed to "Apple = Red".
-    ONLY DO THIS IF THE ANSWER IS VERY CLOSE TO THE PAIR IN THE SETTINGS, OTHERWISE LEAVE THE ANSWER AS IS. The order of the pairs in the answer does not matter.
+    Only do this if the answer is very close to the pair in the settings, otherwise leave the answer as is. The order of the pairs in the answer does not matter.
 
     The student might also use numbers and letters, referring to the printed sheet. The number represents an item from the `left` setting ("1" is the first item), the letter an
     item from the `right` setting ("A" is the first item), both in the order they appear in the settings (e.g. with left items ["Apple", "Banana"] and right items
     ["Red", "Yellow"], "2 = A" means "Banana = Red"). In that case, convert the numbers and letters to the corresponding items from the settings. In which case, make sure to
     copy over all formatting, including <p> tags etc. from the original left/right options.
-    ONLY DO THIS IF THE ANSWER IS IN THE FORMAT OF NUMBERS AND LETTERS THAT CORRESPOND TO THE OPTIONS, OTHERWISE LEAVE IT AS IS.
+    Only do this if the answer is in the format of numbers and letters that correspond to the options, otherwise leave it as is.
 
 timeEstimateMinutes: 2
 hasSimpleScoring: true

@@ -29,7 +29,7 @@ grading:
 
 scanning:
   instructions: |
-    The answer should be a LaTeX/MathJAX math expression. Use simple MathJAX type expressions if possible. Unlike other answers, don't wrap math expressions in <inline-text>. Only return the LaTeX math expression itself, without any additional text or formatting. For example, return `\frac{1}{2}` (correct) instead of `<inline-text>\frac{1}{2}</inline-text>` (wrong).
+    The answer should be a LaTeX/MathJAX math expression. Use simple MathJAX type expressions if possible. Unlike other answers, don't wrap math expressions in <inline-math>. Only return the LaTeX math expression itself, without any additional text or formatting. For example, return `\frac{1}{2}` (correct) instead of `<inline-math>\frac{1}{2}</inline-math>` (wrong).
 
 timeEstimateMinutes: 4
 
