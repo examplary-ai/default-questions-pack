@@ -191,6 +191,22 @@ responseProcessing:
       answer: { value: [" madrid", "paris "] }
       expectedOutcome: true
 
+export:
+  qti3:
+    gaps:
+      text: "=$.question.settings.text"
+      answers: "=$.question.settings.correctAnswer"
+      caseInsensitive: "=$.question.settings.exactValuesCaseInsensitive"
+
+import:
+  qti3:
+    gaps: true
+    settings:
+      text: "=$.text"
+      correctAnswer: "=$.answers"
+      exactValuesCaseInsensitive: "=$.caseInsensitive"
+      exactOrder: true
+
 translations:
   text:
     en: Text to complete
