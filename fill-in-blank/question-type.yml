@@ -197,6 +197,7 @@ export:
       text: "=$.question.settings.text"
       answers: "=$.question.settings.correctAnswer"
       caseInsensitive: "=$.question.settings.exactValuesCaseInsensitive"
+      anyOrder: "=$.question.settings.exactOrder = false"
 
 import:
   qti3:
@@ -205,7 +206,7 @@ import:
       text: "=$.text"
       correctAnswer: "=$.answers"
       exactValuesCaseInsensitive: "=$.caseInsensitive"
-      exactOrder: true
+      exactOrder: "=$not($.anyOrder)"
 
 translations:
   text:
